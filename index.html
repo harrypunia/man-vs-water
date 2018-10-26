@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>man vs Water</title>
+    <link rel="stylesheet" href="dist/style/animations.min.css">
+    <link rel="stylesheet" href="dist/style/UI.min.css">
+    <link rel="stylesheet" href="dist/style/form.min.css">
+    <link rel="stylesheet" href="dist/style/side.min.css">
+    <link rel="stylesheet" href="dist/style/main.min.css">
+    <link rel="stylesheet" href="dist/style/navigation.min.css">
+    <script src="dist/js/Stats.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="dist/lib/p5.min.js"></script>
+    <script src="dist/lib/three.min.js"></script>
+    <script src="dist/js/HarryControls.min.js"></script>
+</head>
+
+<body>
+    <div class="permission">
+        <h3 class="permissionHeading">Audio Play</h3>
+        <p class="permissionText">This webpage includes Audio autoplay. Please confirm to improve your experience with us.
+        </p>
+        <p class="permissionMore">According to new policies introduced by many web browsers, we need to ask for your permission to play audios/videos, please check chrome policies for detailed explanation</p>
+        <div class="permissionButtons">
+            <div id="no" class="permissionDecline permissionAnswer" onclick="allowAudio(event); openSide()">Decline</div>
+            <div id="yes" class="permissionConfirm permissionAnswer" onclick="allowAudio(event); openSide()">Confirm</div>
+        </div>
+    </div>
+    <div class="side">
+        <div id="man" class="man" onclick="openForm(event)">
+            <div class="man__cover side__covers">
+                <h1 class="man__text side__text">Man</h1>
+                <img class="side__covers-img man__cover-img" src="assets/img/SVG/man_cover-back.svg" alt="">
+                <div class="man__cover-avatar">
+                    <img class="cover__players man__player" src="assets/img/SVG/man_cover.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="choose">Choose Your Side</div>
+        <div class="vs">VS</div>
+        <div id="water" class="water" onclick="openForm(event)">
+            <div class="water__cover side__covers">
+                <h1 class="water__text side__text">Water</h1>
+                <img class="side__covers-img water__cover-img" src="assets/img/SVG/water_cover-back.svg" alt="">
+                <div class="water__cover-avatar">
+                    <img class="cover__players water__player" src="assets/img/SVG/water_cover.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <div class="form__wrapper">
+            <div class="form__wrapper__select">
+                <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                    <p class="form__wrapper__select-text">Large</p>
+                    <img src="assets/img/large.png" alt="Nuclear War">
+                </div>
+                <div id="map2" class="form__wrapper__select-opt2 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                    <p class="form__wrapper__select-text">Medium</p>
+                    <img src="assets/img/medium.jpg" alt="World War">
+                </div>
+                <div id="map3" class="form__wrapper__select-opt3 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                    <p class="form__wrapper__select-text">Small</p>
+                    <img src="assets/img/small.jpg" alt="World War">
+                </div>
+            </div>
+            <select id="playerType" class="form__wrapper__select hideForm" name="">
+                <option value="Speedy">Speedy</option>
+                <option value="Tank">Tank</option>
+                <option value="Assassin">Assassin</option>
+            </select>
+            <input id="fname" class="form__wrapper__input hideForm" type="text" placeholder="Choose a name" required />
+            <input class="form__wrapper__button hideForm" type="submit" value="Enter Lobby">
+        </div>
+        <div class="headphone hideForm">
+            <img id="mute" class="muteStatus mute" src="assets/img/icons/unmute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
+            <img id="unmute" class="muteStatus unmute" src="assets/img/icons/mute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
+        </div>
+    </div>
+    <div class="navigation">
+        <div class="menu">
+            <div class="menuWrapper">
+                <div class="p5Toggles">
+                    <h2>Like the rain?</h2>
+                    <p>Play with the parameters</p>
+                    <p class="rain">Rain Intensity</p>
+                    <input id="rainIntensity" class="p5Para" type="range" min="20" max="300" value="100" step="1" />
+                    <p>Drop Thickness</p>
+                    <input id="dropThickness" class="p5Para" type="range" min=".5" max="5" value="1" step=".1" />
+                    <p>Thunder Frequency</p>
+                    <input id="thunderFreq" class="p5Para" type="range" min="100" max="500" value="300" step="5" />
+                    <p>Wind Speed</p>
+                    <input id="windSpeed" class="p5Para" type="range" min="1" max="10" value="5" step="1" />
+                    <p>Air Friction</p>
+                    <input id="airFriction" class="p5Para" type="range" min=".01" max=".1" value=".05" step=".01" />
+                    <p>Rain Drop Shapes</p>
+                    <input id="rainShape" class="p5Para" type="range" min="0" max="2" value="1" step="1" />
+                    <p>Rain Speed</p>
+                    <input id="rainSpeed" class="p5Para" type="range" min="1" max="30" value="7" step="1" />
+                    <div class="resetP5" onclick="resetP5Parameters()">Reset</div>
+                </div>
+            </div>
+            <div class="icon">
+                <img src="assets/img/icons/drop-silhouette.svg" alt="drop">
+            </div>
+            <div class="lightMenuFooter">Harry</div>
+        </div>
+        <div class="performanceCheck">
+            <div class="frameRateShow"></div>
+            <div class="performanceCircle"></div>
+            <p class=identifity>Rain Performance</p>
+        </div>
+        <div class="burger" onclick="openMenu()">
+            <div class="bar1 bars"></div>
+            <div class="bar2 bars"></div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="UI">
+            <div class="UIRight">
+                <div class="health"></div>
+                <div class="stamina"></div>
+                <div id="bulletCount">
+                    <div class="bulletCountAnimation"></div>
+                    <p id="bulletCountDisplay">0</p>
+                </div>
+            </div>
+            <div class="UILeft"></div>
+        </div>
+    </div>
+    <script>
+        //Loading FPS
+        (function() {
+            var script = document.createElement('script');
+            script.onload = function() {
+                var stats = new Stats();
+                document.body.appendChild(stats.dom);
+                requestAnimationFrame(function loop() {
+                    stats.update();
+                    requestAnimationFrame(loop)
+                });
+            };
+            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+            document.head.appendChild(script);
+        })()
+
+        //Firebase Config
+        var config = {
+            apiKey: "AIzaSyBlwfY2vzR1pkjOM9j5s9PZ0LEfFTZNiAU",
+            authDomain: "man-vs-water.firebaseapp.com",
+            databaseURL: "https://man-vs-water.firebaseio.com",
+            projectId: "man-vs-water",
+            storageBucket: "man-vs-water.appspot.com",
+            messagingSenderId: "507593463421"
+        };
+        firebase.initializeApp(config);
+        const databse = firebase.database();
+        var ref = databse.ref("Players"),
+            lobbyRef = databse.ref('Lobby');
+    </script>
+    <script>
+        //Declaration
+        var gameStroke = new THREE.MeshBasicMaterial({
+                color: 0x000000,
+                wireframe: true,
+                wireframeLinewidth: 2,
+            }),
+            geo, mat,
+
+            walls, grass, plane,
+
+            texture,
+
+            ambLights, sun, sky, lights,
+
+            zone, environment,
+
+            scope,
+
+            bullets = [],
+
+            playerId, player, playerType, playerName, otherPlayers = [],
+
+            arenaSizeSelected, arenaSize,
+
+            meshShrinkSpeed, shrinkSpeed = .01;
+    </script>
+    <!--P5-->
+    <script src="dist/js/preForm.min.js"></script>
+    <script src="dist/js/preGame.min.js"></script>
+    <script src="dist/js/particle.min.js"></script>
+    <script src="dist/js/p5main.min.js"></script>
+    <!--Three Js-->
+    <script src="dist/js/threeAudio.min.js"></script>
+    <script src="dist/js/zone.min.js"></script>
+    <script src="dist/js/player.min.js"></script>
+    <script src="dist/js/objects.min.js"></script>
+    <script src="dist/js/gun.min.js"></script>
+    <script src="dist/js/sky.min.js"></script>
+    <script src="dist/js/ground.min.js"></script>
+    <script src="dist/js/lights.min.js"></script>
+    <script src="dist/js/environment.min.js"></script>
+    <script src="dist/js/game.min.js"></script>
+    <script src="dist/js/main.min.js"></script>
+</body>
+
+</html>
