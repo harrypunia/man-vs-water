@@ -1,0 +1,199 @@
+.navigation {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.menu {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 50vw;
+    top: 50vh;
+    transform: translate3d(-50%, -150%, 0);
+    transition: transform .3s ease-in;
+    background: rgba(255, 245, 245, 1);
+    box-sizing: border-box;
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 199;
+    overflow: hidden;
+}
+
+.icon {
+    position: absolute;
+    top: 50px;
+    left: 50vw;
+    transform: translateX(-50%);
+}
+
+.icon img {
+    width: 25px;
+    height: 25px;
+}
+
+.menuWrapper {
+    margin: auto;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80%;
+    height: 500px;
+    background: #fff;
+}
+
+.p5Toggles {
+    float: right;
+    height: 100%;
+    width: 200px;
+    color: #151515;
+    text-align: center;
+    font-family: sans-serif;
+    box-shadow: 0 0 10px #efefef;
+}
+
+.p5Toggles h2 {
+    font-size: 2em;
+}
+
+.rain {
+    margin-top: 30px !important;
+}
+
+.p5Toggles p {
+    font-size: 1.2em;
+    margin: 2px;
+}
+
+.p5Para {
+    margin: 5px 0;
+    -webkit-appearance: none;
+    width: 80%;
+    height: 20px;
+    border: 1px solid #000;
+    outline: none;
+    transition: opacity .2s ease-in;
+}
+
+.p5Para:hover {
+    background: #ffd6d6;
+    transition: opacity .2s ease-out;
+}
+
+.p5Para::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    cursor: pointer;
+}
+
+.resetP5 {
+    margin: 10px auto;
+    box-shadow: 0 0 5px #555;
+    padding: 10px 20px;
+    background: #151515;
+    color: #fff;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow .3s ease-in:;
+}
+
+.resetP5:hover {
+    box-shadow: none;
+    transition: box-shadow .3s ease-out;
+}
+
+.lightMenuFooter {
+    position: absolute;
+    font-size: 30em;
+    opacity: .1;
+    color: #bababa;
+    cursor: default;
+    user-select: none;
+    position: absolute;
+    bottom: -150px;
+}
+
+.openMenu {
+    transform: translate3d(-50%, -50%, 0);
+    transition: transform .3s ease-out;
+}
+
+.burger {
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    width: 25px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+    z-index: 200;
+}
+
+.cross .bars {
+    background: #000;
+    margin: 0;
+    transform-origin: center center;
+    transition: transform .3s ease-out !important;
+}
+
+.cross:hover .bars {
+    margin: 0 !important;
+}
+
+.cross .bar1 {
+    transform: rotate(-45deg) translate(-1px, 2.5px);
+}
+
+.cross .bar2 {
+    transform: rotate(45deg);
+}
+
+.performanceCheck {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 150px;
+    height: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frameRateShow {
+    font-size: 1.5em;
+    color: gray;
+    margin-right: 10px;
+}
+
+.performanceCircle {
+    width: 15px;
+    height: 15px;
+    background: green;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.bars {
+    position: relative;
+    float: left;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: background .2s ease-in, margin .2s ease-in, transform .3s ease-in !important;
+    user-select: none;
+}
+
+.burger:hover .bars {
+    background: #f01818;
+    margin: 4px 0;
+    transition: background .2s ease-out, margin .2s ease-out;
+}
