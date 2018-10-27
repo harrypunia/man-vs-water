@@ -20,13 +20,13 @@ var Game = function () {
     }
 }
 
-function listenToPlayer(PlayerData) {
+const listenToPlayer = (PlayerData) => {
     if (PlayerData.val()) {
         otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation);
     }
 }
 
-function initOtherPlayers() {
+const initOtherPlayers = () => {
     ref.on("child_added", function (PlayerData) {
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
@@ -45,7 +45,7 @@ function initOtherPlayers() {
     });
 }
 
-function initMainPlayer() {
+const initMainPlayer = () => {
     playerId = ref.push().key;
     ref.child(playerId).child("orientation").set({
         position: {
@@ -64,7 +64,7 @@ function initMainPlayer() {
     player.init();
 }
 
-function loadMapsize() {
+const loadMapsize = () => {
     if (arenaSizeSelected == 'large') {
         arenaSize = 300;
     } else if (arenaSizeSelected == 'medium') {
@@ -75,7 +75,7 @@ function loadMapsize() {
     meshShrinkSpeed = shrinkSpeed / arenaSize;
 }
 
-function restrictPlayer(player) {
+const restrictPlayer = (player) => {
     if (player.position.x <= -((arenaSize / 2) - 0.5)) {
         player.position.x = -((arenaSize / 2) - 0.5);
     } else if (player.position.x >= ((arenaSize / 2) - 0.5)) {
@@ -88,7 +88,7 @@ function restrictPlayer(player) {
     }
 }
 
-function playerFall() {
+const playerFall = () => {
     if (controls.hasLanded == false) {
         if (player.mesh.position.y > 1) {
             controls.update();
@@ -103,7 +103,7 @@ function playerFall() {
     }
 }
 
-function removePlayers() {
+const removePlayers = () => {
     window.onunload = function () {
         ref.child(playerId).remove();
     };
@@ -112,7 +112,7 @@ function removePlayers() {
     };
 }
 
-function arenaShrink() {
+const arenaShrink = () => {
     if (arenaSize > 50) {
         zone.shrink(meshShrinkSpeed);
         arenaSize -= shrinkSpeed;
@@ -121,6 +121,6 @@ function arenaShrink() {
     }
 }
 
-function updateLight() {
+const updateLight = () => {
     sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
 }

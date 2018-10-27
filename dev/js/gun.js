@@ -83,7 +83,7 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
     }
 }
 
-function bulletPhysics(walls, bulletSize) {
+const bulletPhysics = (walls, bulletSize) => {
     for (var i = 0; i < bullets.length; i++) {
         //Hit Wall
         for (var j = 0; j < walls.length; j++) {

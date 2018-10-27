@@ -25,7 +25,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
 
     this.allowMouseControls;
 
-    var fireRate = 10,
+    let fireRate = 10,
         fireSpeed = 20,
         range,
         bulletSpeed,
@@ -33,13 +33,13 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         magazineSize,
         reloadSpeed,
         totalBullets,
-        bulletContainer = document.getElementById('bulletCountDisplay'),
         staminaBar,
         stamina = 100,
         storeMoveSpeed,
         scopeZoom,
         dblScopeZoom,
-        jumpPower = .15,
+        jumpPower = .15;
+    const bulletContainer = document.getElementById('bulletCountDisplay'),
         map = document.getElementById('map');
 
     this.reloading = false;
@@ -621,23 +621,16 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
 
     }
 
-    function onKeyDown(event) {
+
+    this.domElement.addEventListener('contextmenu', (event) => event.preventDefault());
+    this.domElement.addEventListener('keydown', (event) => {
         event = event || window.event;
-
-        keyState[event.keyCode || event.which] = true;
-    }
-
-    function onKeyUp(event) {
+        keyState[event.keyCode || event.which] = true
+    });
+    this.domElement.addEventListener('keyup', (event) => {
         event = event || window.event;
         keyState[event.keyCode || event.which] = false;
-    }
-
-    //    allowMouseControls();
-    this.domElement.addEventListener('contextmenu', function (event) {
-        event.preventDefault();
-    }, false);
-    this.domElement.addEventListener('keydown', onKeyDown, false);
-    this.domElement.addEventListener('keyup', onKeyUp, false);
+    });
     this.domElement.addEventListener('mousedown', onMouseDown, false);
     this.domElement.addEventListener('mousewheel', onMouseWheel, false);
     this.domElement.addEventListener('DOMMouseScroll', onMouseWheel, false);

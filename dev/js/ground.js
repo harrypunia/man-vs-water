@@ -1,4 +1,4 @@
-function loadGround() {
+const loadGround = () => {
     geo = new THREE.PlaneGeometry(arenaSize * 4, arenaSize * 4, arenaSize / 4, arenaSize / 4);
     mat = new THREE.MeshLambertMaterial({
         color: 0x2e2925

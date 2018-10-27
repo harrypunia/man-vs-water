@@ -3,7 +3,7 @@
     "brackets-minifier.js-project-minify": true,
     "brackets-minifier.css-project-minify": true,
     "brackets-minifier.js-custom-path": "dist/js",
-    "brackets-minifier.css-custom-path": "dist/styles",
+    "brackets-minifier.css-custom-path": "dist/style",
     "brackets-minifier.project-exclude": "",
     "brackets-minifier.concat-js-filename": "",
     "brackets-minifier.concat-css-filename": "",

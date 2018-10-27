@@ -1,4 +1,4 @@
-function addLights() {
+const addLights = () => {
     ambLight = new THREE.AmbientLight(0xffffff, 1);
     sun = new THREE.SpotLight(0xffffff);
     sun.intensity = 1;

@@ -18,14 +18,14 @@ const container = document.getElementById('container'),
     navigation = document.getElementsByClassName('navigation')[0],
     man = document.getElementsByClassName('man__player')[0],
     water = document.getElementsByClassName('water__player')[0];
-let permitAudio = false,
-    ifMapSelected = false,
-    chosenSideId,
+let chosenSideId,
     chosenSide,
     neglectedSideId,
     neglectedSide,
-    menuStatus = false,
-    playersJoined;
+    playersJoined,
+    permitAudio = false,
+    ifMapSelected = false,
+    menuStatus = false;
 
 function openForm(e) {
     chosenSide = e.currentTarget.id;
@@ -47,7 +47,7 @@ function openForm(e) {
     form.style.zIndex = 100;
 
     //Show form
-    for (var i = 0; i < maps.length; i++) {
+    for (let i = 0; i < maps.length; i++) {
         maps[i].classList.remove('hideForm');
     }
     document.getElementById('playerType').classList.remove('hideForm');
@@ -58,7 +58,7 @@ function openForm(e) {
     chosenSideId.addEventListener("click", returnToChoose, false);
 }
 
-function returnToChoose() {
+const returnToChoose = () => {
     form.style.zIndex = 1;
     side.style.width = '100vw';
     side.classList.remove('decisionMade');
@@ -68,7 +68,7 @@ function returnToChoose() {
     document.getElementById('playerType').classList.remove('hideForm');
 
     //Hide Form
-    for (var i = 0; i < maps.length; i++) {
+    for (let i = 0; i < maps.length; i++) {
         maps[i].classList.add('hideForm');
     }
     document.getElementById('playerType').classList.add('hideForm');
@@ -76,12 +76,12 @@ function returnToChoose() {
     document.getElementsByClassName('form__wrapper__button')[0].classList.add('hideForm');
 }
 
-function openSide() {
+const openSide = () => {
     side.style.display = 'block';
 }
 
-document.addEventListener("mousemove", function (event) {
-    var x = event.clientX,
+document.addEventListener("mousemove", (event) => {
+    let x = event.clientX,
         y = event.clientY,
         depth = 1000;
     man.style.left = 10 + (x / depth) + 'vw';

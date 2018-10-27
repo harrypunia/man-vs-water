@@ -1,4 +1,4 @@
-function allowAudio(e) {
+const allowAudio = (e) => {
     if (e.currentTarget.id == 'yes') {
         playAudios();
         permitAudio = true;
@@ -12,14 +12,7 @@ function allowAudio(e) {
     }
 }
 
-formButton.addEventListener("click", validateForm, false);
-window.addEventListener('keydown', function (e) {
-    if (e.keyCode == 13 || e.which == 13) {
-        validateForm();
-    }
-}, false);
-
-function validateForm() {
+let validateForm = () => {
     var formInput = document.getElementById("fname");
     if (formInput.value == '') {
         showError('form__wrapper__input');
@@ -35,7 +28,7 @@ function validateForm() {
     formButton.removeEventListener('click', validateForm, false);
 }
 
-function selectMap(e) {
+const selectMap = (e) => {
     ifMapSelected = true;
     clearMapSelections();
     var mapSelected;
@@ -43,7 +36,7 @@ function selectMap(e) {
     mapSelected.classList.add('mapSelected');
 }
 
-function enterLobby() {
+const enterLobby = () => {
     playerId = ref.push().key;
     ref.child(playerId).child("orientation").set({
         position: {
@@ -68,36 +61,36 @@ function enterLobby() {
     }
 }
 
-function getPlayersJoined() {
+const getPlayersJoined = () => {
     lobbyRef.on("value", function (snapshot) {
         return snapshot.numChildren()
     })
 }
 
-function playGame() {
+const playGame = () => {
     initThreeJs();
     displayUI();
     hideNavigation();
 }
 
-function displayUI() {
+const displayUI = () => {
     document.getElementsByClassName('UI')[0].style.display = 'block';
 }
 
-function hideNavigation() {
+const hideNavigation = () => {
     headphone.innerHTML = '';
     navigation.innerHTML = '';
     form.innerHTML = '';
     side.innerHTML = '';
 }
 
-function clearMapSelections() {
+const clearMapSelections = () => {
     for (var i = 0; i < maps.length; i++) {
         maps[i].classList.remove('mapSelected');
     }
 }
 
-function mapSize() {
+var mapSize = () => {
     for (var i = 0; i < maps.length; i++) {
         if (maps[i].classList.contains('mapSelected')) {
             if (i == 0) return 'large'
@@ -107,7 +100,7 @@ function mapSize() {
     }
 }
 
-function gatherInfo() {
+const gatherInfo = () => {
     var form = document.getElementsByClassName('form')[0],
         formName = document.getElementById('fname'),
         playerSelected = document.getElementById('playerType');
@@ -121,7 +114,7 @@ function gatherInfo() {
     form.style.display = 'none';
 }
 
-function showError(e) {
+const showError = (e) => {
     var errorTarget = document.getElementsByClassName(e);
     for (var i = 0; i < errorTarget.length; i++) {
         errorTarget[i].style.animation = '.1s error ease-in-out 3';
@@ -132,12 +125,12 @@ function showError(e) {
     }
 }
 
-function stopP5() {
+const stopP5 = () => {
     var garbage = container.removeChild(canvas);
     stopP5Draw = true;
 }
 
-function playAudios() {
+const playAudios = () => {
     introAudio.play();
     introAudio.loop = true;
     rain.play();
@@ -145,7 +138,7 @@ function playAudios() {
     rain.loop = true;
 }
 
-function pauseAudios() {
+const pauseAudios = () => {
     introAudio.pause();
     rain.pause();
     for (var i = 0; i < p5Sounds.length; i++) {
@@ -153,7 +146,7 @@ function pauseAudios() {
     }
 }
 
-function removePermissionForm(dec) {
+const removePermissionForm = (dec) => {
     if (dec == 'yes') {
         permission.style.animation = 'permissionOutYES .4s ease-in';
     } else {
@@ -166,7 +159,7 @@ function removePermissionForm(dec) {
     form.style.opacity = 1;
 }
 
-function changeAudioPermissions(e) {
+const changeAudioPermissions = (e) => {
     var toggle = e.currentTarget.id;
     if (toggle == 'mute') {
         muteIcon[0].style.display = 'none';
@@ -181,7 +174,7 @@ function changeAudioPermissions(e) {
     }
 }
 
-function openMenu() {
+const openMenu = () => {
     if (!menuStatus) {
         menu.classList.add('openMenu');
         burger.classList.add('cross');
@@ -192,3 +185,10 @@ function openMenu() {
         menuStatus = false;
     }
 }
+
+formButton.addEventListener("click", validateForm, false);
+window.addEventListener('keydown', (e) => {
+    if (e.keyCode == 13 || e.which == 13) {
+        validateForm();
+    }
+}, false);

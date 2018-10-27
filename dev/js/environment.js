@@ -1,7 +1,7 @@
 zone = new Zone();
 sky = new Sky();
 
-let Environment = function () {
+var Environment = function () {
     this.init = function () {
         addLights();
         loadGround();
