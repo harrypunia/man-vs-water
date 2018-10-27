@@ -65,31 +65,18 @@ const initMainPlayer = () => {
 }
 
 const loadMapsize = () => {
-    if (arenaSizeSelected == 'large') {
-        arenaSize = 300;
-    } else if (arenaSizeSelected == 'medium') {
-        arenaSize = 225;
-    } else {
-        arenaSize = 150;
-    }
+    arenaSize = arenaSizeSelected == 'large' ? 300 : arenaSizeSelected == 'medium' ? 225 : 150;
     meshShrinkSpeed = shrinkSpeed / arenaSize;
 }
 
 const restrictPlayer = (player) => {
-    if (player.position.x <= -((arenaSize / 2) - 0.5)) {
-        player.position.x = -((arenaSize / 2) - 0.5);
-    } else if (player.position.x >= ((arenaSize / 2) - 0.5)) {
-        player.position.x = ((arenaSize / 2) - 0.5);
-    }
-    if (player.position.z <= -((arenaSize / 2) - 0.5)) {
-        player.position.z = -((arenaSize / 2) - 0.5);
-    } else if (player.position.z >= ((arenaSize / 2) - 0.5)) {
-        player.position.z = ((arenaSize / 2) - 0.5);
-    }
+    let parameter = arenaSize / 2 - 0.5;
+    player.position.x = player.position.x <= -parameter ? -parameter : player.position.x >= parameter ? parameter : null;
+    player.position.z = player.position.z <= -parameter ? -parameter : player.position.z >= parameter ? parameter : null;
 }
 
 const playerFall = () => {
-    if (controls.hasLanded == false) {
+    if (!controls.hasLanded) {
         if (player.mesh.position.y > 1) {
             controls.update();
             controls.access(4, .5, 4);
@@ -113,12 +100,8 @@ const removePlayers = () => {
 }
 
 const arenaShrink = () => {
-    if (arenaSize > 50) {
-        zone.shrink(meshShrinkSpeed);
-        arenaSize -= shrinkSpeed;
-    } else if (arenaSize <= 50) {
-        return false
-    }
+    arenaSize > 50 ? zone.shrink(meshShrinkSpeed) : false;
+    arenaSize -= shrinkSpeed;
 }
 
 const updateLight = () => {

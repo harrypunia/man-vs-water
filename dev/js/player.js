@@ -15,7 +15,7 @@ var Player = function (playerID, playerName, playerType) {
         scope.mesh = new THREE.Mesh(player_geo, player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);
         scope.mesh.position.x = (arenaSize / 2) - (Math.floor(Math.random() * arenaSize));
-        scope.mesh.position.y = arenaSize / 2; //Base
+        scope.mesh.position.y = arenaSize / 2;
         scope.mesh.position.z = (arenaSize / 2) - (Math.floor(Math.random() * arenaSize));
         scope.mesh.add(scope.meshBorder);
         scene.add(scope.mesh);
