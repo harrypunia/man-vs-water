@@ -9,20 +9,16 @@ function Particle(x, y) {
         this.vel.x >= 10 ? this.vel.x = 10 : 0;
         this.resetPos();
     }
-    this.show = (thick, shape) => {
-        if (shape == 0) {
+    this.show = (thick) => {
+        if (this.isLava) {
             noStroke()
-            fill(255, 90, 40, 100)
+            fill(255, 90, 40, 80);
             ellipse(this.pos.x, this.pos.y, thick * 5, thick * 5)
-        } else if (shape == 1) {
+        } else {
             noFill();
             strokeWeight(thick);
-            stroke(255, 90, 40, 100);
+            stroke(255, 40);
             line(this.pos.x, this.pos.y, this.pos.x, this.pos.y + 20);
-        } else if (shape == 2) {
-            noStroke()
-            fill(255, 90, 40, 100)
-            rect(this.pos.x, this.pos.y, thick * 5, thick * 5)
         }
     }
     this.applyWind = windSpeed => {

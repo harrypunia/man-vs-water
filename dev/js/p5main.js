@@ -29,7 +29,6 @@ function draw() {
     thunderFrequency = document.getElementById('thunderFreq').value;
     windSpeed = document.getElementById('windSpeed').value;
     airFriction = document.getElementById('airFriction').value;
-    rainShape = document.getElementById('rainShape').value;
     rainSpeed = document.getElementById('rainSpeed').value;
 
     //Thundering and sounds
@@ -47,7 +46,7 @@ function draw() {
     }
     for (var i = 0; i < rainIntensity; i++) {
         particles[i].update(airFriction, rainSpeed);
-        particles[i].show(dropThickness, rainShape);
+        particles[i].show(dropThickness);
     }
 
     //Show frameRate    

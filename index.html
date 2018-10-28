@@ -87,17 +87,15 @@
                     <h2>Like the rain?</h2>
                     <p>Play with the parameters</p>
                     <p class="rain">Rain Intensity</p>
-                    <input id="rainIntensity" class="p5Para" type="range" min="20" max="300" value="100" step="1" />
+                    <input id="rainIntensity" class="p5Para" type="range" min="20" max="300" value="60" step="1" />
                     <p>Drop Thickness</p>
                     <input id="dropThickness" class="p5Para" type="range" min=".5" max="5" value="1" step=".1" />
                     <p>Thunder Frequency</p>
                     <input id="thunderFreq" class="p5Para" type="range" min="100" max="500" value="300" step="5" />
                     <p>Wind Speed</p>
-                    <input id="windSpeed" class="p5Para" type="range" min="1" max="10" value="5" step="1" />
+                    <input id="windSpeed" class="p5Para" type="range" min="1" max="10" value="3" step="1" />
                     <p>Air Friction</p>
                     <input id="airFriction" class="p5Para" type="range" min=".01" max=".1" value=".05" step=".01" />
-                    <p>Rain Drop Shapes</p>
-                    <input id="rainShape" class="p5Para" type="range" min="0" max="2" value="0" step="1" />
                     <p>Rain Speed</p>
                     <input id="rainSpeed" class="p5Para" type="range" min="1" max="30" value="7" step="1" />
                     <div class="resetP5" onclick="resetP5Parameters()">Reset</div>
@@ -161,6 +159,7 @@
         var ref = database.ref("Players"),
             lobbyRef = database.ref('Lobby'),
             gameRef = database.ref('Game');
+
     </script>
     <script>
         var gameStroke = new THREE.MeshBasicMaterial({
@@ -178,6 +177,7 @@
             playerId, player, playerType, playerName, otherPlayers = [],
             arenaSizeSelected, arenaSize,
             meshShrinkSpeed, shrinkSpeed = .01;
+
     </script>
     <script src="dev/js/preForm.js"></script>
     <script src="dev/js/preGame.js"></script>
