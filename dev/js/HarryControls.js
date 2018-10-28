@@ -370,53 +370,36 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
                 }
 
                 if (keyState[192]) { //Aim
-                    if (player.material.opacity > .5) {
-                        player.material.opacity -= 0.05;
-                    }
+                    player.material.opacity > .5 ? player.material.opacity -= 0.05 : 0;
                     playerIsMoving = true;
                     this.turnSpeed = .02;
-                    if (this.perspective > scopeZoom) {
-                        this.perspective -= 0.3;
-                    }
+                    this.perspective > scopeZoom ? this.perspective -= 0.3 : 0;
                     if (keyState[49]) {
                         this.turnSpeed = .01;
-                        if (player.material.opacity > .2) {
-                            player.material.opacity -= 0.01;
-                        }
-                        if (this.perspective > dblScopeZoom) {
-                            this.perspective -= 0.1
-                        }
+                        player.material.opacity > .2 ? player.material.opacity -= 0.01 : 0;
+                        this.perspective > dblScopeZoom ? this.perspective -= 0.1 : 0;
                     } else {
-                        if (player.material.opacity < .49) {
-                            player.material.opacity += 0.01;
-                        }
-                        if (this.perspective < (scopeZoom - 0.1)) {
-                            this.perspective += 0.1;
-                        }
+                        player.material.opacity < .49 ? player.material.opacity += 0.01 : 0;
+                        this.perspective < scopeZoom - 0.1 ? this.perspective += 0.1 : 0;
                     }
                 } else {
-                    if (player.material.opacity < 1) {
-                        player.material.opacity += 0.05;
-                    }
-                    if (this.perspective < 7) {
-                        playerIsMoving = true;
-                        this.perspective += 0.3;
-                    }
+                    player.material.opacity < 1 ? player.material.opacity += 0.05 : 0;
+                    this.perspective < 7 ? (playerIsMoving = true, this.perspective += 0.3) : 0;
                 }
 
-                if (keyState[32] && fireRate == 0 && gun.reloadStatus == false) {
+                if (keyState[32] && fireRate == 0 && gun.reloadStatus == false) { //Shoot
                     gun.shoot(theta, fireSpeed);
                     fireRate = fireSpeed;
                 }
                 if (keyState[82]) { //Reload
-                    if (gun.allowReload() == false && gun.reloadStatus == false) {
+                    if (!gun.allowReload() && gun.reloadStatus == false) {
                         bulletContainer.classList.add('shake');
-                        setTimeout(function () {
+                        setTimeout(() => {
                             bulletCountDisplay.classList.remove('shake');
                         }, 500);
-                    } else if (gun.allowReload() == true && gun.reloadStatus == false) {
+                    } else if (gun.allowReload() && gun.reloadStatus == false) {
                         gun.reload(reloadSpeed);
-                    } else {}
+                    }
                 }
             }
             if (keyState[77]) { //Map
@@ -440,7 +423,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
                 dimBack = false;
                 this.allow = true;
             }
-        } else {
+        } else { //If Not Landed
             mapCamera.lookAt(player.position);
         }
         if (this.allow) {
