@@ -2,25 +2,26 @@ var p, particles = [],
     stopP5Draw = false,
     rainIntensity, dropThickness, thunderFrequency, windSpeed, airFriction, rainShape, rainSpeed, p5Performance = document.getElementsByClassName('performanceCircle')[0],
     showFrameRate = document.getElementsByClassName('frameRateShow')[0],
-    frameRateCounter = 20;
+    frameRateCounter = 20,
+    g_color1,
+    g_color2;
 
 function setup() {
     var canvas = createCanvas(window.innerWidth, window.innerHeight);
+    g_color1 = color(7, 0, 12);
+    g_color2 = color(255, 120, 70);
     canvas.parent(container);
     particles = [];
     for (var i = 0; i < 300; i++) {
-        particles[i] = new Particle(Math.floor(Math.random() * window.innerWidth), Math.floor(Math.random() * window.innerHeight));
+        particles[i] = new Particle(Math.floor(Math.random() * window.innerWidth), -Math.floor(Math.random() * window.innerHeight));
     }
 }
 
 function draw() {
-    background(10, 5, 33);
+    setGradient(0, 0, window.innerWidth, window.innerHeight, g_color1, g_color2);
     //Showing Frame Count
     frameRateCounter++;
-    if (frameRateCounter >= 20) {
-        showFrameRate.innerHTML = Math.floor(frameRate());
-        frameRateCounter = 1;
-    }
+    frameRateCounter >= 20 ? (showFrameRate.innerHTML = Math.floor(frameRate()), frameRateCounter = 1) : 0;
 
     //Parameters
     rainIntensity = document.getElementById('rainIntensity').value;
@@ -54,6 +55,16 @@ function draw() {
     //Stop p5 when entering the game
     if (stopP5Draw) {
         noLoop();
+    }
+}
+
+function setGradient(x, y, w, h, c1, c2) {
+    noFill();
+    for (var i = y; i <= y + h; i++) {
+        var inter = map(i, y, y + h, 0, .4),
+            c = lerpColor(c1, c2, inter);
+        stroke(c);
+        line(x, i, x + w, i);
     }
 }
 
