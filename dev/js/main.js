@@ -11,24 +11,19 @@ var canvas, scene, camera, mapCamera, renderer, dimBack, controls, mapSize, game
         y: 20
     }
 
-function init() {
-    //Setup
+const init = () => {
     canvas = document.getElementById('container');
     scene = new THREE.Scene();
-    //MapCamera
     mapCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
-    //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.z = 0;
     camera.rotation.order = 'YXZ';
-    //Renderer
     renderer = new THREE.WebGLRenderer({
         antialias: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
-    //Resize
-    window.addEventListener("resize", function () {
+    window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -36,8 +31,7 @@ function init() {
     document.body.appendChild(container);
 }
 
-function animate() {
-    //controls
+const animate = () => {
     if (controls) {
         controls.update();
     }
@@ -46,7 +40,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-function render() {
+const render = () => {
     if (dimBack == true) {
         dimLight();
     }
@@ -54,7 +48,7 @@ function render() {
     renderer.render(scene, camera);
     renderer.clearDepth();
     renderer.autoClear = false;
-    //Map Camera
+
     fullLight();
     renderer.setViewport(mapView.x, mapView.y, mapView.width, mapView.height);
     mapCamera.aspect = mapView.width / mapView.height;
@@ -63,8 +57,7 @@ function render() {
     renderer.render(scene, mapCamera);
 }
 
-function initThreeJs() {
-    //Game
+const initThreeJs = () => {
     init();
     game.init();
     mapPos.x = player.mesh.position.x;
@@ -72,12 +65,12 @@ function initThreeJs() {
     animate();
 }
 
-function dimLight() {
+const dimLight = () => {
     ambLight.intensity = .3;
     sun.intensity = .3;
 }
 
-function fullLight() {
+const fullLight = () => {
     ambLight.intensity = 1;
     sun.intensity = 1;
 }

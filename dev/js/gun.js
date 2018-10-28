@@ -10,7 +10,7 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
     this.reloadStatus = false;
     this.bulletHeight = 1;
     var gunScope = this;
-    this.init = function () {
+    this.init = () => {
         bulletCountDisplay.innerHTML = bulletCount + 1 + ' / ' + totalBullets;
         for (var i = 0; i < magazineSize; i++) {
             bullets[i] = bullet.clone();
@@ -18,7 +18,7 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
             scene.add(bullets[i]);
         }
     }
-    this.shoot = function (theta, fireSpeed) {
+    this.shoot = (theta, fireSpeed) => {
         if (bulletCount >= 0) {
             this.gunSound(fireSpeed);
             bullets[bulletCount].position.set(player.mesh.position.x, gunScope.bulletHeight, player.mesh.position.z);
@@ -36,9 +36,9 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
             }, 300);
         }
     }
-    this.gunSound = function (fireSpeed) {
+    this.gunSound = fireSpeed => {
         if (playerType == 'Speedy') {
-            var gunShot = gunSupressor.cloneNode();
+            let gunShot = gunSupressor.cloneNode();
             gunShot.volume = .05;
             gunShot.play();
         } else if (playerType == 'Assassin') {
@@ -49,14 +49,8 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
             shotgun.play();
         }
     }
-    this.allowReload = function () {
-        if (bulletCount == (magazineSize - 1)) {
-            return false
-        } else {
-            return true
-        }
-    }
-    this.reload = function (reloadSpeed) {
+    this.allowReload = () => bulletCount == magazineSize - 1 ? false : true;
+    this.reload = reloadSpeed => {
         if (totalBullets > 0) {
             gunScope.reloadStatus = true;
             if (playerType == 'Speedy') {
@@ -84,9 +78,9 @@ var Gun = function (bulletSize, magazineSize, bulletSpeed, totalBullets) {
 }
 
 const bulletPhysics = (walls, bulletSize) => {
-    for (var i = 0; i < bullets.length; i++) {
+    for (let i = 0; i < bullets.length; i++) {
         //Hit Wall
-        for (var j = 0; j < walls.length; j++) {
+        for (let j = 0; j < walls.length; j++) {
             if ((walls[j].position.x - bullets[i].position.x <= ((1.5 + bulletSize))) && (walls[j].position.x - bullets[i].position.x >= -((1.5 + bulletSize))) && (walls[j].position.z - bullets[i].position.z <= ((1.5 + bulletSize))) && (walls[j].position.z - bullets[i].position.z >= -((1.5 + bulletSize))) && bullets[i].position.y > 0) {
                 bullets[i].position.set(0, -5, 0);
                 bullets[i].alive = false;

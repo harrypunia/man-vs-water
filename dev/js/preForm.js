@@ -18,34 +18,32 @@ const container = document.getElementById('container'),
     navigation = document.getElementsByClassName('navigation')[0],
     man = document.getElementsByClassName('man__player')[0],
     water = document.getElementsByClassName('water__player')[0];
-let chosenSideId,
+var chosenSideId,
     chosenSide,
     neglectedSideId,
     neglectedSide,
     playersJoined,
     permitAudio = false,
     ifMapSelected = false,
-    menuStatus = false;
+    menuStatus = false,
+    px,
+    py,
+    pz;
 
-function openForm(e) {
+const openForm = e => {
     chosenSide = e.currentTarget.id;
     neglectedSide;
-    if (chosenSide == 'man') neglectedSide = 'water';
-    else neglectedSide = 'man';
-    chosenSideId = document.getElementById(chosenSide),
-        neglectedSideId = document.getElementById(neglectedSide);
+    neglectedSide = chosenSide == 'man' ? neglectedSide = 'water' : 'man';
+    //id's
+    chosenSideId = document.getElementById(chosenSide);
+    neglectedSideId = document.getElementById(neglectedSide);
 
     chosenSideId.classList.add('selectSide');
     neglectedSideId.classList.add('deSelectSide');
     side.classList.add('decisionMade');
     //Adjust form
-    if (chosenSide == 'man') {
-        form.style.left = '60vw';
-    } else {
-        form.style.left = '40vw';
-    }
+    chosenSide == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
     form.style.zIndex = 100;
-
     //Show form
     for (let i = 0; i < maps.length; i++) {
         maps[i].classList.remove('hideForm');

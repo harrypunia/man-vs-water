@@ -10,6 +10,7 @@ var Game = function () {
         controls.init();
     }
     this.update = function () {
+        getPlayerPos();
         playerFall();
         removePlayers();
         updateLight();
@@ -20,14 +21,12 @@ var Game = function () {
     }
 }
 
-const listenToPlayer = (PlayerData) => {
-    if (PlayerData.val()) {
-        otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation);
-    }
+const listenToPlayer = PlayerData => {
+    PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation) : false;
 }
 
 const initOtherPlayers = () => {
-    ref.on("child_added", function (PlayerData) {
+    ref.on("child_added", PlayerData => {
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key);
@@ -36,7 +35,7 @@ const initOtherPlayers = () => {
             }
         }
     });
-    ref.on("child_removed", function (PlayerData) {
+    ref.on("child_removed", PlayerData => {
         if (PlayerData.val()) {
             ref.child(PlayerData.key).off("value", listenToPlayer);
             scene.remove(otherPlayers[PlayerData.key].mesh);
@@ -69,12 +68,6 @@ const loadMapsize = () => {
     meshShrinkSpeed = shrinkSpeed / arenaSize;
 }
 
-const restrictPlayer = (player) => {
-    let parameter = arenaSize / 2 - 0.5;
-    player.position.x = player.position.x <= -parameter ? -parameter : player.position.x >= parameter ? parameter : null;
-    player.position.z = player.position.z <= -parameter ? -parameter : player.position.z >= parameter ? parameter : null;
-}
-
 const playerFall = () => {
     if (!controls.hasLanded) {
         if (player.mesh.position.y > 1) {
@@ -91,12 +84,8 @@ const playerFall = () => {
 }
 
 const removePlayers = () => {
-    window.onunload = function () {
-        ref.child(playerId).remove();
-    };
-    window.onbeforeunload = function () {
-        ref.child(playerId).remove();
-    };
+    window.onunload = () => ref.child(playerId).remove();;
+    window.onbeforeunload = () => ref.child(playerId).remove();
 }
 
 const arenaShrink = () => {
@@ -105,5 +94,11 @@ const arenaShrink = () => {
 }
 
 const updateLight = () => {
-    sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
+    sun.position.set(px + arenaSize / 4, 100, pz + arenaSize / 4);
+}
+
+const getPlayerPos = () => {
+    px = player.mesh.position.x;
+    py = player.mesh.position.y;
+    pz = player.mesh.position.z;
 }

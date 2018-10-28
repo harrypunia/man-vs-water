@@ -11,7 +11,7 @@ var Player = function (playerID, playerName, playerType) {
     this.playerType = playerType;
 
     scope = this;
-    this.init = function () {
+    this.init = () => {
         scope.mesh = new THREE.Mesh(player_geo, player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);
         scope.mesh.position.x = (arenaSize / 2) - (Math.floor(Math.random() * arenaSize));
@@ -24,7 +24,7 @@ var Player = function (playerID, playerName, playerType) {
             controls = new THREE.PlayerControls(camera, scope.mesh, scope.playerType);
         }
     }
-    this.setOrientation = function (pos, rot) {
+    this.setOrientation = (pos, rot) => {
         if (scope.mesh) {
             scope.mesh.position.copy(pos);
             scope.mesh.rotation.x = rot.x;
@@ -32,16 +32,9 @@ var Player = function (playerID, playerName, playerType) {
             scope.mesh.rotation.z = rot.z;
         }
     }
-    this.restrict = function (activePlayer) {
-        if (activePlayer.position.x <= -(arenaSize / 2 - 0.5)) {
-            activePlayer.position.x = -(arenaSize / 2 - 0.5);
-        } else if (activePlayer.position.x >= (arenaSize / 2 - 0.5)) {
-            activePlayer.position.x = (arenaSize / 2 - 0.5);
-        }
-        if (activePlayer.position.z <= -(arenaSize / 2 - 0.5)) {
-            activePlayer.position.z = -(arenaSize / 2 - 0.5);
-        } else if (activePlayer.position.z >= (arenaSize / 2 - 0.5)) {
-            activePlayer.position.z = (arenaSize / 2 - 0.5);
-        }
+    this.restrict = (activePlayer) => {
+        let parameter = arenaSize / 2 - 0.5;
+        activePlayer.position.x = activePlayer.position.x <= -parameter ? -parameter : activePlayer.position.x >= parameter ? parameter : activePlayer.position.x;
+        activePlayer.position.z = activePlayer.position.z <= -parameter ? -parameter : activePlayer.position.z >= parameter ? parameter : activePlayer.position.z;
     }
 }

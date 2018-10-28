@@ -107,57 +107,56 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         type: 'change'
     };
 
-    this.rotateLeft = function (angle) {
+    this.rotateLeft = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         thetaDelta -= angle;
     };
 
-    this.rotateRight = function (angle) {
+    this.rotateRight = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         thetaDelta += angle;
     };
 
-    this.rotateUp = function (angle) {
+    this.rotateUp = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         phiDelta -= angle;
     };
 
-    this.rotateDown = function (angle) {
+    this.rotateDown = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         phiDelta += angle;
     };
 
-    this.zoomIn = function (zoomScale) {
+    this.zoomIn = zoomScale => {
         if (zoomScale === undefined) {
             zoomScale = getZoomScale();
         }
         scale /= zoomScale;
     };
 
-    this.zoomOut = function (zoomScale) {
+    this.zoomOut = zoomScale => {
         if (zoomScale === undefined) {
             zoomScale = getZoomScale();
         }
         scale *= zoomScale;
     };
 
-    this.access = function (px, py, pz) {
+    this.access = (px, py, pz) => {
         this.camera.position.x = this.player.position.x + px;
         this.camera.position.y = this.player.position.y + py;
         this.camera.position.z = this.player.position.z + pz;
         this.camera.lookAt(this.player.position);
     };
 
-    this.init = function () {
-
+    this.init = () => {
         if (this.playerType == 'Speedy') {
             this.moveSpeed = 0.17;
             this.maxSpeed = 0.4;
@@ -208,11 +207,11 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
             dblScopeZoom = 2;
         }
         storeMoveSpeed = this.moveSpeed;
-        gun = new Gun(bulletSize, magazineSize, bulletSpeed, totalBullets); //Initilizing the gun.
-        gun.init(); //Make bullets
+        gun = new Gun(bulletSize, magazineSize, bulletSpeed, totalBullets);
+        gun.init();
     }
 
-    this.update = function () {
+    this.update = () => {
         this.checkKeyStates();
 
         if (scope.jump == true) {
