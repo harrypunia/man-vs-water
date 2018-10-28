@@ -4,15 +4,15 @@ var Wall = function (number, height, player) {
     this.downloadStatus = false;
     var obj_geo, obj_mat, obj, objHeight, objBorder, wallScope = this;
     this.init = () => {
-        obj_geo = new THREE.BoxGeometry(3, objHeight, 3, 3, 3, 3);
         obj_mat = new THREE.MeshPhongMaterial({
             color: 0x6f2c2c
         });
         if (this.downloadStatus == true) {
             setTimeout(() => {
                 for (let i = 0; i < this.posList.length; i++) {
-                    obj = new THREE.Mesh(obj_geo, obj_mat);
                     objHeight = this.posList[i].h;
+                    obj_geo = new THREE.BoxGeometry(3, objHeight, 3, 3, 3, 3);
+                    obj = new THREE.Mesh(obj_geo, obj_mat);
                     objBorder = new THREE.Mesh(obj_geo, gameStroke);
                     obj.position.set(this.posList[i].x, this.posList[i].h / 2, this.posList[i].z);
                     this.list.push(obj);
@@ -22,8 +22,9 @@ var Wall = function (number, height, player) {
             }, 300);
         } else {
             for (let i = 0; i < number; i++) {
-                obj = new THREE.Mesh(obj_geo, obj_mat);
                 objHeight = Math.floor((Math.random() * height) + 3)
+                obj_geo = new THREE.BoxGeometry(3, objHeight, 3, 3, 3, 3);
+                obj = new THREE.Mesh(obj_geo, obj_mat);
                 objBorder = new THREE.Mesh(obj_geo, gameStroke);
                 obj.position.set((arenaSize / 2) - (Math.floor(Math.random() * arenaSize)), objHeight / 2, (arenaSize / 2) - (Math.floor(Math.random() * arenaSize)));
                 this.list.push(obj);
