@@ -12,7 +12,7 @@ function setup() {
     g_color2 = color(255, 120, 70);
     canvas.parent(container);
     particles = [];
-    for (var i = 0; i < 300; i++) {
+    for (let i = 0; i < 300; i++) {
         particles[i] = new Particle(Math.floor(Math.random() * window.innerWidth), -Math.floor(Math.random() * window.innerHeight));
     }
 }

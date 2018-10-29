@@ -9,7 +9,7 @@ function Particle(x, y) {
         this.vel.x >= 10 ? this.vel.x = 10 : 0;
         this.resetPos();
     }
-    this.show = (thick) => {
+    this.show = thick => {
         if (this.isLava) {
             noStroke()
             fill(255, 90, 40, 80);
