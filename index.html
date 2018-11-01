@@ -7,7 +7,7 @@
     <title>man vs Water</title>
     <link rel="stylesheet" href="dist/style/animations.min.css">
     <link rel="stylesheet" href="dist/style/UI.min.css">
-    <link rel="stylesheet" href="dist/style/form.min.css">
+    <link rel="stylesheet" href="dev/style/form.css">
     <link rel="stylesheet" href="dist/style/side.min.css">
     <link rel="stylesheet" href="dist/style/main.min.css">
     <link rel="stylesheet" href="dist/style/navigation.min.css">
@@ -53,6 +53,9 @@
     </div>
     <div class="form">
         <div class="form__wrapper">
+            <div class="form__wrapper__heading">
+                <h1>Match Settings</h1>
+            </div>
             <div class="form__wrapper__select">
                 <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
                     <p class="form__wrapper__select-text">Large</p>
@@ -73,7 +76,7 @@
                 <option value="Assassin">Assassin</option>
             </select>
             <input id="fname" class="form__wrapper__input hideForm" type="text" placeholder="Choose a name" required />
-            <input class="form__wrapper__button hideForm" type="submit" value="Enter Lobby">
+            <input class="form__wrapper__button button hideForm" type="submit" value="Play Now">
         </div>
         <div class="headphone hideForm">
             <img id="mute" class="muteStatus mute" src="assets/img/icons/unmute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
@@ -159,7 +162,6 @@
         var ref = database.ref("Players"),
             lobbyRef = database.ref('Lobby'),
             gameRef = database.ref('Game');
-
     </script>
     <script>
         var gameStroke = new THREE.MeshBasicMaterial({
@@ -177,7 +179,6 @@
             playerId, player, playerType, playerName, otherPlayers = [],
             arenaSizeSelected, arenaSize,
             meshShrinkSpeed, shrinkSpeed = .01;
-
     </script>
     <script src="dev/js/preForm.js"></script>
     <script src="dev/js/preGame.js"></script>

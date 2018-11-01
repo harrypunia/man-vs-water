@@ -6,6 +6,10 @@ body {
     background: #000;
 }
 
+input {
+    border: none;
+}
+
 .permission {
     position: absolute;
     left: 50%;

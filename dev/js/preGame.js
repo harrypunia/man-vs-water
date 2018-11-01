@@ -31,9 +31,15 @@ let validateForm = () => {
 const selectMap = (e) => {
     ifMapSelected = true;
     clearMapSelections();
-    var mapSelected;
-    mapSelected = document.getElementById(e.currentTarget.id);
-    mapSelected.classList.add('mapSelected');
+    let mapSelectedImage = document.getElementById(e.currentTarget.id).getElementsByTagName('img')[0];
+    mapSelectedImage.classList.add('mapSelected');
+    1
+}
+
+const clearMapSelections = () => {
+    for (var i = 0; i < maps.length; i++) {
+        maps[i].getElementsByTagName('img')[0].classList.remove('mapSelected');
+    }
 }
 
 const enterLobby = () => {
@@ -82,12 +88,6 @@ const hideNavigation = () => {
     navigation.innerHTML = '';
     form.innerHTML = '';
     side.innerHTML = '';
-}
-
-const clearMapSelections = () => {
-    for (var i = 0; i < maps.length; i++) {
-        maps[i].classList.remove('mapSelected');
-    }
 }
 
 var mapSize = () => {
