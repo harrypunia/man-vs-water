@@ -27,15 +27,17 @@ const listenToPlayer = PlayerData => {
 
 const initOtherPlayers = () => {
     ref.on("child_added", PlayerData => {
+        console.log('someone is here');
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
-                otherPlayers[PlayerData.key] = new Player(PlayerData.key);
+                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.playerType, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);
             }
         }
     });
     ref.on("child_removed", PlayerData => {
+        console.log('someone left');
         if (PlayerData.val()) {
             ref.child(PlayerData.key).off("value", listenToPlayer);
             scene.remove(otherPlayers[PlayerData.key].mesh);
@@ -58,7 +60,17 @@ const initMainPlayer = () => {
             z: 0
         }
     });
-    player = new Player(playerId, playerName, playerType);
+    ref.child(playerId).child("info").set({
+        userInfo: {
+            name: playerName
+        },
+        playerInfo: {
+            skin: 1,
+            chosenSide: chosenSide,
+            playerType: playerType
+        }
+    });
+    player = new Player(playerId, playerName, playerType, 1, chosenSide);
     player.isMainPlayer = true;
     player.init();
 }
@@ -89,8 +101,7 @@ const removePlayers = () => {
 }
 
 const arenaShrink = () => {
-    arenaSize > 50 ? zone.shrink(meshShrinkSpeed) : false;
-    arenaSize -= shrinkSpeed;
+    arenaSize > 50 ? (zone.shrink(meshShrinkSpeed), arenaSize -= shrinkSpeed) : false;
 }
 
 const updateLight = () => {
