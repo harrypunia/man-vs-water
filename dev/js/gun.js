@@ -46,11 +46,11 @@ class Gun {
             this.reloadStatus = true;
             reloadPistol.playbackRate = ((1000 / reloadSpeed) * 2);
             reloadPistol.play();
-            setTimeout(function () {
+            setTimeout(() => {
                 bulletCountAnimation.style.animation = '';
                 if (this.magazineSize - this.bulletCount <= this.totalBullets) {
                     this.totalBullets -= (this.magazineSize - this.bulletCount - 1);
-                    this.bulletCount = magazineSize - 1;
+                    this.bulletCount = this.magazineSize - 1;
                 } else if (this.magazineSize - this.bulletCount > this.totalBullets) {
                     this.bulletCount += this.totalBullets;
                     this.totalBullets = 0;
