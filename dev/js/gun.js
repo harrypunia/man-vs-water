@@ -77,6 +77,14 @@ class Gun {
     }
 }
 
+const giveDamage = enemy => {
+    if (enemy.x - player.mesh.position.x < 1 || enemy.x - player.mesh.position.x > 1 && enemy.z - player.mesh.position.z < 1 || enemy.z - player.mesh.position.z > 1) {
+        console.log('i hit someone');
+    } else {
+        console.log('missed it');
+    }
+}
+
 const bulletPhysics = (walls, bulletSize) => {
     for (let i in bullets) {
         for (let j in walls) {

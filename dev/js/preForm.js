@@ -32,7 +32,6 @@ var chosenSideId,
 
 const openForm = e => {
     chosenSide = e.currentTarget.id;
-    neglectedSide;
     neglectedSide = chosenSide == 'man' ? neglectedSide = 'water' : 'man';
     //id's
     chosenSideId = document.getElementById(chosenSide);
@@ -45,12 +44,8 @@ const openForm = e => {
     chosenSide == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
     form.style.zIndex = 100;
     //Show form
-    for (let i = 0; i < maps.length; i++) {
-        maps[i].classList.remove('hideForm');
-    }
     document.getElementById('playerType').classList.remove('hideForm');
-    document.getElementsByClassName('form__wrapper__input')[0].classList.remove('hideForm');
-    document.getElementsByClassName('form__wrapper__button')[0].classList.remove('hideForm');
+    document.getElementsByClassName('form')[0].classList.remove('hideForm');
 
     //Add Returning abilities
     chosenSideId.addEventListener("click", returnToChoose, false);
@@ -66,19 +61,15 @@ const returnToChoose = () => {
     document.getElementById('playerType').classList.remove('hideForm');
 
     //Hide Form
-    for (let i = 0; i < maps.length; i++) {
-        maps[i].classList.add('hideForm');
-    }
     document.getElementById('playerType').classList.add('hideForm');
-    document.getElementsByClassName('form__wrapper__input')[0].classList.add('hideForm');
-    document.getElementsByClassName('form__wrapper__button')[0].classList.add('hideForm');
+    document.getElementsByClassName('form')[0].classList.add('hideForm');
 }
 
 const openSide = () => {
     side.style.display = 'block';
 }
 
-document.addEventListener("mousemove", (event) => {
+const parallax = event => {
     let x = event.clientX,
         y = event.clientY,
         depth = 1000;
@@ -86,4 +77,6 @@ document.addEventListener("mousemove", (event) => {
     man.style.top = 50 + (y / depth) + 'vh';
     water.style.right = 12 - (x / depth) + 'vw';
     water.style.top = 50 + (y / depth) + 'vh';
-});
+}
+
+document.addEventListener("mousemove", parallax, false);

@@ -51,37 +51,37 @@
             </div>
         </div>
     </div>
-    <div class="form">
+    <div class="form hideForm">
         <div class="form__wrapper">
             <div class="form__wrapper__heading">
                 <h1>Match Settings</h1>
             </div>
             <div class="form__wrapper__select">
-                <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts" onclick="selectMap(event)">
                     <p class="form__wrapper__select-text">Large</p>
                     <img src="assets/img/large.png" alt="Nuclear War">
                 </div>
-                <div id="map2" class="form__wrapper__select-opt2 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                <div id="map2" class="form__wrapper__select-opt2 form__wrapper__select-opts" onclick="selectMap(event)">
                     <p class="form__wrapper__select-text">Medium</p>
                     <img src="assets/img/medium.jpg" alt="World War">
                 </div>
-                <div id="map3" class="form__wrapper__select-opt3 form__wrapper__select-opts hideForm" onclick="selectMap(event)">
+                <div id="map3" class="form__wrapper__select-opt3 form__wrapper__select-opts" onclick="selectMap(event)">
                     <p class="form__wrapper__select-text">Small</p>
                     <img src="assets/img/small.jpg" alt="World War">
                 </div>
             </div>
-            <select id="playerType" class="form__wrapper__select hideForm" name="">
+            <select id="playerType" class="form__wrapper__select" name="">
                 <option value="Speedy">Speedy</option>
                 <option value="Tank">Tank</option>
                 <option value="Assassin">Assassin</option>
             </select>
-            <input id="fname" class="form__wrapper__input hideForm" type="text" placeholder="Choose a name" required />
-            <input class="form__wrapper__button button hideForm" type="submit" value="Play Now">
+            <input id="fname" class="form__wrapper__input" type="text" placeholder="Choose a name" required />
+            <input class="form__wrapper__button button" type="submit" value="Play Now">
         </div>
-        <div class="headphone hideForm">
-            <img id="mute" class="muteStatus mute" src="assets/img/icons/unmute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
-            <img id="unmute" class="muteStatus unmute" src="assets/img/icons/mute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
-        </div>
+    </div>
+    <div class="headphone">
+        <img id="mute" class="muteStatus mute" src="assets/img/icons/unmute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
+        <img id="unmute" class="muteStatus unmute" src="assets/img/icons/mute.svg" alt="headphone" onclick="changeAudioPermissions(event)">
     </div>
     <div class="navigation">
         <div class="menu">

@@ -13,7 +13,6 @@ var Player = function (playerID, playerName, playerType, skin, chosenSide) {
 
     scope = this;
     this.init = () => {
-        console.log(this.playerID, this.username, this.playerType, this.skin, this.chosenSide);
         if (this.chosenSide == 'man') {
             player_geo = new THREE.BoxBufferGeometry(1, 1, 1);
             man_mats = [new THREE.MeshBasicMaterial({
@@ -65,7 +64,7 @@ var Player = function (playerID, playerName, playerType, skin, chosenSide) {
             scope.mesh.rotation.z = rot.z;
         }
     }
-    this.restrict = (activePlayer) => {
+    this.restrict = activePlayer => {
         let parameter = arenaSize / 2 - 0.5;
         activePlayer.position.x = activePlayer.position.x <= -parameter ? -parameter : activePlayer.position.x >= parameter ? parameter : activePlayer.position.x;
         activePlayer.position.z = activePlayer.position.z <= -parameter ? -parameter : activePlayer.position.z >= parameter ? parameter : activePlayer.position.z;

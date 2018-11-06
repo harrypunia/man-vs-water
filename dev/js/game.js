@@ -5,12 +5,11 @@ var Game = function () {
         setAudioPara();
         loadMapsize();
         initMainPlayer();
-        initOtherPlayers();
         environment.init();
         controls.init();
     }
     this.update = function () {
-        getPlayerPos();
+        initOtherPlayers();
         playerFall();
         removePlayers();
         updateLight();
@@ -27,9 +26,10 @@ const listenToPlayer = PlayerData => {
 
 const initOtherPlayers = () => {
     ref.on("child_added", PlayerData => {
-        console.log('someone is here');
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
+                //gun.giveDamage();
+                giveDamage(PlayerData.val().orientation.position);
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.playerType, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);
@@ -37,7 +37,6 @@ const initOtherPlayers = () => {
         }
     });
     ref.on("child_removed", PlayerData => {
-        console.log('someone left');
         if (PlayerData.val()) {
             ref.child(PlayerData.key).off("value", listenToPlayer);
             scene.remove(otherPlayers[PlayerData.key].mesh);
@@ -105,11 +104,5 @@ const arenaShrink = () => {
 }
 
 const updateLight = () => {
-    sun.position.set(px + arenaSize / 4, 100, pz + arenaSize / 4);
-}
-
-const getPlayerPos = () => {
-    px = player.mesh.position.x;
-    py = player.mesh.position.y;
-    pz = player.mesh.position.z;
+    sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
 }

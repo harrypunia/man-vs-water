@@ -1,30 +1,20 @@
 var bulletSize;
 
 THREE.PlayerControls = function (camera, player, playerType, domElement) {
-
     this.camera = camera;
     this.player = player;
     this.domElement = (domElement !== undefined) ? domElement : document;
-
-    // API
-
     this.enabled = true;
-
     this.allow = true;
-
     this.playerType = playerType;
-
     this.center = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
-
     this.hasLanded = false;
     this.sprinting = false;
     this.allowSprinting = true;
     this.jumping = false;
     this.jump = false;
     this.gravity = .007;
-
     this.allowMouseControls;
-
     let fireRate = 10,
         fireSpeed = 20,
         range,
@@ -41,7 +31,6 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         jumpPower = .15;
     const bulletContainer = document.getElementById('bulletCountDisplay'),
         map = document.getElementById('map');
-
     this.reloading = false;
     this.moveSpeed;
     this.acceleration;
@@ -50,48 +39,34 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
     this.staminaDrain;
     this.staminaRecovery;
     this.sprintTurnSpeed;
-
     this.userZoom = true;
     this.userZoomSpeed = 1.0;
-
     this.perspective = 7;
-
     this.userRotate = true;
     this.userRotateSpeed = 1.5;
-
     this.autoRotate = false;
     this.autoRotateSpeed = 0.3;
     this.YAutoRotation = false;
-
     this.minPolarAngle = 0;
     this.maxPolarAngle = Math.PI;
-
     this.minDistance = 0;
     this.maxDistance = Infinity;
-
     // internals
-
     var scope = this;
-
     var EPS = 0.000001;
     var PIXELS_PER_ROUND = 1800;
-
     var rotateStart = new THREE.Vector2();
     var rotateEnd = new THREE.Vector2();
     var rotateDelta = new THREE.Vector2();
-
     var zoomStart = new THREE.Vector2();
     var zoomEnd = new THREE.Vector2();
     var zoomDelta = new THREE.Vector2();
-
     var phiDelta = 0;
     var theta;
     var thetaDelta = 0;
     var scale = 1;
-
     var lastPosition = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
     var playerIsMoving = false;
-
     var keyState = {};
     var STATE = {
         NONE: -1,
@@ -100,62 +75,52 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         PAN: 2
     };
     var state = STATE.NONE;
-
     // events
-
     var changeEvent = {
         type: 'change'
     };
-
     this.rotateLeft = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         thetaDelta -= angle;
     };
-
     this.rotateRight = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         thetaDelta += angle;
     };
-
     this.rotateUp = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         phiDelta -= angle;
     };
-
     this.rotateDown = angle => {
         if (angle === undefined) {
             angle = getAutoRotationAngle();
         }
         phiDelta += angle;
     };
-
     this.zoomIn = zoomScale => {
         if (zoomScale === undefined) {
             zoomScale = getZoomScale();
         }
         scale /= zoomScale;
     };
-
     this.zoomOut = zoomScale => {
         if (zoomScale === undefined) {
             zoomScale = getZoomScale();
         }
         scale *= zoomScale;
     };
-
     this.access = (px, py, pz) => {
         this.camera.position.x = this.player.position.x + px;
         this.camera.position.y = this.player.position.y + py;
         this.camera.position.z = this.player.position.z + pz;
         this.camera.lookAt(this.player.position);
     };
-
     this.init = () => {
         if (this.playerType == 'Speedy') {
             this.moveSpeed = 0.17;

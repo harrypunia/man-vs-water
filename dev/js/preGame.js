@@ -1,4 +1,4 @@
-const allowAudio = (e) => {
+const allowAudio = e => {
     if (e.currentTarget.id == 'yes') {
         playAudios();
         permitAudio = true;
@@ -25,15 +25,13 @@ let validateForm = () => {
         //enterLobby();
         playGame();
     }
-    formButton.removeEventListener('click', validateForm, false);
 }
 
-const selectMap = (e) => {
+const selectMap = e => {
     ifMapSelected = true;
     clearMapSelections();
     let mapSelectedImage = document.getElementById(e.currentTarget.id).getElementsByTagName('img')[0];
     mapSelectedImage.classList.add('mapSelected');
-    1
 }
 
 const clearMapSelections = () => {
@@ -74,6 +72,7 @@ const getPlayersJoined = () => {
 }
 
 const playGame = () => {
+    removeListeners();
     initThreeJs();
     displayUI();
     hideNavigation();
@@ -114,7 +113,7 @@ const gatherInfo = () => {
     form.style.display = 'none';
 }
 
-const showError = (e) => {
+const showError = e => {
     var errorTarget = document.getElementsByClassName(e);
     for (var i = 0; i < errorTarget.length; i++) {
         errorTarget[i].style.animation = '.1s error ease-in-out 3';
@@ -146,7 +145,7 @@ const pauseAudios = () => {
     }
 }
 
-const removePermissionForm = (dec) => {
+const removePermissionForm = dec => {
     if (dec == 'yes') {
         permission.style.animation = 'permissionOutYES .4s ease-in';
     } else {
@@ -159,7 +158,7 @@ const removePermissionForm = (dec) => {
     form.style.opacity = 1;
 }
 
-const changeAudioPermissions = (e) => {
+const changeAudioPermissions = e => {
     var toggle = e.currentTarget.id;
     if (toggle == 'mute') {
         muteIcon[0].style.display = 'none';
@@ -186,8 +185,14 @@ const openMenu = () => {
     }
 }
 
+const removeListeners = () => {
+    document.removeEventListener("mousemove", parallax, false);
+    window.removeEventListener("keydown", validateForm, false);
+    formButton.removeEventListener("click", validateForm, false);
+}
+
 formButton.addEventListener("click", validateForm, false);
-window.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', e => {
     if (e.keyCode == 13 || e.which == 13) {
         validateForm();
     }
