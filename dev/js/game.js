@@ -7,13 +7,20 @@ var Game = function () {
         initMainPlayer();
         environment.init();
         controls.init();
+        window.onunload = () => {
+            ref.child(playerId).remove();
+            console.log('removed a player');
+        }
+        window.onbeforeunload = () => {
+            ref.child(playerId).remove();
+            console.log('removed a player');
+        }
     }
     this.update = function () {
         initOtherPlayers();
         playerFall();
-        removePlayers();
         updateLight();
-        walls.applyPhysics(.2); //Parameters: (repelForce)
+        walls.applyPhysics(.2);
         bulletPhysics(walls.list, bulletSize);
         arenaShrink();
         player.restrict(player.mesh);
@@ -92,11 +99,6 @@ const playerFall = () => {
             }
         }
     }
-}
-
-const removePlayers = () => {
-    window.onunload = () => ref.child(playerId).remove();;
-    window.onbeforeunload = () => ref.child(playerId).remove();
 }
 
 const arenaShrink = () => {

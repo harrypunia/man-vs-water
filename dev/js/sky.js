@@ -1,4 +1,4 @@
-var Sky = function () {
+let Sky = function () {
     texture = new THREE.TextureLoader().load('../../assets/img/sky3.jpg');
     geo = new THREE.SphereBufferGeometry(arenaSize * 4, 100, 100);
     mat = new THREE.MeshPhongMaterial({

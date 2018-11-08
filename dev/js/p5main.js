@@ -1,6 +1,12 @@
 var p, particles = [],
     stopP5Draw = false,
-    rainIntensity, dropThickness, thunderFrequency, windSpeed, airFriction, rainShape, rainSpeed, p5Performance = document.getElementsByClassName('performanceCircle')[0],
+    rainIntensity = document.getElementById('rainIntensity').value,
+    dropThickness = document.getElementById('dropThickness').value,
+    thunderFrequency = document.getElementById('thunderFreq').value,
+    windSpeed = document.getElementById('windSpeed').value,
+    airFriction = document.getElementById('windSpeed').value,
+    rainSpeed = document.getElementById('rainSpeed').value,
+    p5Performance = document.getElementsByClassName('performanceCircle')[0],
     showFrameRate = document.getElementsByClassName('frameRateShow')[0],
     frameRateCounter = 20,
     g_color1,
@@ -18,18 +24,21 @@ function setup() {
 }
 
 function draw() {
+    if (stopP5Draw) {
+        noLoop();
+    }
     setGradient(0, 0, window.innerWidth, window.innerHeight, g_color1, g_color2);
     //Showing Frame Count
     frameRateCounter++;
     frameRateCounter >= 20 ? (showFrameRate.innerHTML = Math.floor(frameRate()), frameRateCounter = 1) : 0;
 
     //Parameters
-    rainIntensity = document.getElementById('rainIntensity').value;
-    dropThickness = document.getElementById('dropThickness').value;
-    thunderFrequency = document.getElementById('thunderFreq').value;
-    windSpeed = document.getElementById('windSpeed').value;
-    airFriction = document.getElementById('airFriction').value;
-    rainSpeed = document.getElementById('rainSpeed').value;
+    let rainIntensityValue = rainIntensity.value,
+        dropThicknessValue = dropThickness.value,
+        thunderFrequencyValue = thunderFrequency.value,
+        windSpeedValue = windSpeed.value,
+        airFrictionValue = airFriction.value,
+        rainSpeedValue = rainSpeed.value;
 
     //Thundering and sounds
     if (Math.floor(Math.random() * thunderFrequency) == 1) {
@@ -51,10 +60,6 @@ function draw() {
 
     //Show frameRate    
     performanceIndicator(frameRate());
-    //Stop p5 when entering the game
-    if (stopP5Draw) {
-        noLoop();
-    }
 }
 
 function setGradient(x, y, w, h, c1, c2) {

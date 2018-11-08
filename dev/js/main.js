@@ -19,7 +19,8 @@ const init = () => {
     camera.position.z = 0;
     camera.rotation.order = 'YXZ';
     renderer = new THREE.WebGLRenderer({
-        antialias: true
+        antialias: true,
+        alpha: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);

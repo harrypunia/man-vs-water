@@ -63,7 +63,6 @@ var Wall = function (number, height, player) {
         }
     }
     this.upload = () => {
-        console.log(this.posList);
         for (let i in this.posList) {
             gameRef.child(i).set({
                 x: this.posList[i].x,
