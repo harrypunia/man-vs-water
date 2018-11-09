@@ -35,8 +35,6 @@ const initOtherPlayers = () => {
     ref.on("child_added", PlayerData => {
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
-                //gun.giveDamage();
-                giveDamage(PlayerData.val().orientation.position);
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.playerType, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);

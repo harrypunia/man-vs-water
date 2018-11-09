@@ -24,5 +24,5 @@ const checkOtherPlayers = () => {
 
 async function getMap() {
     var result = await checkOtherPlayers();
-    otherPlayersExist ? (walls.download(), walls.init()) : (walls.init(), walls.upload());
+    otherPlayersExist ? (walls.download(), grass.download(), walls.init(), grass.init()) : (walls.init(), grass.init(), walls.upload(), grass.upload());
 }

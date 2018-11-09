@@ -7,7 +7,7 @@ var Wall = function (number, height, player) {
         obj_mat = new THREE.MeshPhongMaterial({
             color: 0x6f2c2c
         });
-        if (this.downloadStatus == true) {
+        if (this.downloadStatus) {
             setTimeout(() => {
                 for (let i = 0; i < this.posList.length; i++) {
                     objHeight = this.posList[i].h;
@@ -64,7 +64,7 @@ var Wall = function (number, height, player) {
     }
     this.upload = () => {
         for (let i in this.posList) {
-            gameRef.child(i).set({
+            gameRef.child('Obstacles').child(i).set({
                 x: this.posList[i].x,
                 y: this.posList[i].y,
                 z: this.posList[i].z,
@@ -74,7 +74,7 @@ var Wall = function (number, height, player) {
         }
     }
     this.download = () => {
-        gameRef.on('value', data => {
+        gameRef.child('Obstacles').on('value', data => {
             for (let i in data.val()) {
                 wallScope.posList[i] = data.val()[i];
             }
@@ -84,19 +84,63 @@ var Wall = function (number, height, player) {
 }
 
 var Grass = function (number, height) {
-    var grass_geo, grass_mat, grass, grassHeight, grassBorder;
+    var grass_geo, grass_mat, grass, grassHeight, grassBorder, grassScope = this;
     this.list = [];
-    for (let i = 0; i < number; i++) {
-        grassHeight = Math.floor((Math.random() * height) + 3)
-        grass_geo = new THREE.BoxGeometry(3, grassHeight, 3, 3, 3, 3);
+    this.posList = [];
+    this.downloadStatus = false;
+    this.init = () => {
         grass_mat = new THREE.MeshPhongMaterial({
             color: 0x3b764f
         });
-        grass = new THREE.Mesh(grass_geo, grass_mat);
-        grassBorder = new THREE.Mesh(grass_geo, gameStroke);
-        grass.position.set((arenaSize / 2) - (Math.floor(Math.random() * arenaSize)), grassHeight / 2, (arenaSize / 2) - (Math.floor(Math.random() * arenaSize)));
-        this.list.push(grass);
-        grass.add(grassBorder);
-        scene.add(grass);
+        if (this.downloadStatus == true) {
+            setTimeout(() => {
+                for (let i = 0; i < this.posList.length; i++) {
+                    grassHeight = this.posList[i].h;
+                    grass_geo = new THREE.BoxGeometry(3, grassHeight, 3, 3, 3, 3);
+                    grass = new THREE.Mesh(grass_geo, grass_mat);
+                    grassBorder = new THREE.Mesh(grass_geo, gameStroke);
+                    grass.position.set(this.posList[i].x, this.posList[i].h / 2, this.posList[i].z);
+                    this.list.push(grass);
+                    grass.add(grassBorder);
+                    scene.add(grass);
+                }
+            }, 300);
+        } else {
+            for (let i = 0; i < number; i++) {
+                grassHeight = Math.floor((Math.random() * height) + 3)
+                grass_geo = new THREE.BoxGeometry(3, grassHeight, 3, 3, 3, 3);
+                grass = new THREE.Mesh(grass_geo, grass_mat);
+                grassBorder = new THREE.Mesh(grass_geo, gameStroke);
+                grass.position.set((arenaSize / 2) - (Math.floor(Math.random() * arenaSize)), grassHeight / 2, (arenaSize / 2) - (Math.floor(Math.random() * arenaSize)));
+                this.list.push(grass);
+                this.posList[i] = {
+                    x: grass.position.x,
+                    y: grass.position.y,
+                    z: grass.position.z,
+                    h: grassHeight
+                }
+                grass.add(grassBorder);
+                scene.add(grass);
+            }
+        }
+    }
+    this.upload = () => {
+        for (let i in this.posList) {
+            gameRef.child('Bushes').child(i).set({
+                x: this.posList[i].x,
+                y: this.posList[i].y,
+                z: this.posList[i].z,
+                h: this.posList[i].h,
+            });
+            this.downloadStatus = false;
+        }
+    }
+    this.download = () => {
+        gameRef.child('Bushes').on("value", data => {
+            for (let i in data.val()) {
+                grassScope.posList[i] = data.val()[i];
+            }
+        });
+        this.downloadStatus = true;
     }
 }
