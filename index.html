@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>man vs Water</title>
     <link rel="stylesheet" href="dist/style/animations.min.css">
+    <link rel="stylesheet" href="dist/style/intro.min.css">
     <link rel="stylesheet" href="dist/style/UI.min.css">
     <link rel="stylesheet" href="dev/style/form.css">
     <link rel="stylesheet" href="dist/style/side.min.css">
@@ -19,11 +20,15 @@
 </head>
 
 <body>
+    <div class="filter">
+        <h1 class="introHeading introText">The war has begun</h1>
+        <p class="introSubHeading introText">Choose your sides</p>
+    </div>
     <div class="permission">
         <h3 class="permissionHeading">Audio Play</h3>
         <p class="permissionText">This webpage includes Audio autoplay. Please confirm to improve your experience with us.
         </p>
-        <p class="permissionMore">According to new policies introduced by many web browsers, we need to ask for your permission to play audios/videos, please check chrome policies for detailed explanation</p>
+        <p class="permissionMore">According to updated policies, we need your permission to play audios/videos</p>
         <div class="permissionButtons">
             <div id="no" class="permissionDecline permissionAnswer" onclick="allowAudio(event); openSide()">Decline</div>
             <div id="yes" class="permissionConfirm permissionAnswer" onclick="allowAudio(event); openSide()">Confirm</div>
@@ -162,7 +167,6 @@
         var ref = database.ref("Players"),
             lobbyRef = database.ref('Lobby'),
             gameRef = database.ref('Game');
-
     </script>
     <script>
         var gameStroke = new THREE.MeshBasicMaterial({
@@ -180,9 +184,9 @@
             playerId, player, playerType, playerName, otherPlayers = [],
             arenaSizeSelected, arenaSize,
             meshShrinkSpeed, shrinkSpeed = .01;
-
     </script>
     <script src="dev/js/preForm.js"></script>
+    <script src="dev/js/intro.js"></script>
     <script src="dev/js/preGame.js"></script>
     <script src="dev/js/particle.js"></script>
     <script src="dev/js/p5main.js"></script>

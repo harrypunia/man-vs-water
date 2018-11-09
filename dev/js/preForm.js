@@ -17,7 +17,8 @@ const container = document.getElementById('container'),
     headphone = document.getElementsByClassName('headphone')[0],
     navigation = document.getElementsByClassName('navigation')[0],
     man = document.getElementsByClassName('man__player')[0],
-    water = document.getElementsByClassName('water__player')[0];
+    water = document.getElementsByClassName('water__player')[0],
+    filter = document.getElementsByClassName('filter')[0];
 var chosenSideId,
     chosenSide,
     neglectedSideId,
@@ -25,10 +26,7 @@ var chosenSideId,
     playersJoined,
     permitAudio = false,
     ifMapSelected = false,
-    menuStatus = false,
-    px,
-    py,
-    pz;
+    menuStatus = false;
 
 const openForm = e => {
     chosenSide = e.currentTarget.id;

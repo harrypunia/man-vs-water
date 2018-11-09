@@ -154,8 +154,9 @@ const removePermissionForm = dec => {
     setTimeout(function () {
         permission.style.display = 'none';
         permission.innerHTML = '';
+        form.style.opacity = '1';
+        side.classList.add('sideIn');
     }, 390);
-    form.style.opacity = 1;
 }
 
 const changeAudioPermissions = e => {

@@ -20,6 +20,24 @@
     animation: shake .1s 2;
 }
 
+@keyframes introHeading {
+    50% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+}
+
+@keyframes introFilter {
+    to {
+        opacity: 0;
+    }
+}
+
 @-webkit-keyframes shake {
     0% {
         margin-left: -3px;
@@ -95,24 +113,22 @@
 }
 
 @-webkit-keyframes permissionIn {
-    from {
-        -webkit-transform: translate3d(-50%, 20%, 0);
-        transform: translate3d(-50%, 20%, 0);
-        opacity: 0;
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        opacity: 1;
     }
 }
 
 @keyframes permissionIn {
-    from {
-        -webkit-transform: translate3d(-50%, 20%, 0);
-        transform: translate3d(-50%, 20%, 0);
-        opacity: 0;
+    to {
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        opacity: 1;
     }
 }
 
 @-webkit-keyframes permissionOutYES {
-    0% {}
-
     10% {
         -webkit-transform: translate3d(-50%, -55%, 0);
         transform: translate3d(-50%, -55%, 0);
@@ -127,8 +143,6 @@
 }
 
 @keyframes permissionOutYES {
-    0% {}
-
     10% {
         -webkit-transform: translate3d(-50%, -55%, 0);
         transform: translate3d(-50%, -55%, 0);
@@ -143,17 +157,25 @@
 }
 
 @-webkit-keyframes permissionOutNO {
+    from {
+        opacity: 1;
+    }
+
     to {
         -webkit-transform: translate3d(-50%, 100%, 0);
         transform: translate3d(-50%, 100%, 0);
-        opacity: 0;
+        opacity: 1;
     }
 }
 
 @keyframes permissionOutNO {
+    from {
+        opacity: 1;
+    }
+
     to {
         -webkit-transform: translate3d(-50%, 100%, 0);
         transform: translate3d(-50%, 100%, 0);
-        opacity: 0;
+        opacity: 1;
     }
 }

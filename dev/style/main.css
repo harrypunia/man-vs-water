@@ -14,11 +14,12 @@ input {
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -30%, 0);
+    transform: translate3d(-50%, -30%, 0);
+    opacity: 0;
     min-height: 400px;
-    width: 60vw;
     min-width: 700px;
+    width: 50vw;
     border: 1px solid white;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -38,11 +39,15 @@ input {
     font-size: 2.5em;
     text-align: center;
     line-height: 1.5;
-    padding: 20px 40px;
+    padding: 0px 10px;
     font-family: sans-serif;
     border-radius: 5px;
-    -webkit-animation: permissionIn .6s cubic-bezier(.08, .56, .48, 1);
-    animation: permissionIn .6s cubic-bezier(.08, .56, .48, 1);
+}
+
+.permissionIn {
+    -webkit-animation: permissionIn .4s cubic-bezier(.09, .28, .67, .92);
+    animation: permissionIn .4s cubic-bezier(.09, .28, .67, .92);
+    animation-fill-mode: forwards;
 }
 
 .permissionHeading {
@@ -53,6 +58,7 @@ input {
 
 .permissionText {
     color: white;
+    font-size: 1em;
 }
 
 .permissionButtons {
