@@ -12,17 +12,14 @@ const allowAudio = e => {
     }
 }
 
-let validateForm = () => {
+const validateForm = () => {
     var formInput = document.getElementById("fname");
     if (formInput.value == '') {
         showError('form__wrapper__input');
-    } else if (!ifMapSelected) {
-        //showError('form__wrapper__select-opts');
-    } else {
+    } else if (!ifMapSelected) {} else {
         gatherInfo();
         stopP5();
         pauseAudios();
-        //enterLobby();
         playGame();
     }
 }
@@ -38,37 +35,6 @@ const clearMapSelections = () => {
     for (var i = 0; i < maps.length; i++) {
         maps[i].getElementsByTagName('img')[0].classList.remove('mapSelected');
     }
-}
-
-const enterLobby = () => {
-    playerId = ref.push().key;
-    ref.child(playerId).child("orientation").set({
-        position: {
-            x: 0,
-            y: 0,
-            z: 0
-        },
-        rotation: {
-            x: 0,
-            y: 0,
-            z: 0
-        }
-    });
-    console.log(getPlayersJoined());
-    if (playersJoined == 0) {
-        console.log('new Lobby was created');
-        lobbyRef.child("Players").set({
-            p1: playerId,
-        });
-    } else {
-        console.log('Lobby already exists');
-    }
-}
-
-const getPlayersJoined = () => {
-    lobbyRef.on("value", function (snapshot) {
-        return snapshot.numChildren()
-    })
 }
 
 const playGame = () => {
@@ -92,7 +58,10 @@ const hideNavigation = () => {
 const gatherInfo = () => {
     playerType = playerSelected.value;
     playerName = formName.value;
-    //Delete form
+    deleteForm();
+}
+
+const deleteForm = () => {
     form.style.display = 'none';
 }
 
@@ -128,21 +97,6 @@ const pauseAudios = () => {
     }
 }
 
-const removePermissionForm = dec => {
-    if (dec == 'yes') {
-        permission.style.animation = 'permissionOutYES .4s ease-in';
-    } else {
-        permission.style.animation = 'permissionOutNO .4s ease-in';
-    }
-    setTimeout(function () {
-        permission.style.display = 'none';
-        permission.innerHTML = '';
-        form.style.opacity = '1';
-        side.classList.add('sideIn');
-    }, 390);
-    side.classList.add('sideIn');
-}
-
 const changeAudioPermissions = e => {
     var toggle = e.currentTarget.id;
     if (toggle == 'mute') {
@@ -158,7 +112,7 @@ const changeAudioPermissions = e => {
     }
 }
 
-const openMenu = () => {
+const openBurgerMenu = () => {
     if (!menuStatus) {
         menu.classList.add('openMenu');
         burger.classList.add('cross');
@@ -174,6 +128,22 @@ const removeListeners = () => {
     document.removeEventListener("mousemove", parallax, false);
     window.removeEventListener("keydown", validateForm, false);
     formButton.removeEventListener("click", validateForm, false);
+}
+
+const confirmPlayerSkin = () => {
+
+}
+
+const toForm = () => {
+    customise.style.transform = 'translate3d(-100%, -50%, 0)';
+    settings.style.transform = 'translate3d(0, -50%, 0)';
+    backToCustomiseButton.style.display = 'block';
+}
+
+const backToCustomise = () => {
+    customise.style.transform = 'translate3d(0, -50%, 0)';
+    settings.style.transform = 'translate3d(100%, -50%, 0)';
+    backToCustomiseButton.style.display = 'none';
 }
 
 formButton.addEventListener("click", validateForm, false);

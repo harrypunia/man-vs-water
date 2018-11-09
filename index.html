@@ -58,30 +58,40 @@
     </div>
     <div class="form hideForm">
         <div class="form__wrapper">
-            <div class="form__wrapper__heading">
-                <h1>Match Settings</h1>
+            <div class="form__heading">
+                <h1 class="form__heading-1">Customize</h1>
+                <h1 class="form__heading-2">Match Settings</h1>
             </div>
-            <div class="form__wrapper__select">
-                <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts" onclick="selectMap(event)">
-                    <p class="form__wrapper__select-text">Large</p>
-                    <img src="assets/img/large.png" alt="Nuclear War">
+            <div class="backToCustomise" onclick="backToCustomise()"></div>
+            <div class="form__slider">
+                <div class="form__customize">
+                    <div class="form__customize__character"></div>
+                    <input class="form__wrapper__button-character button" type="submit" value="Confirm" onclick="toForm()">
                 </div>
-                <div id="map2" class="form__wrapper__select-opt2 form__wrapper__select-opts" onclick="selectMap(event)">
-                    <p class="form__wrapper__select-text">Medium</p>
-                    <img src="assets/img/medium.jpg" alt="World War">
-                </div>
-                <div id="map3" class="form__wrapper__select-opt3 form__wrapper__select-opts" onclick="selectMap(event)">
-                    <p class="form__wrapper__select-text">Small</p>
-                    <img src="assets/img/small.jpg" alt="World War">
+                <div class="form__settings">
+                    <div class="form__wrapper__select">
+                        <div id="map1" class="form__wrapper__select-opt1 form__wrapper__select-opts" onclick="selectMap(event)">
+                            <p class="form__wrapper__select-text">Large</p>
+                            <img src="assets/img/large.png" alt="Nuclears War">
+                        </div>
+                        <div id="map2" class="form__wrapper__select-opt2 form__wrapper__select-opts" onclick="selectMap(event)">
+                            <p class="form__wrapper__select-text">Medium</p>
+                            <img src="assets/img/medium.jpg" alt="World War">
+                        </div>
+                        <div id="map3" class="form__wrapper__select-opt3 form__wrapper__select-opts" onclick="selectMap(event)">
+                            <p class="form__wrapper__select-text">Small</p>
+                            <img src="assets/img/small.jpg" alt="World War">
+                        </div>
+                    </div>
+                    <select id="playerType" class="form__wrapper__select" name="">
+                        <option value="Speedy">Speedy</option>
+                        <option value="Tank">Tank</option>
+                        <option value="Assassin">Assassin</option>
+                    </select>
+                    <input id="fname" class="form__wrapper__input" type="text" placeholder="Choose a name" required />
+                    <input class="form__wrapper__button button" type="submit" value="Play Now">
                 </div>
             </div>
-            <select id="playerType" class="form__wrapper__select" name="">
-                <option value="Speedy">Speedy</option>
-                <option value="Tank">Tank</option>
-                <option value="Assassin">Assassin</option>
-            </select>
-            <input id="fname" class="form__wrapper__input" type="text" placeholder="Choose a name" required />
-            <input class="form__wrapper__button button" type="submit" value="Play Now">
         </div>
     </div>
     <div class="headphone">
@@ -119,7 +129,7 @@
             <div class="performanceCircle"></div>
             <p class=identifity>Rain Performance</p>
         </div>
-        <div class="burger" onclick="openMenu()">
+        <div class="burger" onclick="openBurgerMenu()">
             <div class="bar1 bars"></div>
             <div class="bar2 bars"></div>
         </div>
@@ -167,7 +177,6 @@
         var ref = database.ref("Players"),
             lobbyRef = database.ref('Lobby'),
             gameRef = database.ref('Game');
-
     </script>
     <script>
         var gameStroke = new THREE.MeshBasicMaterial({
@@ -185,10 +194,10 @@
             playerId, player, playerType, playerName, otherPlayers = [],
             arenaSizeSelected, arenaSize,
             meshShrinkSpeed, shrinkSpeed = .01;
-
     </script>
-    <script src="dev/js/preForm.js"></script>
     <script src="dev/js/intro.js"></script>
+    <script src="dev/js/permission.js"></script>
+    <script src="dev/js/preForm.js"></script>
     <script src="dev/js/preGame.js"></script>
     <script src="dev/js/particle.js"></script>
     <script src="dev/js/p5main.js"></script>

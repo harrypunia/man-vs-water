@@ -95,6 +95,6 @@ const bulletPhysics = (walls, bulletSize) => {
 
 const inflictDamage = (bullet) => {
     ref.once('value').then(snap => {
-        //Work here tom
+        //Code of bullet here
     })
 }

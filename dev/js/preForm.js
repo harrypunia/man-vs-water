@@ -1,50 +1,13 @@
-const container = document.getElementById('container'),
-    form = document.getElementsByClassName('form')[0],
-    formName = document.getElementById('fname'),
-    mapForm = document.getElementsByClassName('form__wrapper__select')[0],
-    formButton = document.getElementsByClassName('form__wrapper__button')[0],
-    maps = document.getElementsByClassName('form__wrapper__select-opts'),
-    permission = document.getElementsByClassName('permission')[0],
-    muteIcon = document.getElementsByClassName('muteStatus'),
-    introAudio = new Audio('assets/audio/intro_music.mp3'),
-    p5Sounds = [new Audio('assets/audio/thunder.m4a'), new Audio('assets/audio/thunder_2.mp3'), new Audio('assets/audio/wolf.mp3')],
-    buttonAudio = new Audio('assets/audio/buttonAudio.mp3'),
-    rain = new Audio('assets/audio/rain.mp3'),
-    bulletCountDisplay = document.getElementById('bulletCountDisplay'),
-    bulletCountAnimation = document.getElementsByClassName('bulletCountAnimation')[0],
-    menu = document.getElementsByClassName('menu')[0],
-    burger = document.getElementsByClassName('burger')[0],
-    side = document.getElementsByClassName('side')[0],
-    headphone = document.getElementsByClassName('headphone')[0],
-    navigation = document.getElementsByClassName('navigation')[0],
-    man = document.getElementsByClassName('man__player')[0],
-    water = document.getElementsByClassName('water__player')[0],
-    filter = document.getElementsByClassName('filter')[0],
-    playerSelected = document.getElementById('playerType');
-var chosenSideId,
-    chosenSide,
-    neglectedSideId,
-    neglectedSide,
-    playersJoined,
-    permitAudio = false,
-    ifMapSelected = false,
-    menuStatus = false,
-    otherPlayersExist;
-
 const openForm = e => {
     chosenSide = e.currentTarget.id;
     neglectedSide = chosenSide == 'man' ? neglectedSide = 'water' : 'man';
-    //id's
     chosenSideId = document.getElementById(chosenSide);
     neglectedSideId = document.getElementById(neglectedSide);
-
     chosenSideId.classList.add('selectSide');
     neglectedSideId.classList.add('deSelectSide');
     side.classList.add('decisionMade');
-    //Adjust form
     chosenSide == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
     form.style.zIndex = 100;
-    //Show form
     playerSelected.classList.remove('hideForm');
     document.getElementsByClassName('form')[0].classList.remove('hideForm');
 
@@ -63,6 +26,7 @@ const returnToChoose = () => {
     //Hide Form
     playerSelected.classList.add('hideForm');
     document.getElementsByClassName('form')[0].classList.add('hideForm');
+    backToCustomise();
 }
 
 const openSide = () => {
