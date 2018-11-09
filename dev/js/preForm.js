@@ -1,5 +1,6 @@
 const container = document.getElementById('container'),
     form = document.getElementsByClassName('form')[0],
+    formName = document.getElementById('fname'),
     mapForm = document.getElementsByClassName('form__wrapper__select')[0],
     formButton = document.getElementsByClassName('form__wrapper__button')[0],
     maps = document.getElementsByClassName('form__wrapper__select-opts'),
@@ -18,7 +19,8 @@ const container = document.getElementById('container'),
     navigation = document.getElementsByClassName('navigation')[0],
     man = document.getElementsByClassName('man__player')[0],
     water = document.getElementsByClassName('water__player')[0],
-    filter = document.getElementsByClassName('filter')[0];
+    filter = document.getElementsByClassName('filter')[0],
+    playerSelected = document.getElementById('playerType');
 var chosenSideId,
     chosenSide,
     neglectedSideId,
@@ -26,7 +28,8 @@ var chosenSideId,
     playersJoined,
     permitAudio = false,
     ifMapSelected = false,
-    menuStatus = false;
+    menuStatus = false,
+    otherPlayersExist;
 
 const openForm = e => {
     chosenSide = e.currentTarget.id;
@@ -42,7 +45,7 @@ const openForm = e => {
     chosenSide == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
     form.style.zIndex = 100;
     //Show form
-    document.getElementById('playerType').classList.remove('hideForm');
+    playerSelected.classList.remove('hideForm');
     document.getElementsByClassName('form')[0].classList.remove('hideForm');
 
     //Add Returning abilities
@@ -56,10 +59,9 @@ const returnToChoose = () => {
     chosenSideId.classList.remove('selectSide');
     neglectedSideId.classList.remove('deSelectSide');
     chosenSideId.removeEventListener("click", returnToChoose, false);
-    document.getElementById('playerType').classList.remove('hideForm');
-
+    playerSelected.classList.remove('hideForm');
     //Hide Form
-    document.getElementById('playerType').classList.add('hideForm');
+    playerSelected.classList.add('hideForm');
     document.getElementsByClassName('form')[0].classList.add('hideForm');
 }
 

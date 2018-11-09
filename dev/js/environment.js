@@ -9,24 +9,20 @@ var Environment = function () {
         zone.init();
         walls = new Wall(Math.floor(arenaSize / 2), 5, player.mesh);
         grass = new Grass((arenaSize / 2), 1);
-        if (otherPlayersExist() == true) {
-            walls.download();
-            walls.init();
-        } else {
-            walls.init();
-            walls.upload();
-        }
+        getMap();
     }
 }
 
-const otherPlayersExist = () => {
-    ref.on('value', snap => {
-        if (snap.numChildren() > 0) {
-            console.log(snap.numChildren());
-            return true;
-        } else {
-            console.log(snap.numChildren());
-            return false;
-        }
+const checkOtherPlayers = () => {
+    return new Promise(resolve => {
+        ref.on('value', snap => {
+            otherPlayersExist = (snap.numChildren() > 1) ? true : false;
+            resolve('resolved');
+        })
     })
+}
+
+async function getMap() {
+    var result = await checkOtherPlayers();
+    otherPlayersExist ? (walls.download(), walls.init()) : (walls.init(), walls.upload());
 }

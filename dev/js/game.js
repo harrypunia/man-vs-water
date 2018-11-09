@@ -82,7 +82,7 @@ const initMainPlayer = () => {
 }
 
 const loadMapsize = () => {
-    arenaSize = arenaSizeSelected == 'large' ? 300 : arenaSizeSelected == 'medium' ? 225 : 150;
+    arenaSize = 150
     meshShrinkSpeed = shrinkSpeed / arenaSize;
 }
 

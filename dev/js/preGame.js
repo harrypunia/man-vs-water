@@ -89,37 +89,20 @@ const hideNavigation = () => {
     side.innerHTML = '';
 }
 
-var mapSize = () => {
-    for (var i = 0; i < maps.length; i++) {
-        if (maps[i].classList.contains('mapSelected')) {
-            if (i == 0) return 'large'
-            else if (i == 1) return 'medium'
-            else return 'small'
-        }
-    }
-}
-
 const gatherInfo = () => {
-    var form = document.getElementsByClassName('form')[0],
-        formName = document.getElementById('fname'),
-        playerSelected = document.getElementById('playerType');
     playerType = playerSelected.value;
-    //Store Form info
     playerName = formName.value;
-    arenaSizeSelected = mapSize();
-
     //Delete form
-    form.innerHTML = '';
     form.style.display = 'none';
 }
 
 const showError = e => {
-    var errorTarget = document.getElementsByClassName(e);
-    for (var i = 0; i < errorTarget.length; i++) {
+    let errorTarget = document.getElementsByClassName(e);
+    for (let i = 0; i < errorTarget.length; i++) {
         errorTarget[i].style.animation = '.1s error ease-in-out 3';
-        setTimeout(function () {
-            var scope = i;
-            errorTarget[scope].style.animation = '0';
+        setTimeout(() => {
+            let snap = i;
+            errorTarget[snap].style.animation = '0';
         }, 90);
     }
 }
@@ -157,6 +140,7 @@ const removePermissionForm = dec => {
         form.style.opacity = '1';
         side.classList.add('sideIn');
     }, 390);
+    side.classList.add('sideIn');
 }
 
 const changeAudioPermissions = e => {
