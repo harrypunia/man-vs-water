@@ -89,6 +89,12 @@ const bulletPhysics = (walls, bulletSize) => {
             bullets[i].position.set(0, -5, 0);
             bullets[i].alive = false;
         }
-        bullets[i].alive ? bullets[i].position.add(bullets[i].velocity) : false;
+        bullets[i].alive ? (bullets[i].position.add(bullets[i].velocity), inflictDamage(bullets[i])) : false;
     }
+}
+
+const inflictDamage = (bullet) => {
+    ref.once('value').then(snap => {
+        //Work here tom
+    })
 }

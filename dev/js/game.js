@@ -7,14 +7,7 @@ var Game = function () {
         initMainPlayer();
         environment.init();
         controls.init();
-        window.onunload = () => {
-            ref.child(playerId).remove();
-            console.log('removed a player');
-        }
-        window.onbeforeunload = () => {
-            ref.child(playerId).remove();
-            console.log('removed a player');
-        }
+        removePlayers();
     }
     this.update = function () {
         initOtherPlayers();
@@ -82,6 +75,12 @@ const initMainPlayer = () => {
 const loadMapsize = () => {
     arenaSize = 150
     meshShrinkSpeed = shrinkSpeed / arenaSize;
+}
+
+const removePlayers = () => {
+    window.onunload = () => ref.child(playerId).remove();
+    window.onbeforeunload = () => ref.child(playerId).remove();
+    window.onoffline = () => ref.child(playerId).remove();
 }
 
 const playerFall = () => {
