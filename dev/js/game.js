@@ -5,12 +5,12 @@ var Game = function () {
         setAudioPara();
         loadMapsize();
         initMainPlayer();
+        initOtherPlayers();
         environment.init();
         controls.init();
         removePlayers();
     }
     this.update = function () {
-        initOtherPlayers();
         playerFall();
         updateLight();
         walls.applyPhysics(.2);

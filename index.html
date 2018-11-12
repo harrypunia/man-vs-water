@@ -189,23 +189,6 @@
             lobbyRef = database.ref('Lobby'),
             gameRef = database.ref('Game');
     </script>
-    <script>
-        var gameStroke = new THREE.MeshBasicMaterial({
-                color: 0x000000,
-                wireframe: true,
-                wireframeLinewidth: 2,
-            }),
-            geo, mat,
-            walls, grass, plane,
-            texture,
-            ambLights, sun, sky, lights,
-            zone, environment,
-            scope,
-            bullets = [],
-            playerId, player, playerType, playerName, otherPlayers = [],
-            arenaSizeSelected, arenaSize,
-            meshShrinkSpeed, shrinkSpeed = .01;
-    </script>
     <script src="dev/js/intro.js"></script>
     <script src="dev/js/permission.js"></script>
     <script src="dev/js/preForm.js"></script>

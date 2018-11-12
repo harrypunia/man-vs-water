@@ -28,7 +28,12 @@ const container = document.getElementById('container'),
     man = document.getElementsByClassName('man__player')[0],
     water = document.getElementsByClassName('water__player')[0],
     filter = document.getElementsByClassName('filter')[0],
-    playerSelected = document.getElementById('playerType');
+    playerSelected = document.getElementById('playerType'),
+    emptyGun = new Audio("../../assets/audio/emptyGun.m4a"),
+    gunSupressor = new Audio("../../assets/audio/gun_supressor.m4a"),
+    sniper = new Audio("../../assets/audio/Gun2.mp3"),
+    shotgun = new Audio("../../assets/audio/Gun3.mp3"),
+    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
 let chosenSideId,
     chosenSide,
     neglectedSideId,
@@ -37,7 +42,22 @@ let chosenSideId,
     permitAudio = false,
     ifMapSelected = false,
     menuStatus = false,
-    otherPlayersExist;
+    otherPlayersExist,
+    gameStroke = new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        wireframe: true,
+        wireframeLinewidth: 2,
+    }),
+    geo, mat,
+    walls, grass, plane,
+    texture,
+    ambLights, sun, sky, lights,
+    zone, environment,
+    scope,
+    bullets = [],
+    playerId, player, playerType, playerName, otherPlayers = {},
+    arenaSizeSelected, arenaSize,
+    meshShrinkSpeed, shrinkSpeed = .01;
 
 (() => {
     setTimeout(() => {
