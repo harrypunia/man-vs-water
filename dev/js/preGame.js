@@ -144,6 +144,9 @@ const backToCustomise = () => {
     customise.style.transform = 'translate3d(0, -50%, 0)';
     settings.style.transform = 'translate3d(100%, -50%, 0)';
     backToCustomiseButton.style.display = 'none';
+    clearMapSelections();
+    formName.value = '';
+
 }
 
 formButton.addEventListener("click", validateForm, false);

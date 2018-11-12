@@ -13,6 +13,7 @@ const openForm = e => {
 
     //Add Returning abilities
     chosenSideId.addEventListener("click", returnToChoose, false);
+    displayCharacter(chosenSide);
 }
 
 const returnToChoose = () => {
@@ -27,6 +28,7 @@ const returnToChoose = () => {
     playerSelected.classList.add('hideForm');
     document.getElementsByClassName('form')[0].classList.add('hideForm');
     backToCustomise();
+    hideCharacter();
 }
 
 const openSide = () => {
@@ -41,6 +43,15 @@ const parallax = event => {
     man.style.top = 50 + (y / depth) + 'vh';
     water.style.right = 12 - (x / depth) + 'vw';
     water.style.top = 50 + (y / depth) + 'vh';
+}
+
+const displayCharacter = side => {
+    side == 'man' ? characterMan.style.display = 'block' : characterWater.style.display = 'block';
+}
+
+const hideCharacter = () => {
+    characterMan.style.display = 'none';
+    characterWater.style.display = 'none';
 }
 
 document.addEventListener("mousemove", parallax, false);
