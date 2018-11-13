@@ -24,16 +24,17 @@ const validateForm = () => {
     }
 }
 
-const selectMap = e => {
+const selectPlayer = e => {
     ifMapSelected = true;
-    clearMapSelections();
-    let mapSelectedImage = document.getElementById(e.currentTarget.id).getElementsByTagName('img')[0];
-    mapSelectedImage.classList.add('mapSelected');
+    clearPlayerSelections();
+    let playerSelectedImage = document.getElementById(e.currentTarget.id).getElementsByTagName('img')[0];
+    playerSelectedImage.classList.add('mapSelected');
+    chosenPlayer = e.currentTarget.id;
 }
 
-const clearMapSelections = () => {
-    for (var i = 0; i < maps.length; i++) {
-        maps[i].getElementsByTagName('img')[0].classList.remove('mapSelected');
+const clearPlayerSelections = () => {
+    for (var i = 0; i < playerTypes.length; i++) {
+        playerTypes[i].getElementsByTagName('img')[0].classList.remove('mapSelected');
     }
 }
 
@@ -56,7 +57,7 @@ const hideNavigation = () => {
 }
 
 const gatherInfo = () => {
-    playerType = playerSelected.value;
+    playerType = chosenPlayer;
     playerName = formName.value;
     deleteForm();
 }
@@ -144,7 +145,7 @@ const backToCustomise = () => {
     customise.style.transform = 'translate3d(0, -50%, 0)';
     settings.style.transform = 'translate3d(100%, -50%, 0)';
     backToCustomiseButton.style.display = 'none';
-    clearMapSelections();
+    clearPlayerSelections();
     formName.value = '';
 
 }

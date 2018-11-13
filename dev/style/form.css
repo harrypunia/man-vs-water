@@ -11,7 +11,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    background: url('../../assets/img/form_back.png') no-repeat;
+    background: url('../../assets/img/PNG/form_back.png') no-repeat;
     background-size: contain;
     z-index: 1;
 }
