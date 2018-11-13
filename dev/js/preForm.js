@@ -31,10 +31,6 @@ const returnToChoose = () => {
     hideCharacter();
 }
 
-const openSide = () => {
-    side.style.display = 'block';
-}
-
 const parallax = event => {
     let x = event.clientX,
         y = event.clientY,

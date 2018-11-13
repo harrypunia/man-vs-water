@@ -6,4 +6,5 @@ const removePermissionForm = dec => {
         permission.style.display = 'none';
         form.style.opacity = '1';
     }, 390);
+    side.style.display = 'block';
 }

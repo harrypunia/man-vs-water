@@ -9,7 +9,7 @@
 }
 
 .sideIn {
-    opacity: 1;
+    opacity: .7 !important;
 }
 
 .sideIn .man__cover-img {

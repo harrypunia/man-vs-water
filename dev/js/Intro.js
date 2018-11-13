@@ -32,7 +32,8 @@ const container = document.getElementById('container'),
     gunSupressor = new Audio("../../assets/audio/gun_supressor.m4a"),
     sniper = new Audio("../../assets/audio/Gun2.mp3"),
     shotgun = new Audio("../../assets/audio/Gun3.mp3"),
-    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
+    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3"),
+    lobby = document.getElementsByClassName('lobby')[0];
 let chosenSideId,
     chosenPlayer,
     neglectedSideId,

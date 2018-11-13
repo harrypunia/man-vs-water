@@ -26,7 +26,7 @@ const validateForm = () => {
 }
 
 const enterLobby = () => {
-
+    lobby.style.display = 'block';
 }
 
 const enterGame = () => {
