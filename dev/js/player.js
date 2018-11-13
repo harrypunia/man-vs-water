@@ -1,60 +1,52 @@
-var player_geo,
-    man_mats,
-    water_mats = [];
-var Player = function (playerID, playerName, skin, chosenSide, stats) {
-    this.playerID = playerID;
-    this.username = playerName;
+var player_geo;
+var Player = function (id, name, skin, side) {
+    this.playerId = id;
+    this.username = name;
     this.isMainPlayer = false;
     this.mesh;
     this.playerType = stats.type;
     this.player_mat;
     this.skin = skin;
-    this.chosenSide = chosenSide;
-    this.playerStats = stats;
+    this.chosenSide = side;
 
     scope = this;
     this.init = () => {
         if (this.chosenSide == 'man') {
             player_geo = new THREE.BoxBufferGeometry(1, 1, 1);
-            man_mats = [new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_right.svg"),
-                    transparent: true,
+            let man_mats = [new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_right.svg")
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_left.svg"),
-                    transparent: true,
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_left.svg")
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_top.svg"),
-                    transparent: true,
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_top.svg")
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_bottom.svg"),
-                    transparent: true,
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_bottom.svg")
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_back.svg"),
-                    transparent: true,
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_back.svg")
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_front.svg"),
-                    transparent: true,
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_front.svg")
                 })];
             player_mat = new THREE.MeshFaceMaterial(man_mats);
         } else {
+            let water_mats = [];
             player_geo = new THREE.SphereGeometry(.5, 10, 10);
-            player_mat = new THREE.MeshBasicMaterial(0x47d1ea)
+            player_mat = new THREE.MeshBasicMaterial({
+                color: 0x47d1ea,
+                transparent: true
+            });
         }
         scope.mesh = new THREE.Mesh(player_geo, player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);
-        scope.mesh.position.x = (arenaSize / 2) - (Math.floor(Math.random() * arenaSize));
-        scope.mesh.position.y = arenaSize / 2;
-        scope.mesh.position.z = (arenaSize / 2) - (Math.floor(Math.random() * arenaSize));
+        user.side == 'man' ? scope.mesh.position.set(10 - (arenaSize / 2), arenaSize / 2, (Math.random() * arenaSize) - (arenaSize / 2)) : scope.mesh.position.set((arenaSize / 2) - 10, arenaSize / 2, (Math.random() * arenaSize) - (arenaSize / 2));
         scope.mesh.add(scope.meshBorder);
         scene.add(scope.mesh);
-
         if (scope.isMainPlayer) {
-            controls = new THREE.PlayerControls(camera, scope.mesh, scope.playerStats);
+            controls = new THREE.PlayerControls(camera, scope.mesh, stats);
         }
     }
     this.setOrientation = (pos, rot) => {

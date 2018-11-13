@@ -17,7 +17,7 @@ const validateForm = () => {
     if (formInput.value == '') {
         showError('form__wrapper__input');
     } else if (!ifMapSelected) {} else {
-        playerName = formName.value;
+        user.name = formName.value;
         form.style.display = 'none';
         stopP5();
         pauseAudios();
@@ -34,7 +34,7 @@ const selectPlayer = e => {
     clearPlayerSelections();
     let playerSelectedImage = document.getElementById(target).getElementsByTagName('img')[0];
     playerSelectedImage.classList.add('mapSelected');
-    target == 'speedy' ? playerStats = speedyStats : target == 'assassin' ? playerStats = assassinStats : playerStats = tankStats;
+    target == 'speedy' ? stats = speedyStats : target == 'assassin' ? stats = assassinStats : stats = tankStats;
 }
 
 const clearPlayerSelections = () => {

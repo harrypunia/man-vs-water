@@ -1,5 +1,3 @@
-var bulletSize;
-
 THREE.PlayerControls = function (camera, player, stats, domElement) {
     this.camera = camera;
     this.player = player;
@@ -16,7 +14,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
     this.gravity = .007;
     this.allowMouseControls;
     let fireRate = 10,
-        fireSpeed = stats.fireSpeed,
         bulletSpeed = stats.bulletSpeed,
         gun,
         magazineSize = stats.magazineSize,
@@ -29,7 +26,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         dblScopeZoom = stats.dblScopeZoom,
         jumpPower = .15;
     console.log(stats);
-    bulletSize = stats.bulletSize;
     this.moveSpeed = stats.moveSpeed;
     this.maxSpeed = stats.maxSpeed;
     this.turnSpeed = stats.turnSpeed;
@@ -132,13 +128,13 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         this.checkKeyStates();
         if (scope.jump == true) {
             stamina -= this.staminaDrain;
-            gun.bulletHeight = player.position.y + 0.5;
+            stats.bulletHeight = player.position.y + 0.5;
             jumpPower -= scope.gravity;
             player.position.y += jumpPower;
             camera.position.y += jumpPower;
             if (player.position.y <= 0.49) {
                 camera.position.y = 1;
-                gun.bulletHeight = 1;
+                stats.bulletHeight = 1;
                 player.position.y = 0.5;
                 scope.jumping = false;
                 scope.jump = false;
@@ -301,8 +297,8 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
                 }
 
                 if (keyState[32] && fireRate == 0 && gun.reloadStatus == false) { //Shoot
-                    gun.shoot(theta, fireSpeed);
-                    fireRate = fireSpeed;
+                    gun.shoot(theta, stats.fireSpeed);
+                    fireRate = stats.fireSpeed;
                 }
                 if (keyState[82]) { //Reload
                     if (!gun.allowReload() && gun.reloadStatus == false) {

@@ -14,7 +14,7 @@ var Game = function () {
         playerFall();
         updateLight();
         walls.applyPhysics(.2);
-        bulletPhysics(walls.list, playerStats.bulletSize);
+        bulletPhysics(walls.list);
         arenaShrink();
         player.restrict(player.mesh);
     }
@@ -28,7 +28,7 @@ const initOtherPlayers = () => {
     ref.on("child_added", PlayerData => {
         if (PlayerData.val()) {
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
-                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.playerType, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
+                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);
             }
@@ -57,15 +57,15 @@ const initMainPlayer = () => {
     });
     ref.child(playerId).child("info").set({
         userInfo: {
-            name: playerName
+            name: user.name
         },
         playerInfo: {
             skin: 1,
-            chosenSide: chosenSide,
-            playerType: playerStats.type
+            chosenSide: user.side,
+            playerType: stats.type
         }
     });
-    player = new Player(playerId, playerName, 1, chosenSide, playerStats);
+    player = new Player(playerId, user.name, 1, user.side);
     player.isMainPlayer = true;
     player.init();
 }

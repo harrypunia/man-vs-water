@@ -1,19 +1,19 @@
 const openForm = e => {
-    chosenSide = e.currentTarget.id;
-    neglectedSide = chosenSide == 'man' ? neglectedSide = 'water' : 'man';
-    chosenSideId = document.getElementById(chosenSide);
+    user.side = e.currentTarget.id;
+    neglectedSide = user.side == 'man' ? neglectedSide = 'water' : 'man';
+    chosenSideId = document.getElementById(user.side);
     neglectedSideId = document.getElementById(neglectedSide);
     chosenSideId.classList.add('selectSide');
     neglectedSideId.classList.add('deSelectSide');
     side.classList.add('decisionMade');
-    chosenSide == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
+    user.side == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
     form.style.zIndex = 100;
     playerSelected.classList.remove('hideForm');
     document.getElementsByClassName('form')[0].classList.remove('hideForm');
+    displayCharacter(user.side);
 
     //Add Returning abilities
     chosenSideId.addEventListener("click", returnToChoose, false);
-    displayCharacter(chosenSide);
 }
 
 const returnToChoose = () => {

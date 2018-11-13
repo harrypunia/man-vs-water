@@ -34,7 +34,6 @@ const container = document.getElementById('container'),
     shotgun = new Audio("../../assets/audio/Gun3.mp3"),
     reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
 let chosenSideId,
-    chosenSide,
     chosenPlayer,
     neglectedSideId,
     neglectedSide,
@@ -55,10 +54,11 @@ let chosenSideId,
     zone, environment,
     scope,
     bullets = [],
-    playerId, player, playerName, otherPlayers = {},
+    playerId, player, otherPlayers = {},
     arenaSizeSelected, arenaSize,
     meshShrinkSpeed, shrinkSpeed = .01,
-    playerStats,
+    stats,
+    user = {},
     speedyStats = {
         type: 'speedy',
         moveSpeed: .17,
@@ -69,13 +69,14 @@ let chosenSideId,
         staminaDrain: .3,
         staminaRecovery: .025,
         fireSpeed: 7,
-        bulletSize: 1,
+        bulletSize: .1,
         bulletSpeed: 2,
         magazineSize: 24,
         reloadSpeed: 3400,
         totalBullets: 120,
         scopeZoom: 3,
-        dblScopeZoom: 2
+        dblScopeZoom: 2,
+        bulletHeight: 1
     },
     assassinStats = {
         type: 'assassin',
@@ -93,7 +94,8 @@ let chosenSideId,
         reloadSpeed: 1600,
         totalBullets: 72,
         scopeZoom: 3,
-        dblScopeZoom: 2
+        dblScopeZoom: 2,
+        bulletHeight: 1
     },
     tankStats = {
         type: 'tank',
@@ -111,7 +113,8 @@ let chosenSideId,
         reloadSpeed: 5400,
         totalBullets: 45,
         scopeZoom: 3,
-        dblScopeZoom: 2
+        dblScopeZoom: 2,
+        bulletHeight: 1
     };
 
 (() => {
