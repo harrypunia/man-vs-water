@@ -11,7 +11,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    background: url('../../assets/img/SVG/form_back.svg') no-repeat;
+    background: url('../../assets/img/form_back.png') no-repeat;
     background-size: contain;
     z-index: 1;
 }
@@ -132,11 +132,7 @@
     float: left;
     cursor: pointer;
     overflow: hidden;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -152,16 +148,12 @@
     width: 60%;
     height: auto;
     border-radius: 50%;
-    -webkit-filter: brightness(.3) sepia(.5);
     filter: brightness(.3) sepia(.5);
-    -webkit-transition: all .2s ease-out;
     transition: all .2s ease-out;
 }
 
 .form__wrapper__select-opts img:hover {
-    -webkit-filter: brightness(.6) sepia(.5);
     filter: brightness(.6) sepia(.5);
-    -webkit-transition: all .2s ease-out;
     transition: all .2s ease-out;
 }
 
@@ -216,25 +208,22 @@
     position: absolute;
     bottom: 30px;
     left: 50vw;
-    -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     width: 25px;
     height: 25px;
+    z-index: 999;
 }
 
 .muteStatus {
     width: 100%;
     cursor: pointer;
     opacity: .6;
-    -webkit-transition: opacity 1s ease-in;
     transition: opacity 1s ease-in;
-    -webkit-transition-delay: 1s;
     transition-delay: 1s;
 }
 
 .muteStatus:hover {
     opacity: 1;
-    -webkit-transition: opacity .2s ease-out;
     transition: opacity .2s ease-out;
 }
 
