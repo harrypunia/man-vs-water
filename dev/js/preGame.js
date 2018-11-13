@@ -22,9 +22,9 @@ const validateForm = () => {
         stopP5();
         pauseAudios();
         removeListeners();
+        hideNavigation();
         initThreeJs();
         document.getElementsByClassName('UI')[0].style.display = 'block';
-        hideNavigation();
     }
 }
 
@@ -34,7 +34,7 @@ const selectPlayer = e => {
     clearPlayerSelections();
     let playerSelectedImage = document.getElementById(target).getElementsByTagName('img')[0];
     playerSelectedImage.classList.add('mapSelected');
-    target == 'speedy' ? playerStats = speedyStats : target == 'assassin' ? playerStats = assassinStats : platerStats = tankStats;
+    target == 'speedy' ? playerStats = speedyStats : target == 'assassin' ? playerStats = assassinStats : playerStats = tankStats;
 }
 
 const clearPlayerSelections = () => {

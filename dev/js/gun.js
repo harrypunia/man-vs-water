@@ -1,9 +1,10 @@
 class Gun {
-    constructor(bulletSize, magazineSize, bulletSpeed, totalBullets) {
-        this.totalBullets = totalBullets;
-        this.magazineSize = magazineSize;
-        this.bulletSpeed = bulletSpeed;
-        this.totalBullets = totalBullets;
+    constructor(stats) {
+        this.totalBullets = stats.totalBullets;
+        this.magazineSize = stats.magazineSize;
+        this.bulletSpeed = stats.bulletSpeed;
+        this.totalBullets = stats.totalBullets;
+        this.reloadSpeed = stats.reloadSpeed;
         this.reloadStatus = false;
         this.bulletHeight = 1;
         this.bullet_geo = new THREE.SphereGeometry(bulletSize, 10, 10);
@@ -40,11 +41,11 @@ class Gun {
         let AR = gunSupressor.cloneNode();
         playerStats.type == 'Speedy' ? (AR.volume = 0.05, AR.play()) : playerStats.type == 'Assassin' ? (sniper.playbackRate = 2, sniper.play()) : playerStats.type == 'Tank' ? (shotgun.playbackRate = (120 / fireSpeed), shotgun.play()) : 0;
     }
-    reload(reloadSpeed) {
+    reload() {
         if (this.totalBullets > 0) {
-            this.animateReloadButton(reloadSpeed);
+            this.animateReloadButton(this.reloadSpeed);
             this.reloadStatus = true;
-            reloadPistol.playbackRate = ((1000 / reloadSpeed) * 2);
+            reloadPistol.playbackRate = ((1000 / this.reloadSpeed) * 2);
             reloadPistol.play();
             setTimeout(() => {
                 bulletCountAnimation.style.animation = '';
@@ -58,7 +59,7 @@ class Gun {
                 bulletCountDisplay.innerHTML = this.bulletCount + 1 + ' /' + this.totalBullets;
                 bullets.reverse();
                 this.reloadStatus = false;
-            }, reloadSpeed);
+            }, this.reloadSpeed);
         } else {
             //Not Enough AMMO
         }

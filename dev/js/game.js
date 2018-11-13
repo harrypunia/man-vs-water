@@ -14,14 +14,14 @@ var Game = function () {
         playerFall();
         updateLight();
         walls.applyPhysics(.2);
-        bulletPhysics(walls.list, bulletSize);
+        bulletPhysics(walls.list, playerStats.bulletSize);
         arenaShrink();
         player.restrict(player.mesh);
     }
 }
 
 const listenToPlayer = PlayerData => {
-    PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation) : false;
+    PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
 }
 
 const initOtherPlayers = () => {
@@ -52,9 +52,7 @@ const initMainPlayer = () => {
             z: 0
         },
         rotation: {
-            x: 0,
-            y: 0,
-            z: 0
+            y: 0
         }
     });
     ref.child(playerId).child("info").set({

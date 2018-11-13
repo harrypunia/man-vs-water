@@ -60,9 +60,7 @@ var Player = function (playerID, playerName, skin, chosenSide, stats) {
     this.setOrientation = (pos, rot) => {
         if (scope.mesh) {
             scope.mesh.position.copy(pos);
-            scope.mesh.rotation.x = rot.x;
-            scope.mesh.rotation.y = rot.y;
-            scope.mesh.rotation.z = rot.z;
+            scope.mesh.rotation.y = rot;
         }
     }
     this.restrict = activePlayer => {

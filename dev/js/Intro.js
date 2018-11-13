@@ -71,11 +71,11 @@ let chosenSideId,
         fireSpeed: 7,
         bulletSize: 1,
         bulletSpeed: 2,
-        magazineSize: .1,
+        magazineSize: 24,
         reloadSpeed: 3400,
         totalBullets: 120,
         scopeZoom: 3,
-        dblScopeZoon: 2
+        dblScopeZoom: 2
     },
     assassinStats = {
         type: 'assassin',
@@ -93,7 +93,7 @@ let chosenSideId,
         reloadSpeed: 1600,
         totalBullets: 72,
         scopeZoom: 3,
-        dblScopeZoon: 2
+        dblScopeZoom: 2
     },
     tankStats = {
         type: 'tank',
@@ -111,7 +111,7 @@ let chosenSideId,
         reloadSpeed: 5400,
         totalBullets: 45,
         scopeZoom: 3,
-        dblScopeZoon: 2
+        dblScopeZoom: 2
     };
 
 (() => {

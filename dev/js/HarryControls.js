@@ -23,7 +23,8 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         reloadSpeed = stats.reloadSpeed,
         totalBullets = stats.totalBullets,
         stamina = 100,
-        storeMoveSpeed = this.moveSpeed,
+        storeMoveSpeed = stats.moveSpeed,
+        storeTurnSpeed = stats.turnSpeed,
         scopeZoom = stats.scopeZoom,
         dblScopeZoom = stats.dblScopeZoom,
         jumpPower = .15;
@@ -35,7 +36,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
     this.sprintTurnSpeed = stats.sprintTurnSpeed;
     this.acceleration = stats.acceleration;
     this.staminaDrain = stats.staminaDrain;
-    this.staminaRecovery = stats.staminaRecover;
+    this.staminaRecovery = stats.staminaRecovery;
     //Check
     //Check
     const bulletContainer = document.getElementById('bulletCountDisplay');
@@ -123,13 +124,12 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         this.camera.lookAt(this.player.position);
     };
     this.init = () => {
-        gun = new Gun(bulletSize, magazineSize, bulletSpeed, totalBullets);
+        gun = new Gun(stats);
         gun.init();
     }
 
     this.update = () => {
         this.checkKeyStates();
-
         if (scope.jump == true) {
             stamina -= this.staminaDrain;
             gun.bulletHeight = player.position.y + 0.5;
@@ -145,7 +145,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
                 jumpPower = .15;
             }
         }
-
         if (fireRate > 0) {
             fireRate--;
         }
@@ -213,18 +212,16 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         if (this.hasLanded) {
             if (this.allow) {
                 if (keyState[16] && keyState[38] || keyState[87] && keyState[16]) {
-                    if (stamina > 0) {
-                        scope.storeStaminaDelay = scope.staminaDelay;
+                    if (stamina > 0 && this.allowSprinting) {
                         stamina -= this.staminaDrain;
                         displayStamina();
-                        if (this.allowSprinting == true) {
-                            startRunning();
-                        }
+                        startRunning();
+                        this.sprinting = true;
                     } else {
                         stamina = 0;
                         stopRunning();
+                        this.sprinting = false;
                     }
-                    this.sprinting = true;
                 } else {
                     if (stamina < 100) {
                         displayStamina();
@@ -314,7 +311,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
                             bulletCountDisplay.classList.remove('shake');
                         }, 500);
                     } else if (gun.allowReload() && gun.reloadStatus == false) {
-                        gun.reload(reloadSpeed);
+                        gun.reload();
                     }
                 }
             }
@@ -371,53 +368,30 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         })
     };
 
-    function stopRunning() {
-        if (scope.moveSpeed > storeMoveSpeed) {
-            scope.moveSpeed -= 0.01;
-        }
-        if (this.playerType == 'Speedy') {
-            if (scope.turnSpeed < 0.1) {
-                scope.turnSpeed += 0.001;
-            }
-        } else if (this.playerType == 'Tank') {
-            if (scope.turnSpeed < 0.05) {
-                scope.turnSpeed += 0.001;
-            }
-        } else {
-            if (scope.turnSpeed < 0.07) {
-                scope.turnSpeed += 0.001;
-            }
-        }
-        this.sprinting = false;
+    const stopRunning = () => {
+        this.moveSpeed > storeMoveSpeed ? this.moveSpeed -= 0.01 : 0;
+        this.turnSpeed < storeTurnSpeed ? this.turnSpeed += 0.01 : 0;
     }
 
-    function startRunning() {
-        if (scope.moveSpeed < scope.maxSpeed) {
-            scope.moveSpeed += scope.acceleration;
-        }
-        if (scope.playerType == 'Speedy') {
-            scope.turnSpeed = scope.sprintTurnSpeed;
-        } else if (this.playerType == 'Tank') {
-            scope.turnSpeed = scope.sprintTurnSpeed;
-        } else {
-            scope.turnSpeed = scope.sprintTurnSpeed;
-        }
+    const startRunning = () => {
+        this.moveSpeed < this.maxSpeed ? this.moveSpeed += this.acceleration : 0;
+        this.turnSpeed > this.sprintTurnSpeed ? this.turnSpeed -= 0.01 : 0;
     }
 
-    function displayStamina() {
+    const displayStamina = () => {
         let staminaBar = document.getElementsByClassName('stamina')[0];
         staminaBar.style.borderLeft = ((stamina / 100) * 300) + 'px solid #4e7fdd';
     }
 
-    function getAutoRotationAngle() {
+    const getAutoRotationAngle = () => {
         return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
     }
 
-    function getZoomScale() {
+    const getZoomScale = () => {
         return Math.pow(0.95, scope.userZoomSpeed);
     }
 
-    function onMouseDown(event) {
+    const onMouseDown = event => {
         if (scope.enabled === false) return;
         if (scope.userRotate === false) return;
 
@@ -442,7 +416,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
 
     }
 
-    function onMouseMove(event) {
+    const onMouseMove = event => {
 
         if (scope.enabled === false) return;
 
@@ -478,7 +452,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
 
     }
 
-    function onMouseUp(event) {
+    const onMouseUp = event => {
 
         if (scope.enabled === false) return;
         if (scope.userRotate === false) return;
@@ -490,7 +464,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
 
     }
 
-    function onMouseWheel(event) {
+    const onMouseWheel = event => {
 
         if (scope.enabled === false) return;
         if (scope.userRotate === false) return;
@@ -518,7 +492,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         }
 
     }
-
 
     this.domElement.addEventListener('contextmenu', (event) => event.preventDefault());
     this.domElement.addEventListener('keydown', (event) => {
