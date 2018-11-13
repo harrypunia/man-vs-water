@@ -1,7 +1,7 @@
 var canvas, scene, camera, mapCamera, renderer, dimBack, controls, mapSize, game = new Game(),
     mapPos = {
         x: 0,
-        y: 70,
+        y: 30,
         z: 0
     },
     mapView = {
@@ -45,6 +45,7 @@ const render = () => {
     dimBack ? dimLight() : 0;
     renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
     renderer.setClearColor(0xffffff, 0);
+    scene.fog = new THREE.Fog(0x0b0b14, .01, 60);
     renderer.render(scene, camera);
     renderer.autoClear = false;
 
