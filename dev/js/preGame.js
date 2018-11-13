@@ -13,19 +13,28 @@ const allowAudio = e => {
 }
 
 const validateForm = () => {
-    var formInput = document.getElementById("fname");
+    let formInput = document.getElementById("fname");
     if (formInput.value == '') {
         showError('form__wrapper__input');
-    } else if (!ifMapSelected) {} else {
+        !ifMapSelected ? showError('form__wrapper__select-opts') : 0;
+    } else {
         user.name = formName.value;
         form.style.display = 'none';
-        stopP5();
-        pauseAudios();
         removeListeners();
-        hideNavigation();
-        initThreeJs();
-        document.getElementsByClassName('UI')[0].style.display = 'block';
+        enterLobby();
     }
+}
+
+const enterLobby = () => {
+
+}
+
+const enterGame = () => {
+    hideNavigation();
+    initThreeJs();
+    stopP5();
+    pauseAudios();
+    document.getElementsByClassName('UI')[0].style.display = 'block';
 }
 
 const selectPlayer = e => {
