@@ -57,7 +57,10 @@ let chosenSideId,
     bullets = [],
     playerId, player, playerType, playerName, otherPlayers = {},
     arenaSizeSelected, arenaSize,
-    meshShrinkSpeed, shrinkSpeed = .01;
+    meshShrinkSpeed, shrinkSpeed = .01,
+    speedyStats = {},
+    assassinStats = {},
+    tankStats = {};
 
 (() => {
     setTimeout(() => {

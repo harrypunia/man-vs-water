@@ -29,8 +29,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         scopeZoom,
         dblScopeZoom,
         jumpPower = .15;
-    const bulletContainer = document.getElementById('bulletCountDisplay'),
-        map = document.getElementById('map');
+    const bulletContainer = document.getElementById('bulletCountDisplay');
     this.reloading = false;
     this.moveSpeed;
     this.acceleration;
