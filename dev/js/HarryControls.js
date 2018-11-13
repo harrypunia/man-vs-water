@@ -1,6 +1,6 @@
 var bulletSize;
 
-THREE.PlayerControls = function (camera, player, playerType, domElement) {
+THREE.PlayerControls = function (camera, player, playerType, playerStats, domElement) {
     this.camera = camera;
     this.player = player;
     this.domElement = (domElement !== undefined) ? domElement : document;
@@ -121,7 +121,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
         this.camera.lookAt(this.player.position);
     };
     this.init = () => {
-        if (this.playerType == 'Speedy') {
+        if (this.playerType == 'speedy') {
             this.moveSpeed = 0.17;
             this.maxSpeed = 0.4;
             this.turnSpeed = 0.1;
@@ -137,7 +137,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
             totalBullets = 120;
             scopeZoom = 3;
             dblScopeZoom = 2;
-        } else if (this.playerType == 'Tank') {
+        } else if (this.playerType == 'tank') {
             this.moveSpeed = 0.12;
             this.maxSpeed = .25;
             this.turnSpeed = 0.05;
@@ -153,7 +153,7 @@ THREE.PlayerControls = function (camera, player, playerType, domElement) {
             totalBullets = 45;
             scopeZoom = 3;
             dblScopeZoom = 2;
-        } else if (this.playerType = 'Assassin') {
+        } else if (this.playerType = 'assassin') {
             this.moveSpeed = 0.14;
             this.maxSpeed = .25;
             this.turnSpeed = 0.07;

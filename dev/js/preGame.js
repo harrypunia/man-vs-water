@@ -17,19 +17,25 @@ const validateForm = () => {
     if (formInput.value == '') {
         showError('form__wrapper__input');
     } else if (!ifMapSelected) {} else {
-        gatherInfo();
+        playerName = formName.value;
+        form.style.display = 'none';
         stopP5();
         pauseAudios();
-        playGame();
+        removeListeners();
+        initThreeJs();
+        document.getElementsByClassName('UI')[0].style.display = 'block';
+        hideNavigation();
     }
 }
 
 const selectPlayer = e => {
+    let target = e.currentTarget.id;
     ifMapSelected = true;
     clearPlayerSelections();
-    let playerSelectedImage = document.getElementById(e.currentTarget.id).getElementsByTagName('img')[0];
+    let playerSelectedImage = document.getElementById(target).getElementsByTagName('img')[0];
     playerSelectedImage.classList.add('mapSelected');
-    chosenPlayer = e.currentTarget.id;
+    playerType = target;
+    target == 'speedy' ? playerStats = speedyStats : target == 'assassin' ? playerStats = assassinStats : platerStats = tankStats;
 }
 
 const clearPlayerSelections = () => {
@@ -38,32 +44,11 @@ const clearPlayerSelections = () => {
     }
 }
 
-const playGame = () => {
-    removeListeners();
-    initThreeJs();
-    displayUI();
-    hideNavigation();
-}
-
-const displayUI = () => {
-    document.getElementsByClassName('UI')[0].style.display = 'block';
-}
-
 const hideNavigation = () => {
     headphone.innerHTML = '';
     navigation.innerHTML = '';
     form.innerHTML = '';
     side.innerHTML = '';
-}
-
-const gatherInfo = () => {
-    playerType = chosenPlayer;
-    playerName = formName.value;
-    deleteForm();
-}
-
-const deleteForm = () => {
-    form.style.display = 'none';
 }
 
 const showError = e => {

@@ -58,6 +58,7 @@ let chosenSideId,
     playerId, player, playerType, playerName, otherPlayers = {},
     arenaSizeSelected, arenaSize,
     meshShrinkSpeed, shrinkSpeed = .01,
+    playerStats,
     speedyStats = {},
     assassinStats = {},
     tankStats = {};
