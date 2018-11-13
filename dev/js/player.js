@@ -13,31 +13,46 @@ var Player = function (id, name, skin, side) {
     this.init = () => {
         if (this.chosenSide == 'man') {
             player_geo = new THREE.BoxBufferGeometry(1, 1, 1);
-            let man_mats = [new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_right.svg")
+            let man_mats = [
+            new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_right.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_left.svg")
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_left.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_top.svg")
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_top.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_bottom.svg")
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_bottom.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_back.svg")
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_back.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
                 }),
             new THREE.MeshBasicMaterial({
-                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_front.svg")
-                })];
+                    map: new THREE.TextureLoader().load("../../assets/img/SVG/man_skin" + this.skin + "_front.svg"),
+                    transparent: true,
+                    side: THREE.DoubleSide
+                })
+            ];
             player_mat = new THREE.MeshFaceMaterial(man_mats);
         } else {
             let water_mats = [];
             player_geo = new THREE.SphereGeometry(.5, 10, 10);
-            player_mat = new THREE.MeshBasicMaterial({
+            player_mat = new THREE.MeshPhongMaterial({
                 color: 0x47d1ea,
-                transparent: true
+                transparent: true,
+                shading: THREE.FlatShading
             });
         }
         scope.mesh = new THREE.Mesh(player_geo, player_mat);

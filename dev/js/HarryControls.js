@@ -25,7 +25,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         scopeZoom = stats.scopeZoom,
         dblScopeZoom = stats.dblScopeZoom,
         jumpPower = .15;
-    console.log(stats);
     this.moveSpeed = stats.moveSpeed;
     this.maxSpeed = stats.maxSpeed;
     this.turnSpeed = stats.turnSpeed;

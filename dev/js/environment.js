@@ -1,18 +1,17 @@
 zone = new Zone();
-sky = new Sky();
+//sky = new Sky();
 
 var Environment = function () {
     this.init = () => {
         addLights();
         loadGround();
-        sky.init();
+        //sky.init();
         zone.init();
         walls = new Wall(Math.floor(arenaSize / 2), 5, player.mesh);
         grass = new Grass((arenaSize / 2), 1);
         getMap();
     }
 }
-
 const checkOtherPlayers = () => {
     return new Promise(resolve => {
         ref.on('value', snap => {

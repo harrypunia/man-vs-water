@@ -3,7 +3,6 @@ body {
     padding: 0;
     overflow: hidden;
     font-size: 62.5%;
-    background: #000;
 }
 
 input {
@@ -14,25 +13,15 @@ input {
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate3d(-50%, -30%, 0);
     transform: translate3d(-50%, -30%, 0);
     opacity: 0;
     min-height: 400px;
     min-width: 700px;
     width: 50vw;
     border: 1px solid white;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
     z-index: 100;
     color: #333;
@@ -45,7 +34,6 @@ input {
 }
 
 .permissionIn {
-    -webkit-animation: permissionIn .4s cubic-bezier(.09, .28, .67, .92);
     animation: permissionIn .4s cubic-bezier(.09, .28, .67, .92);
     animation-fill-mode: forwards;
 }
@@ -62,18 +50,9 @@ input {
 }
 
 .permissionButtons {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -91,14 +70,12 @@ input {
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #efefef;
-    -webkit-transition: background .2s ease-in, color .2s ease-in;
     transition: background .2s ease-in, color .2s ease-in;
 }
 
 .permissionAnswer:hover {
     background: #efefef;
     color: #151515;
-    -webkit-transition: background .2s ease-out, color .2s ease-out;
     transition: background .2s ease-out, color .2s ease-out;
 }
 
@@ -108,5 +85,4 @@ input {
     height: 100vh;
     background: #000;
     z-index: 100;
-    /*    animation: cubic-bezier(.09, .41, .46, .93);*/
 }

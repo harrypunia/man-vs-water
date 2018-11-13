@@ -42,15 +42,14 @@ const animate = () => {
 }
 
 const render = () => {
-    if (dimBack == true) {
-        dimLight();
-    }
+    dimBack ? dimLight() : 0;
     renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xffffff, 0);
     renderer.render(scene, camera);
-    renderer.clearDepth();
     renderer.autoClear = false;
 
-    fullLight();
+    fullLight()
+    renderer.clearDepth();
     renderer.setViewport(mapView.x, mapView.y, mapView.width, mapView.height);
     mapCamera.aspect = mapView.width / mapView.height;
     mapCamera.updateProjectionMatrix();
@@ -67,8 +66,8 @@ const initThreeJs = () => {
 }
 
 const dimLight = () => {
-    ambLight.intensity = .3;
-    sun.intensity = .3;
+    ambLight.intensity = .2;
+    sun.intensity = .2;
 }
 
 const fullLight = () => {
