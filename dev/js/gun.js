@@ -41,8 +41,8 @@ class Gun {
         playerType == 'Speedy' ? (AR.volume = 0.05, AR.play()) : playerType == 'Assassin' ? (sniper.playbackRate = 2, sniper.play()) : playerType == 'Tank' ? (shotgun.playbackRate = (120 / fireSpeed), shotgun.play()) : 0;
     }
     reload(reloadSpeed) {
-        this.animateReloadButton(reloadSpeed);
         if (this.totalBullets > 0) {
+            this.animateReloadButton(reloadSpeed);
             this.reloadStatus = true;
             reloadPistol.playbackRate = ((1000 / reloadSpeed) * 2);
             reloadPistol.play();
