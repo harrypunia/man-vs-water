@@ -34,7 +34,6 @@ const selectPlayer = e => {
     clearPlayerSelections();
     let playerSelectedImage = document.getElementById(target).getElementsByTagName('img')[0];
     playerSelectedImage.classList.add('mapSelected');
-    playerType = target;
     target == 'speedy' ? playerStats = speedyStats : target == 'assassin' ? playerStats = assassinStats : platerStats = tankStats;
 }
 
@@ -45,10 +44,10 @@ const clearPlayerSelections = () => {
 }
 
 const hideNavigation = () => {
-    headphone.innerHTML = '';
-    navigation.innerHTML = '';
-    form.innerHTML = '';
-    side.innerHTML = '';
+    headphone.style.display = 'none';
+    navigation.style.display = 'none';
+    form.style.display = 'none';
+    side.style.display = 'none';
 }
 
 const showError = e => {
@@ -114,10 +113,6 @@ const removeListeners = () => {
     document.removeEventListener("mousemove", parallax, false);
     window.removeEventListener("keydown", validateForm, false);
     formButton.removeEventListener("click", validateForm, false);
-}
-
-const confirmPlayerSkin = () => {
-
 }
 
 const toForm = () => {

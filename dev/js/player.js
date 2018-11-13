@@ -1,16 +1,16 @@
 var player_geo,
     man_mats,
     water_mats = [];
-var Player = function (playerID, playerName, playerType, skin, chosenSide, playerStats) {
+var Player = function (playerID, playerName, skin, chosenSide, stats) {
     this.playerID = playerID;
     this.username = playerName;
     this.isMainPlayer = false;
     this.mesh;
-    this.playerType = playerType;
+    this.playerType = stats.type;
     this.player_mat;
     this.skin = skin;
     this.chosenSide = chosenSide;
-    this.playerStats = playerStats;
+    this.playerStats = stats;
 
     scope = this;
     this.init = () => {
@@ -54,7 +54,7 @@ var Player = function (playerID, playerName, playerType, skin, chosenSide, playe
         scene.add(scope.mesh);
 
         if (scope.isMainPlayer) {
-            controls = new THREE.PlayerControls(camera, scope.mesh, scope.playerType, scope.playerStats);
+            controls = new THREE.PlayerControls(camera, scope.mesh, scope.playerStats);
         }
     }
     this.setOrientation = (pos, rot) => {

@@ -64,10 +64,10 @@ const initMainPlayer = () => {
         playerInfo: {
             skin: 1,
             chosenSide: chosenSide,
-            playerType: playerType
+            playerType: playerStats.type
         }
     });
-    player = new Player(playerId, playerName, playerType, 1, chosenSide, playerStats);
+    player = new Player(playerId, playerName, 1, chosenSide, playerStats);
     player.isMainPlayer = true;
     player.init();
 }

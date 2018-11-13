@@ -38,7 +38,7 @@ class Gun {
     }
     gunSound(fireSpeed) {
         let AR = gunSupressor.cloneNode();
-        playerType == 'Speedy' ? (AR.volume = 0.05, AR.play()) : playerType == 'Assassin' ? (sniper.playbackRate = 2, sniper.play()) : playerType == 'Tank' ? (shotgun.playbackRate = (120 / fireSpeed), shotgun.play()) : 0;
+        playerStats.type == 'Speedy' ? (AR.volume = 0.05, AR.play()) : playerStats.type == 'Assassin' ? (sniper.playbackRate = 2, sniper.play()) : playerStats.type == 'Tank' ? (shotgun.playbackRate = (120 / fireSpeed), shotgun.play()) : 0;
     }
     reload(reloadSpeed) {
         if (this.totalBullets > 0) {

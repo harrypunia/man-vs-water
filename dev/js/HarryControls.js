@@ -1,12 +1,12 @@
 var bulletSize;
 
-THREE.PlayerControls = function (camera, player, playerType, playerStats, domElement) {
+THREE.PlayerControls = function (camera, player, stats, domElement) {
     this.camera = camera;
     this.player = player;
     this.domElement = (domElement !== undefined) ? domElement : document;
     this.enabled = true;
     this.allow = true;
-    this.playerType = playerType;
+    this.playerType = stats.type;
     this.center = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
     this.hasLanded = false;
     this.sprinting = false;
@@ -16,28 +16,30 @@ THREE.PlayerControls = function (camera, player, playerType, playerStats, domEle
     this.gravity = .007;
     this.allowMouseControls;
     let fireRate = 10,
-        fireSpeed = 20,
-        range,
-        bulletSpeed,
+        fireSpeed = stats.fireSpeed,
+        bulletSpeed = stats.bulletSpeed,
         gun,
-        magazineSize,
-        reloadSpeed,
-        totalBullets,
-        staminaBar,
+        magazineSize = stats.magazineSize,
+        reloadSpeed = stats.reloadSpeed,
+        totalBullets = stats.totalBullets,
         stamina = 100,
-        storeMoveSpeed,
-        scopeZoom,
-        dblScopeZoom,
+        storeMoveSpeed = this.moveSpeed,
+        scopeZoom = stats.scopeZoom,
+        dblScopeZoom = stats.dblScopeZoom,
         jumpPower = .15;
+    console.log(stats);
+    bulletSize = stats.bulletSize;
+    this.moveSpeed = stats.moveSpeed;
+    this.maxSpeed = stats.maxSpeed;
+    this.turnSpeed = stats.turnSpeed;
+    this.sprintTurnSpeed = stats.sprintTurnSpeed;
+    this.acceleration = stats.acceleration;
+    this.staminaDrain = stats.staminaDrain;
+    this.staminaRecovery = stats.staminaRecover;
+    //Check
+    //Check
     const bulletContainer = document.getElementById('bulletCountDisplay');
     this.reloading = false;
-    this.moveSpeed;
-    this.acceleration;
-    this.maxSpeed;
-    this.turnSpeed;
-    this.staminaDrain;
-    this.staminaRecovery;
-    this.sprintTurnSpeed;
     this.userZoom = true;
     this.userZoomSpeed = 1.0;
     this.perspective = 7;
@@ -121,56 +123,6 @@ THREE.PlayerControls = function (camera, player, playerType, playerStats, domEle
         this.camera.lookAt(this.player.position);
     };
     this.init = () => {
-        if (this.playerType == 'speedy') {
-            this.moveSpeed = 0.17;
-            this.maxSpeed = 0.4;
-            this.turnSpeed = 0.1;
-            this.sprintTurnSpeed = 0.03;
-            this.acceleration = 0.007;
-            this.staminaDrain = .3;
-            this.staminaRecovery = .025;
-            fireSpeed = 7;
-            bulletSize = .1;
-            bulletSpeed = 2;
-            magazineSize = 24;
-            reloadSpeed = 3400;
-            totalBullets = 120;
-            scopeZoom = 3;
-            dblScopeZoom = 2;
-        } else if (this.playerType == 'tank') {
-            this.moveSpeed = 0.12;
-            this.maxSpeed = .25;
-            this.turnSpeed = 0.05;
-            this.sprintTurnSpeed = 0.04;
-            this.acceleration = 0.004;
-            this.staminaDrain = .1;
-            this.staminaRecovery = .02;
-            fireSpeed = 60;
-            bulletSize = 1;
-            bulletSpeed = 1.5;
-            magazineSize = 9;
-            reloadSpeed = 5400;
-            totalBullets = 45;
-            scopeZoom = 3;
-            dblScopeZoom = 2;
-        } else if (this.playerType = 'assassin') {
-            this.moveSpeed = 0.14;
-            this.maxSpeed = .25;
-            this.turnSpeed = 0.07;
-            this.sprintTurnSpeed = 0.05;
-            this.acceleration = 0.2;
-            this.staminaDrain = .6;
-            this.staminaRecovery = .1;
-            fireSpeed = 120;
-            bulletSize = .4;
-            bulletSpeed = 3.5;
-            magazineSize = 16;
-            reloadSpeed = 1600;
-            totalBullets = 72;
-            scopeZoom = 3;
-            dblScopeZoom = 2;
-        }
-        storeMoveSpeed = this.moveSpeed;
         gun = new Gun(bulletSize, magazineSize, bulletSpeed, totalBullets);
         gun.init();
     }
@@ -453,7 +405,7 @@ THREE.PlayerControls = function (camera, player, playerType, playerStats, domEle
     }
 
     function displayStamina() {
-        staminaBar = document.getElementsByClassName('stamina')[0];
+        let staminaBar = document.getElementsByClassName('stamina')[0];
         staminaBar.style.borderLeft = ((stamina / 100) * 300) + 'px solid #4e7fdd';
     }
 
