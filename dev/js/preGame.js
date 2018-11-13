@@ -35,6 +35,7 @@ const selectPlayer = e => {
     let playerSelectedImage = document.getElementById(target).getElementsByTagName('img')[0];
     playerSelectedImage.classList.add('mapSelected');
     target == 'speedy' ? stats = speedyStats : target == 'assassin' ? stats = assassinStats : stats = tankStats;
+    showStats(stats);
 }
 
 const clearPlayerSelections = () => {
@@ -126,8 +127,26 @@ const backToCustomise = () => {
     settings.style.transform = 'translate3d(100%, -50%, 0)';
     backToCustomiseButton.style.display = 'none';
     clearPlayerSelections();
+    clearStats();
     formName.value = '';
+    stats = null;
+}
 
+const showStats = activeStat => {
+    let statBars = document.getElementsByClassName('stat');
+    statBars[0].style.transform = 'translate3d(' + (activeStat.health - 100) + '%, 0, 0)';
+    statBars[1].style.transform = 'translate3d(' + (activeStat.damage - 100) + '%, 0, 0)';
+    statBars[2].style.transform = 'translate3d(' + (((activeStat.magazineSize / 30) * 100) - 100) + '%, 0, 0)';
+    statBars[3].style.transform = 'translate3d(' + ((activeStat.reloadSpeed / 100) - 100) + '%, 0, 0)';
+    statBars[4].style.transform = 'translate3d(' + (-((activeStat.fireSpeed / 150) * 100)) + '%, 0, 0)';
+    statBars[5].style.transform = 'translate3d(' + (((activeStat.moveSpeed + activeStat.maxSpeed + activeStat.acceleration) * 100) - 100) + '%, 0, 0)';
+}
+
+const clearStats = () => {
+    let statBars = document.getElementsByClassName('stat');
+    for (let i = 0; i < statBars.length; i++) {
+        statBars[i].style.transform = 'translate3d(-50%, 0, 0)';
+    }
 }
 
 formButton.addEventListener("click", validateForm, false);

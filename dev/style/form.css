@@ -197,7 +197,7 @@
 }
 
 .stat {
-    width: 100%;
+    width: 200px;
     height: 100%;
     background: #ff4b52;
     transform: translate3d(-50%, 0, 0);
