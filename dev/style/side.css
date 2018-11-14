@@ -1,6 +1,6 @@
 .side {
     position: absolute;
-    display: none;
+    display: block;
     width: 100vw;
     height: 100vh;
     z-index: 10;
@@ -20,14 +20,11 @@
     transform: translate3d(100%, -50%, 0) !important;
 }
 
-.side__covers {
-    transition: transform .2s ease-out;
-}
-
 .side__covers-img {
+    will-change: transform;
     position: absolute;
     top: 50vh;
-    transition: .4s transform ease-in, filter .2s ease-in;
+    transition: .2s transform ease-in, filter .2s ease-in;
     filter: brightness(.5);
 }
 

@@ -26,7 +26,14 @@ const validateForm = () => {
 }
 
 const enterLobby = () => {
-    lobby.style.display = 'block';
+    lobby.classList.add('lobbyIn');
+    side.classList.remove('sideIn');
+    headphone.style.display = 'none';
+    displaySkins();
+}
+
+const leaveLobby = () => {
+    lobby.classList.remove('lobbyIn');
 }
 
 const enterGame = () => {
@@ -35,6 +42,7 @@ const enterGame = () => {
     stopP5();
     pauseAudios();
     document.getElementsByClassName('UI')[0].style.display = 'block';
+    leaveLobby();
 }
 
 const selectPlayer = e => {
@@ -54,7 +62,6 @@ const clearPlayerSelections = () => {
 }
 
 const hideNavigation = () => {
-    headphone.style.display = 'none';
     navigation.style.display = 'none';
     form.style.display = 'none';
     side.style.display = 'none';
@@ -156,6 +163,32 @@ const clearStats = () => {
     for (let i = 0; i < statBars.length; i++) {
         statBars[i].style.transform = 'translate3d(-50%, 0, 0)';
     }
+}
+
+const scrollSkin = e => {
+    let target = e.currentTarget.id;
+    if (target == 'next' && skinIndex < 2) {
+        skinIndex++
+    } else if (target == 'prev' && skinIndex > 0) {
+        skinIndex--;
+    }
+    skinIndex == 0 ? prev.classList.add('noScroll') : skinIndex == 2 ? next.classList.add('noScroll') : (prev.classList.remove('noScroll'), next.classList.remove('noScroll'));
+
+    showSkin(skinIndex);
+}
+
+const resetSkin = () => {
+    skinIndex = 0;
+    prev.classList.add('noScroll');
+    next.classList.remove('noScroll');
+    showSkin(skinIndex);
+}
+
+const showSkin = i => {
+    let setMargin;
+    i == 0 ? setMargin = '50px' : i == 1 ? setMargin = '-250px' : setMargin = '-550px';
+    characters[0].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
+    characters[1].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
 }
 
 formButton.addEventListener("click", validateForm, false);

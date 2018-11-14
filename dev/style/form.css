@@ -25,6 +25,44 @@
     justify-content: center;
 }
 
+/*slider*/
+
+.changeSkin {
+    background: url('../../assets/img/SVG/play-button.svg');
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    opacity: .8;
+}
+
+.noScroll {
+    opacity: .4;
+    pointer-events: none;
+}
+
+.changeSkin:hover {
+    opacity: 1;
+}
+
+.prevSkin {
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+.prevSkin:hover {
+    transform: translate(-50%, -50%) rotate(-180deg) scale(1.05, 1.05);
+}
+
+.nextSkin {
+    left: 80%;
+}
+
+.nextSkin:hover {
+    transform: translate(-50%, -50%) scale(1.05, 1.05);
+}
+
 .form__slider {
     position: relative;
     width: 100%;
@@ -68,30 +106,62 @@
 }
 
 .form__customise__character {
-    width: 50%;
+    width: 300px;
     border-radius: 5px;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
     height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 }
 
-.character__man {
+.characters {
+    will-change: transform;
     display: none;
+    width: 900px;
+    margin-top: 25px;
+    height: 200px;
+    transform: translate3d(50px, 0, 0);
+    transition: transform .2s ease-in-out;
+}
+
+.allSkins {
+    float: left;
     width: 200px;
     height: 200px;
-    background: url('../../assets/img/SVG/man_skin1_front.svg');
+    margin-right: 100px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.character__water {
-    display: none;
+.manSkin1 {
+    background: url('../../assets/img/SVG/man_skin1_front.svg') no-repeat;
+}
+
+.manSkin2 {
+    background: url('../../assets/img/SVG/man_skin1_back.svg') no-repeat;
+}
+
+.manSkin3 {
+    background: url('../../assets/img/SVG/man_skin1_left.svg') no-repeat;
+}
+
+.waterSkin1 {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
-    background: #4673d9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: #5285b7;
+    border-radius: 50%:
+}
+
+.waterSkin2 {
+    width: 200px;
+    height: 200px;
+    background: #52abb7;
+    border-radius: 50%:
+}
+
+.waterSkin3 {
+    width: 200px;
+    height: 200px;
+    background: #5652b7;
+    border-radius: 50%:
 }
 
 .form__settings {

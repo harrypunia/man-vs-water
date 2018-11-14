@@ -1,6 +1,88 @@
 .lobby {
+    display: block;
+    background: none;
+}
+
+.lobbyIn .lobby__players {
+    transform: translate(0, 0) !important;
+}
+
+.lobbyIn .lobbyStatus {
+    display: block;
+}
+
+.lobbyStatus {
     display: none;
-    width: 100vw;
+    position: absolute;
+    color: white;
+    z-index: 10;
+    left: 50vw;
+    top: 50px;
+    transform: translate(-50%, -50%);
+    font-family: sans-serif;
+    background: black;
+    padding: 10px 40px;
+}
+
+.lobby__players {
+    will-change: transform;
+    position: absolute;
+    width: 50vw;
     height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: transform .2s cubic-bezier(.76, .44, .69, .99);
+}
+
+.lobby__patterns {
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    animation: lobbyAnimate 20s linear infinite;
+    opacity: .3;
+}
+
+.lobby__man {
+    background: #6d1717;
+    border-right: 20px solid white;
+    transform: translate(-100%, 0);
+}
+
+.lobby__pattern-man {
+    background: url('../../assets/img/SVG/man_Lobby.svg');
+    background-size: 5% 5%;
+    background-position: center center;
+}
+
+
+.lobby__water {
+    background: #131f52;
+    border-left: 20px solid white;
+    left: 50vw;
+    transform: translate(100%, 0);
+}
+
+.lobby__pattern-water {
+    background: url('../../assets/img/SVG/water_Lobby.svg');
+    background-size: 5% 5%;
+    background-position: center center;
+    animation-direction: reverse;
+}
+
+.final-players {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 250px;
+    height: 250px;
     background: white;
+}
+
+@keyframes lobbyAnimate {
+    to {
+        transform: rotateZ(360deg);
+    }
 }

@@ -29,6 +29,7 @@ const returnToChoose = () => {
     document.getElementsByClassName('form')[0].classList.add('hideForm');
     backToCustomise();
     hideCharacter();
+    resetSkin();
 }
 
 const parallax = event => {

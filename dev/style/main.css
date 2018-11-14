@@ -86,3 +86,8 @@ input {
     background: #000;
     z-index: 100;
 }
+
+.noSelect {
+    cursor: default;
+    user-select: none;
+}

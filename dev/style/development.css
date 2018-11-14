@@ -1,0 +1,12 @@
+.dev_-_enterGame {
+    position: absolute;
+    bottom: 20px;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: black;
+    padding: 5px 20px;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 20;
+}

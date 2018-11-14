@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>man vs Water</title>
+    <title>Man vs Water</title>
     <link rel="stylesheet" href="dist/style/animations.min.css">
     <link rel="stylesheet" href="dist/style/intro.min.css">
     <link rel="stylesheet" href="dist/style/UI.min.css">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="dist/style/main.min.css">
     <link rel="stylesheet" href="dist/style/navigation.min.css">
     <link rel="stylesheet" href="dist/style/lobby.min.css">
+    <link rel="stylesheet" href="dist/style/development.min.css">
     <script src="dist/js/Stats.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script src="dist/lib/p5.min.js"></script>
@@ -66,16 +67,18 @@
             <div class="backToCustomise" onclick="backToCustomise()"></div>
             <div class="form__slider">
                 <div class="form__customise">
+                    <div id="prev" class="noScroll prevSkin changeSkin" onclick="scrollSkin(event)"></div>
+                    <div id="next" class="nextSkin changeSkin" onclick="scrollSkin(event)"></div>
                     <div class="form__customise__character">
-                        <div class="character__man">
-                            <div class="manSkin1 manSkins"></div>
-                            <div class="manSkin2 manSkins"></div>
-                            <div class="manSkin3 manSkins"></div>
+                        <div class="character__man characters">
+                            <div class="manSkin1 manSkins allSkins"></div>
+                            <div class="manSkin2 manSkins allSkins"></div>
+                            <div class="manSkin3 manSkins allSkins"></div>
                         </div>
-                        <div class="character__water">
-                            <div class="waterSkin1 waterSkins"></div>
-                            <div class="waterSkin2 waterSkins"></div>
-                            <div class="waterSkin3 waterSkins"></div>
+                        <div class="character__water characters">
+                            <div class="waterSkin1 waterSkins allSkins"></div>
+                            <div class="waterSkin2 waterSkins allSkins"></div>
+                            <div class="waterSkin3 waterSkins allSkins"></div>
                         </div>
                     </div>
                     <input class="form__wrapper__button-character button" type="submit" value="Confirm" onclick="toForm()">
@@ -179,7 +182,18 @@
             <div class="bar2 bars"></div>
         </div>
     </div>
-    <div class="lobby"></div>
+    <div class="lobby">
+        <h1 class="lobbyStatus noSelect">Waiting for other Players</h1>
+        <div class="lobby__man lobby__players">
+            <div class="lobby__pattern-man lobby__patterns"></div>
+            <div class="man__final-player final-players"></div>
+        </div>
+        <div class="lobby__water lobby__players">
+            <div class="lobby__pattern-water lobby__patterns"></div>
+            <div class="water__final-player final-players"></div>
+        </div>
+        <div class="dev_-_enterGame" onclick="enterGame()">_-_ Enter Game _-_</div>
+    </div>
     <div id="container" style="background: linear-gradient(to bottom,  #0e2a4b 0%,#5c192d 50%)">
         <div class="UI">
             <div class="UIRight">
