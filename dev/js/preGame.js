@@ -33,18 +33,13 @@ const enterLobby = () => {
     displayFinalSkin();
 }
 
-const leaveLobby = () => {
-    lobby.classList.remove('lobbyIn');
-    lobby.style.display = 'none';
-}
-
 const enterGame = () => {
     hideNavigation();
-    initThreeJs();
     stopP5();
     pauseAudios();
     document.getElementsByClassName('UI')[0].style.display = 'block';
     leaveLobby();
+    initThreeJs();
 }
 
 const selectPlayer = e => {
@@ -191,6 +186,10 @@ const showSkin = i => {
     i == 0 ? setMargin = '50px' : i == 1 ? setMargin = '-250px' : setMargin = '-550px';
     characters[0].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
     characters[1].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
+}
+
+const leaveLobby = () => {
+    lobby.classList.remove('lobbyIn');
 }
 
 const displayFinalSkin = () => {}
