@@ -21,7 +21,6 @@
 }
 
 .side__covers-img {
-    will-change: transform;
     position: absolute;
     top: 50vh;
     transition: .2s transform ease-in, filter .2s ease-in;
@@ -29,6 +28,7 @@
 }
 
 .man__cover-img {
+    will-change: transform;
     height: 100vh;
     width: auto;
     left: 50vw;
@@ -36,6 +36,7 @@
 }
 
 .water__cover-img {
+    will-change: transform;
     height: 100vh;
     width: auto;
     right: 50vw;

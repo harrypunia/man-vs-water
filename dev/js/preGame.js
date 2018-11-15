@@ -28,12 +28,14 @@ const validateForm = () => {
 const enterLobby = () => {
     lobby.classList.add('lobbyIn');
     side.classList.remove('sideIn');
+    setTimeout(() => side.style.display = 'none', 200);
     headphone.style.display = 'none';
-    displaySkins();
+    displayFinalSkin();
 }
 
 const leaveLobby = () => {
     lobby.classList.remove('lobbyIn');
+    lobby.style.display = 'none';
 }
 
 const enterGame = () => {
@@ -190,6 +192,8 @@ const showSkin = i => {
     characters[0].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
     characters[1].style.transform = 'translate3d(' + setMargin + ', 0, 0)';
 }
+
+const displayFinalSkin = () => {}
 
 formButton.addEventListener("click", validateForm, false);
 window.addEventListener('keydown', e => {

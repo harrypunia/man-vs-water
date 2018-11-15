@@ -4,7 +4,7 @@
 }
 
 .lobbyIn .lobby__players {
-    transform: translate(0, 0) !important;
+    transform: translate(0, 0);
 }
 
 .lobbyIn .lobbyStatus {
