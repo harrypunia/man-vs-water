@@ -29,16 +29,15 @@ const enterLobby = () => {
     lobby.classList.add('lobbyIn');
     side.classList.remove('sideIn');
     setTimeout(() => side.style.display = 'none', 200);
+    stopP5();
+    pauseAudios();
     headphone.style.display = 'none';
     displayFinalSkin();
     initThreeJsForLobby();
-    firebaseLobby();
 }
 
 const enterGame = () => {
     hideNavigation();
-    stopP5();
-    pauseAudios();
     document.getElementsByClassName('UI')[0].style.display = 'block';
     leaveLobby();
     initThreeJs();
@@ -78,7 +77,7 @@ const showError = e => {
 }
 
 const stopP5 = () => {
-    var garbage = container.removeChild(canvas);
+    let garbage = container.removeChild(canvas);
     stopP5Draw = true;
 }
 
@@ -199,20 +198,6 @@ const displayFinalSkin = () => {
     } else {
         waterLobby.style.background = 'url("assets/img/SVG/water_skin' + skinIndex + '.svg")';
     }
-}
-
-const firebaseLobby = () => {
-    playerId = lobbyRef.push().key;
-    lobbyRef.child(playerId).child("info").set({
-        userInfo: {
-            name: user.name
-        },
-        playerInfo: {
-            skin: skinIndex,
-            chosenSide: user.side,
-            playerType: stats.type
-        }
-    });
 }
 
 formButton.addEventListener("click", validateForm, false);
