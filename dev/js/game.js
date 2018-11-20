@@ -5,7 +5,7 @@ var Game = function () {
         setAudioPara();
         loadMapsize();
         initMainPlayer();
-        initOtherPlayers();
+        initOtherPlayer();
         environment.init();
         controls.init();
         removePlayers();
@@ -24,23 +24,12 @@ const listenToPlayer = PlayerData => {
     PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
 }
 
-const initOtherPlayers = () => {
-    //    ref.once("value").then(PlayerData => {
-    //        if (PlayerData.val()) {
-    //            if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
-    //                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
-    //                otherPlayers[PlayerData.key].init();
-    //                ref.child(PlayerData.key).on("value", listenToPlayer);
-    //            }
-    //        }
-    //    });
+const initOtherPlayer = () => {
     ref.on("child_added", PlayerData => {
-        if (PlayerData.val()) {
-            if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
-                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
-                otherPlayers[PlayerData.key].init();
-                ref.child(PlayerData.key).on("value", listenToPlayer);
-            }
+        if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
+            otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
+            otherPlayers[PlayerData.key].init();
+            ref.child(PlayerData.key).on("value", listenToPlayer);
         }
     });
     ref.on("child_removed", PlayerData => {

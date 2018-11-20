@@ -234,10 +234,10 @@
         };
         firebase.initializeApp(config);
         const database = firebase.database();
-        var ref = database.ref("Players"),
-            lobbyRef = database.ref('Lobby'),
-            gameRef = database.ref('Game'),
-            lobbyRef = database.ref('Lobby');
+        var data = database.ref("data"),
+            ref = data.child("Players"),
+            lobbyRef = data.child("Lobby"),
+            gameRef = data.child("Game");
     </script>
     <script src="dev/js/intro.js"></script>
     <script src="dev/js/permission.js"></script>
