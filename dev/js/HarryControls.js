@@ -2,7 +2,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
     this.camera = camera;
     this.player = player;
     this.domElement = (domElement !== undefined) ? domElement : document;
-    this.enabled = true;
     this.allow = true;
     this.playerType = stats.type;
     this.center = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
@@ -122,7 +121,6 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         gun = new Gun(stats);
         gun.init();
     }
-
     this.update = () => {
         this.checkKeyStates();
         if (scope.jump == true) {
@@ -386,6 +384,21 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         return Math.pow(0.95, scope.userZoomSpeed);
     }
 
+
+    this.domElement.addEventListener('contextmenu', event => event.preventDefault());
+    this.domElement.addEventListener('keydown', event => {
+        event = event || window.event;
+        keyState[event.keyCode || event.which] = true
+    });
+    this.domElement.addEventListener('keyup', event => {
+        event = event || window.event;
+        keyState[event.keyCode || event.which] = false;
+    });
+};
+
+THREE.PlayerControls.prototype = Object.create(THREE.EventDispatcher.prototype);
+
+/*
     const onMouseDown = event => {
         if (scope.enabled === false) return;
         if (scope.userRotate === false) return;
@@ -487,19 +500,9 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
         }
 
     }
-
-    this.domElement.addEventListener('contextmenu', (event) => event.preventDefault());
-    this.domElement.addEventListener('keydown', (event) => {
-        event = event || window.event;
-        keyState[event.keyCode || event.which] = true
-    });
-    this.domElement.addEventListener('keyup', (event) => {
-        event = event || window.event;
-        keyState[event.keyCode || event.which] = false;
-    });
-    this.domElement.addEventListener('mousedown', onMouseDown, false);
-    this.domElement.addEventListener('mousewheel', onMouseWheel, false);
-    this.domElement.addEventListener('DOMMouseScroll', onMouseWheel, false);
-};
-
-THREE.PlayerControls.prototype = Object.create(THREE.EventDispatcher.prototype);
+    */
+/*
+this.domElement.addEventListener('mousedown', onMouseDown, false);
+this.domElement.addEventListener('mousewheel', onMouseWheel, false);
+this.domElement.addEventListener('DOMMouseScroll', onMouseWheel, false);
+*/

@@ -170,7 +170,6 @@ const scrollSkin = e => {
         skinIndex--;
     }
     skinIndex == 0 ? prev.classList.add('noScroll') : skinIndex == 2 ? next.classList.add('noScroll') : (prev.classList.remove('noScroll'), next.classList.remove('noScroll'));
-
     showSkin(skinIndex);
 }
 

@@ -47,13 +47,12 @@ var Player = function (id, name, skin, side) {
             ];
             player_mat = new THREE.MeshFaceMaterial(man_mats);
         } else {
-            let water_mats = [];
-            player_geo = new THREE.SphereGeometry(.5, 10, 10);
-            player_mat = new THREE.MeshPhongMaterial({
-                color: 0x47d1ea,
+            player_mat = new THREE.MeshBasicMaterial({
+                map: new THREE.TextureLoader().load("../../assets/img/SVG/water_skin" + this.skin + ".svg"),
                 transparent: true,
-                shading: THREE.FlatShading
+                side: THREE.DoubleSide,
             });
+            player_geo = new THREE.SphereGeometry(.5, 10, 10);
         }
         scope.mesh = new THREE.Mesh(player_geo, player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);

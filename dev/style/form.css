@@ -132,15 +132,15 @@
 }
 
 .manSkin1 {
-    background: url('../../assets/img/SVG/man_skin1_front.svg') no-repeat;
+    background: url('../../assets/img/SVG/man_skin0_front.svg') no-repeat;
 }
 
 .manSkin2 {
-    background: url('../../assets/img/SVG/man_skin1_back.svg') no-repeat;
+    background: url('../../assets/img/SVG/man_skin1_front.svg') no-repeat;
 }
 
 .manSkin3 {
-    background: url('../../assets/img/SVG/man_skin1_left.svg') no-repeat;
+    background: url('../../assets/img/SVG/man_skin0_left.svg') no-repeat;
 }
 
 .waterSkin1 {
