@@ -31,6 +31,8 @@ const enterLobby = () => {
     setTimeout(() => side.style.display = 'none', 200);
     headphone.style.display = 'none';
     displayFinalSkin();
+    initThreeJsForLobby();
+    firebaseLobby();
 }
 
 const enterGame = () => {
@@ -191,7 +193,27 @@ const leaveLobby = () => {
     lobby.classList.remove('lobbyIn');
 }
 
-const displayFinalSkin = () => {}
+const displayFinalSkin = () => {
+    if (user.side == 'man') {
+        manLobby.style.background = 'url("assets/img/SVG/man_skin' + skinIndex + '_front.svg")';
+    } else {
+        waterLobby.style.background = 'url("assets/img/SVG/water_skin' + skinIndex + '.svg")';
+    }
+}
+
+const firebaseLobby = () => {
+    playerId = lobbyRef.push().key;
+    lobbyRef.child(playerId).child("info").set({
+        userInfo: {
+            name: user.name
+        },
+        playerInfo: {
+            skin: skinIndex,
+            chosenSide: user.side,
+            playerType: stats.type
+        }
+    });
+}
 
 formButton.addEventListener("click", validateForm, false);
 window.addEventListener('keydown', e => {

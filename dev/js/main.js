@@ -58,9 +58,14 @@ const render = () => {
     renderer.render(scene, mapCamera);
 }
 
-const initThreeJs = () => {
+const initThreeJsForLobby = () => {
     init();
     game.init();
+}
+
+const initThreeJs = () => {
+//    init();
+//    game.init();
     mapPos.x = player.mesh.position.x;
     mapPos.z = player.mesh.position.z;
     animate();

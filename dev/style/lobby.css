@@ -81,6 +81,11 @@
     background: white;
 }
 
+.water__final-player {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 @keyframes lobbyAnimate {
     to {
         transform: rotateZ(360deg);
