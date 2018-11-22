@@ -1,4 +1,5 @@
 const allowAudio = e => {
+    openBurgerMenu();
     if (e.currentTarget.id == 'yes') {
         playAudios();
         permitAudio = true;
@@ -114,11 +115,11 @@ const changeAudioPermissions = e => {
 
 const openBurgerMenu = () => {
     if (!menuStatus) {
-        menu.classList.add('openMenu');
+        menuBig.classList.add('openMenu');
         burger.classList.add('cross');
         menuStatus = true;
     } else {
-        menu.classList.remove('openMenu');
+        menuBig.classList.remove('openMenu');
         burger.classList.remove('cross');
         menuStatus = false;
     }

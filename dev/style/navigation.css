@@ -7,23 +7,32 @@
 
 .menu {
     position: absolute;
+    width: 80%;
+    height: 80%;
+    z-index: 199;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    background: rgba(255, 245, 245, 1);
+}
+
+.menu__noInteraction {
+    position: absolute;
     width: 100vw;
     height: 100vh;
     left: 50vw;
-    top: 50vh;
+    top: 0vh;
     transform: translate3d(-50%, -150%, 0);
-    transition: transform .3s ease-in;
-    background: rgba(255, 245, 245, 1);
-    box-sizing: border-box;
     -webkit-backdrop-filter: blur(15px);
-    z-index: 199;
-    overflow: hidden;
+    transition: transform .3s ease-in;
+    box-sizing: border-box;
+    z-index: 10;
 }
 
 .icon {
     position: absolute;
     top: 50px;
-    left: 50vw;
+    left: 50%;
     transform: translateX(-50%);
 }
 
@@ -34,7 +43,7 @@
 
 .menuWrapper {
     margin: auto;
-    margin-top: 50vh;
+    margin-top: 40vh;
     transform: translateY(-50%);
     width: 80%;
     height: 500px;
@@ -117,7 +126,7 @@
 }
 
 .openMenu {
-    transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, 0%, 0);
     transition: transform .3s ease-out;
 }
 
@@ -137,7 +146,6 @@
 }
 
 .cross .bars {
-    background: #000;
     margin: 0;
     transform-origin: center center;
     transition: transform .3s ease-out !important;
