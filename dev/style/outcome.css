@@ -35,6 +35,12 @@
     color: white;
 }
 
+.fact__title {
+    font-weight: 400;
+    font-size: 5em;
+    margin: 5px auto;
+}
+
 .number {
     font-size: 10em;
     margin: 5px auto;
