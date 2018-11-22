@@ -1,5 +1,4 @@
 const allowAudio = e => {
-    openBurgerMenu();
     if (e.currentTarget.id == 'yes') {
         playAudios();
         permitAudio = true;
@@ -11,6 +10,9 @@ const allowAudio = e => {
         permitAudio = false;
         muteIcon[1].style.display = 'block';
     }
+    openBurgerMenu();
+    garbage(permission);
+    clearHTML(permission);
 }
 
 const validateForm = () => {

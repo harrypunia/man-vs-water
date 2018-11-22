@@ -1,4 +1,5 @@
 const container = document.getElementById('container'),
+    permission = document.getElementsByClassName('permission')[0],
     form = document.getElementsByClassName('form')[0],
     formName = document.getElementById('fname'),
     playerSelected = document.getElementsByClassName('form__wrapper__select')[0],
@@ -13,14 +14,11 @@ const container = document.getElementById('container'),
     customise = document.getElementsByClassName('form__customise')[0],
     settings = document.getElementsByClassName('form__settings')[0],
     backToCustomiseButton = document.getElementsByClassName('backToCustomise')[0],
-    permission = document.getElementsByClassName('permission')[0],
     muteIcon = document.getElementsByClassName('muteStatus'),
     introAudio = new Audio('assets/audio/intro_music.mp3'),
     p5Sounds = [new Audio('assets/audio/thunder.m4a'), new Audio('assets/audio/thunder_2.mp3'), new Audio('assets/audio/wolf.mp3')],
     buttonAudio = new Audio('assets/audio/buttonAudio.mp3'),
     rain = new Audio('assets/audio/rain.mp3'),
-    bulletCountDisplay = document.getElementById('bulletCountDisplay'),
-    bulletCountAnimation = document.getElementsByClassName('bulletCountAnimation')[0],
     menu = document.getElementsByClassName('menu')[0],
     menuBig = document.getElementsByClassName('menu__noInteraction')[0],
     burger = document.getElementsByClassName('burger')[0],
@@ -32,14 +30,16 @@ const container = document.getElementById('container'),
     manLobby = document.getElementsByClassName('man__final-player')[0],
     waterLobby = document.getElementsByClassName('water__final-player')[0],
     filter = document.getElementsByClassName('filter')[0],
-    emptyGun = new Audio("../../assets/audio/emptyGun.m4a"),
-    gunSupressor = new Audio("../../assets/audio/gun_supressor.m4a"),
-    sniper = new Audio("../../assets/audio/Gun2.mp3"),
-    shotgun = new Audio("../../assets/audio/Gun3.mp3"),
-    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3"),
     lobby = document.getElementsByClassName('lobby')[0],
     prevSkin = document.getElementById('prev'),
-    nextSkin = document.getElementById('next');
+    nextSkin = document.getElementById('next'),
+    bulletCountDisplay = null,
+    bulletCountAnimation = null,
+    emptyGun = null,
+    gunSupressor = null,
+    sniper = null,
+    shotgun = null,
+    reloadPistol = null;
 let chosenSideId,
     chosenPlayer,
     neglectedSideId,
@@ -134,7 +134,26 @@ let chosenSideId,
 (() => {
     setTimeout(() => {
         permission.classList.add('permissionIn');
-        filter.innerHTML = '';
+        clearHTML(filter);
         filter.style.display = 'none';
+        garbage(filter);
     }, 5000)
 })()
+
+const getThreeAssets = () => {
+    bulletCountDisplay = document.getElementById('bulletCountDisplay');
+    bulletCountAnimation = document.getElementsByClassName('bulletCountAnimation')[0];
+    emptyGun = new Audio("../../assets/audio/emptyGun.m4a");
+    gunSupressor = new Audio("../../assets/audio/gun_supressor.m4a");
+    sniper = new Audio("../../assets/audio/Gun2.mp3");
+    shotgun = new Audio("../../assets/audio/Gun3.mp3");
+    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
+}
+
+const garbage = e => {
+    e = null;
+}
+
+const clearHTML = e => {
+    e.innerHTML = '';
+}

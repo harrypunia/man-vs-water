@@ -1,11 +1,12 @@
-var p, particles = [],
+let p,
+    particles = [],
     stopP5Draw = false,
-    rainIntensity = document.getElementById('rainIntensity').value,
-    dropThickness = document.getElementById('dropThickness').value,
-    thunderFrequency = document.getElementById('thunderFreq').value,
-    windSpeed = document.getElementById('windSpeed').value,
-    airFriction = document.getElementById('windSpeed').value,
-    rainSpeed = document.getElementById('rainSpeed').value,
+    rainIntensity = 60,
+    dropThickness = 1,
+    thunderFrequency = 300,
+    windSpeed = 5,
+    airFriction = .05,
+    rainSpeed = 10,
     p5Performance = document.getElementsByClassName('performanceCircle')[0],
     showFrameRate = document.getElementsByClassName('frameRateShow')[0],
     frameRateCounter = 20,
@@ -24,21 +25,11 @@ function setup() {
 }
 
 function draw() {
-    if (stopP5Draw) {
-        noLoop();
-    }
+    stopP5Draw ? noLoop() : 0;
     setGradient(0, 0, window.innerWidth, window.innerHeight, g_color1, g_color2);
     //Showing Frame Count
     frameRateCounter++;
     frameRateCounter >= 20 ? (showFrameRate.innerHTML = Math.floor(frameRate()), frameRateCounter = 1) : 0;
-
-    //Parameters
-    let rainIntensityValue = rainIntensity.value,
-        dropThicknessValue = dropThickness.value,
-        thunderFrequencyValue = thunderFrequency.value,
-        windSpeedValue = windSpeed.value,
-        airFrictionValue = airFriction.value,
-        rainSpeedValue = rainSpeed.value;
 
     //Thundering and sounds
     if (Math.floor(Math.random() * thunderFrequency) == 1) {
@@ -58,7 +49,7 @@ function draw() {
         particles[i].show(dropThickness);
     }
 
-    //Show frameRate    
+    //Show frameRate
     performanceIndicator(frameRate());
 }
 
@@ -81,13 +72,3 @@ function performanceIndicator(frameRate) {
 window.addEventListener("resize", function () {
     resizeCanvas(window.innerWidth, window.innerHeight);
 })
-
-function resetP5Parameters() {
-    document.getElementById('rainIntensity').value = 100;
-    document.getElementById('dropThickness').value = 1;
-    document.getElementById('thunderFreq').value = 300;
-    document.getElementById('windSpeed').value = 5;
-    document.getElementById('airFriction').value = .05;
-    document.getElementById('rainShape').value = 1;
-    document.getElementById('rainSpeed').value = 7;
-}
