@@ -1,0 +1,17 @@
+.outcome {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #1f1f22;
+    z-index: 999;
+}
+
+.outcome__main {
+    margin: 80px auto;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 8em;
+}
