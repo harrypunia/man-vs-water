@@ -23,6 +23,7 @@ const validateForm = () => {
     } else {
         user.name = formName.value;
         form.style.display = 'none';
+        getThreeAssets();
         removeListeners();
         enterLobby();
     }

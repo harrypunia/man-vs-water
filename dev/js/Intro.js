@@ -1,4 +1,4 @@
-const container = document.getElementById('container'),
+var container = document.getElementById('container'),
     permission = document.getElementsByClassName('permission')[0],
     form = document.getElementsByClassName('form')[0],
     formName = document.getElementById('fname'),
@@ -27,10 +27,7 @@ const container = document.getElementById('container'),
     navigation = document.getElementsByClassName('navigation')[0],
     man = document.getElementsByClassName('man__player')[0],
     water = document.getElementsByClassName('water__player')[0],
-    manLobby = document.getElementsByClassName('man__final-player')[0],
-    waterLobby = document.getElementsByClassName('water__final-player')[0],
     filter = document.getElementsByClassName('filter')[0],
-    lobby = document.getElementsByClassName('lobby')[0],
     prevSkin = document.getElementById('prev'),
     nextSkin = document.getElementById('next'),
     bulletCountDisplay = null,
@@ -39,7 +36,10 @@ const container = document.getElementById('container'),
     gunSupressor = null,
     sniper = null,
     shotgun = null,
-    reloadPistol = null;
+    reloadPistol = null,
+    manLobby = null,
+    waterLobby = null,
+    lobby = null;
 let chosenSideId,
     chosenPlayer,
     neglectedSideId,
@@ -135,7 +135,6 @@ let chosenSideId,
     setTimeout(() => {
         permission.classList.add('permissionIn');
         clearHTML(filter);
-        filter.style.display = 'none';
         garbage(filter);
     }, 5000)
 })()
@@ -148,6 +147,9 @@ const getThreeAssets = () => {
     sniper = new Audio("../../assets/audio/Gun2.mp3");
     shotgun = new Audio("../../assets/audio/Gun3.mp3");
     reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
+    manLobby = document.getElementsByClassName('man__final-player')[0];
+    waterLobby = document.getElementsByClassName('water__final-player')[0];
+    lobby = document.getElementsByClassName('lobby')[0];
 }
 
 const garbage = e => {
