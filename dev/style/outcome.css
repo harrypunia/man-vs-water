@@ -155,10 +155,29 @@
     overflow: hidden;
 }
 
-.contact p {
+.contact__open ~ .contact:hover {
+    width: 100px !important;
+}
+
+.contact__open {
+    position: absolute;
+    right: 70px;
+    z-index: -1;
+    width: 0px;
+    height: 100px;
+    background: #ce5409;
+    overflow: hidden;
+}
+
+.contact__open p {
     color: white;
     font-size: 2em;
+    height: 100px;
+    margin: 0;
     font-family: sans-serif;
-    transform: rotate(90deg) translateY(-50%);
     transform-origin: left center;
+}
+
+.contact__open img {
+    widtH: 100%;
 }
