@@ -145,6 +145,7 @@
 }
 
 .contact {
+    will-change: height;
     position: absolute;
     right: 50px;
     width: 200px;
@@ -164,42 +165,49 @@
     transition: height .2s ease-out;
 }
 
-.contact:hover > .websiteLink {
-    left: 50% !important;
-    opacity: 1;
-    transition: left .2s ease-out, opacity .2s ease-out;
-}
-
-.contact__connect {
-    transition: left .2s ease-in, opacity .2s ease-in;
-}
-
-.contact:hover > .contact__connect {
-    left: 0%;
-    opacity: 0;
-    transition: left .2s ease-out, opacity .2s ease-out;
-}
-
 .contact h3 {
     position: absolute;
     margin: 0;
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
 }
 
+.contact__connect {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    transition: transform .2s ease-in;
+}
+
+.contact:hover > .contact__connect {
+    transform: translate3d(-250%, 0, 0);
+    transition: transform .2s ease-out;
+}
+
 .websiteLink {
+    left: 50%;
     color: #1c2245;
     text-decoration: underline;
-    left: 100% !important;
-    opacity: 0;
-    transition: left .2s ease-in, opacity .2s ease-in;
+    transform: translate3d(100%, 0, 0);
+    transition: transform .2s ease-in;
+}
+
+.contact:hover > .websiteLink {
+    transform: translate3d(-50%, 0, 0);
+    transition: transform .2s ease-out;
 }
 
 .contact img {
     widtH: 150px;
     margin: 80px 25px 20px 25px;
+    transform: translate3d(0, 100%, 0) rotate(60deg);
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: transform .2s ease-in;
+}
+
+.contact img:hover {}
+
+.contact:hover > img {
+    transform: translate3d(0, 0, 0) rotate(0);
+    transition: transform .2s ease-out;
 }
