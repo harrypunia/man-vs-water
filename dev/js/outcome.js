@@ -1,6 +1,7 @@
 let facts = document.getElementsByClassName('facts'),
     leakStat = 1.1264,
     flushStat = 0,
+    skullCount = 0,
     inc = .1,
     flushStatInterval;
 
@@ -13,6 +14,25 @@ setInterval(() => {
     }
     leakStat += 1.1264;
 }, 1000);
+
+setInterval(() => {
+    skullCount++;
+    if (skullCount < 100) {
+        let skull = document.createElement('IMG');
+        skull.src = "assets/img/SVG/dead.svg";
+        skull.alt = 'skull';
+        skull.className = 'fatality__skull';
+        document.getElementsByClassName('fatality')[0].appendChild(skull);
+    } else if (skullCount == 100) {
+        let countText = document.createElement("P");
+        countText.innerHTML = ' x' + skullCount;
+        countText.className = 'multiplier'
+        document.getElementsByClassName('fatality')[0].appendChild(countText);
+        once = false;
+    } else {
+        document.getElementsByClassName('multiplier')[0].innerHTML = ' x' + skullCount;
+    }
+}, 37450);
 
 const showFlushStat = () => {
     inc -= .00007;

@@ -5,6 +5,11 @@ body {
     font-size: 62.5%;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 input {
     border: none;
 }

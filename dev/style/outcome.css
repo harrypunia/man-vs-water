@@ -4,12 +4,15 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: #1f1f22;
+    background-color: #1f1f22;
+    background-image: url('/assets/img/SVG/pattern.svg');
+    background-position: center;
+    background-size: 5%;
     z-index: 999;
 }
 
 .outcome__main {
-    margin: 80px auto;
+    margin: 40px auto;
     text-align: center;
     color: white;
     font-family: sans-serif;
@@ -18,8 +21,8 @@
 
 .facts__wrapper {
     width: 80%;
-    margin: 0 auto;
-    height: 60%;
+    margin: auto;
+    height: 65%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -61,12 +64,16 @@
     display: flex;
     flex-direction: column;
     flex-basis: 80%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    align-self: flex-start;
 }
 
 .fatalityRate h2 {
     font-size: 3em;
     margin: auto;
     text-align: center;
+    font-weight: 400;
 }
 
 .fatality {
@@ -77,4 +84,45 @@
 .fatality__skull {
     float: left;
     width: 20px;
+}
+
+.multiplier {
+    float: left;
+    font-size: 2em;
+    color: white;
+    margin: 0 0 0 20px;
+}
+
+.change {
+    position: fixed;
+    width: 100vw;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    height: 200px;
+    color: white;
+    font-size: 3em;
+}
+
+.changeElements {
+    margin: auto;
+    width: 400px;
+    text-align: center;
+    font-family: sans-serif;
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+}
+
+.changeElements img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.changeElements:hover {
+    transform: scale3d(1.02, 1.02, 1) translate3d(0, -5px, 0);
+    transition: transform .2s ease-in-out;
 }
