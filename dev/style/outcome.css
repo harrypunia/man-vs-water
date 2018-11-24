@@ -56,3 +56,25 @@
 .explain {
     font-size: 1.6em;
 }
+
+.fatalityRate {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 80%;
+}
+
+.fatalityRate h2 {
+    font-size: 3em;
+    margin: auto;
+    text-align: center;
+}
+
+.fatality {
+    width: 100%;
+    height: 50%;
+}
+
+.fatality__skull {
+    float: left;
+    width: 20px;
+}
