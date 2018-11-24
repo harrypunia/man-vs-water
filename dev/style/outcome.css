@@ -160,7 +160,24 @@
 
 .contact:hover {
     height: 250px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     transition: height .2s ease-out;
+}
+
+.contact:hover > .websiteLink {
+    left: 50% !important;
+    opacity: 1;
+    transition: left .2s ease-out, opacity .2s ease-out;
+}
+
+.contact__connect {
+    transition: left .2s ease-in, opacity .2s ease-in;
+}
+
+.contact:hover > .contact__connect {
+    left: 0%;
+    opacity: 0;
+    transition: left .2s ease-out, opacity .2s ease-out;
 }
 
 .contact h3 {
@@ -173,11 +190,16 @@
 }
 
 .websiteLink {
-    left: 200% !important;
+    color: #1c2245;
+    text-decoration: underline;
+    left: 100% !important;
+    opacity: 0;
+    transition: left .2s ease-in, opacity .2s ease-in;
 }
 
 .contact img {
     widtH: 150px;
     margin: 80px 25px 20px 25px;
     border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
