@@ -147,37 +147,37 @@
 .contact {
     position: absolute;
     right: 50px;
-    width: 20px;
-    height: 100px;
+    width: 200px;
+    height: 45px;
     background: #ce5409;
     cursor: pointer;
-    transition: width .2s ease-in;
     overflow: hidden;
-}
-
-.contact__open ~ .contact:hover {
-    width: 100px !important;
-}
-
-.contact__open {
-    position: absolute;
-    right: 70px;
-    z-index: -1;
-    width: 0px;
-    height: 100px;
-    background: #ce5409;
-    overflow: hidden;
-}
-
-.contact__open p {
     color: white;
     font-size: 2em;
-    height: 100px;
-    margin: 0;
     font-family: sans-serif;
-    transform-origin: left center;
+    transition: height .2s ease-in;
 }
 
-.contact__open img {
-    widtH: 100%;
+.contact:hover {
+    height: 250px;
+    transition: height .2s ease-out;
+}
+
+.contact h3 {
+    position: absolute;
+    margin: 0;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.websiteLink {
+    left: 200% !important;
+}
+
+.contact img {
+    widtH: 150px;
+    margin: 80px 25px 20px 25px;
+    border-radius: 50%;
 }
