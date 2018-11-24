@@ -84,6 +84,7 @@
 .fatality__skull {
     float: left;
     width: 20px;
+    animation: zoom-in .3s ease-out;
 }
 
 .multiplier {
@@ -125,4 +126,20 @@
 .changeElements:hover {
     transform: scale3d(1.02, 1.02, 1) translate3d(0, -5px, 0);
     transition: transform .2s ease-in-out;
+}
+
+@keyframes zoom-in {
+    0% {
+        transform: scale3d(5, 5, 1);
+        opacity: .5;
+    }
+
+    80% {
+        transform: scale3d(.6, .6, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
 }
