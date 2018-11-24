@@ -32,7 +32,7 @@ setInterval(() => {
     } else {
         document.getElementsByClassName('multiplier')[0].innerHTML = ' x' + skullCount;
     }
-}, 374);
+}, 37450);
 
 const showFlushStat = () => {
     inc -= .00007;

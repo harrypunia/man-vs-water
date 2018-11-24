@@ -143,3 +143,22 @@
         opacity: 1;
     }
 }
+
+.contact {
+    position: absolute;
+    right: 50px;
+    width: 20px;
+    height: 100px;
+    background: #ce5409;
+    cursor: pointer;
+    transition: width .2s ease-in;
+    overflow: hidden;
+}
+
+.contact p {
+    color: white;
+    font-size: 2em;
+    font-family: sans-serif;
+    transform: rotate(90deg) translateY(-50%);
+    transform-origin: left center;
+}
