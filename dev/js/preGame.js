@@ -11,6 +11,7 @@ const allowAudio = e => {
         muteIcon[1].style.display = 'block';
     }
     openBurgerMenu();
+    side.style.display = 'block';
     garbage(permission);
     clearHTML(permission);
 }
@@ -31,8 +32,7 @@ const validateForm = () => {
 
 const enterLobby = () => {
     lobby.classList.add('lobbyIn');
-    side.classList.remove('sideIn');
-    setTimeout(() => side.style.display = 'none', 200);
+    side.style.display = 'none';
     stopP5();
     pauseAudios();
     headphone.style.display = 'none';

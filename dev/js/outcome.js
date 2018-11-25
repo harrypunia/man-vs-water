@@ -5,6 +5,10 @@ let facts = document.getElementsByClassName('facts'),
     inc = .1,
     flushStatInterval;
 
+const displayOutcome = () => {
+    startFlushStat();
+    document.getElementsByClassName('outcome')[0].classList.add('outcomeIn');
+}
 
 setInterval(() => {
     if (leakStat < 1000) {
@@ -48,5 +52,3 @@ const showFlushStat = () => {
 const startFlushStat = () => {
     flushStatInterval = setInterval(showFlushStat);
 }
-
-startFlushStat();

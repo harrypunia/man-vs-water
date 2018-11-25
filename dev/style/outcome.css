@@ -1,14 +1,21 @@
 .outcome {
     position: absolute;
+    display: none;
     width: 100vw;
     height: 100vh;
-    top: 0;
+    top: 100vh;
     left: 0;
     background-color: #1f1f22;
     background-image: url('/assets/img/SVG/pattern.svg');
     background-position: center;
     background-size: 5%;
-    z-index: 999;
+    z-index: 99999;
+}
+
+.outcomeIn {
+    display: block;
+    top: 0;
+    transition: top 1s ease-in-out;
 }
 
 .outcome__main {
@@ -95,7 +102,7 @@
 }
 
 .change {
-    position: fixed;
+    position: absolute;
     width: 100vw;
     bottom: 0px;
     display: flex;
@@ -197,6 +204,7 @@
 }
 
 .contact img {
+    perspective: 1000;
     widtH: 150px;
     margin: 80px 25px 20px 25px;
     transform: translate3d(0, 100%, 0) rotate(60deg);
@@ -204,8 +212,6 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transition: transform .2s ease-in;
 }
-
-.contact img:hover {}
 
 .contact:hover > img {
     transform: translate3d(0, 0, 0) rotate(0);

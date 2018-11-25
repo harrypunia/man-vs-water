@@ -1,15 +1,11 @@
 .side {
     position: absolute;
-    display: block;
+    display: none;
     width: 100vw;
     height: 100vh;
     z-index: 10;
     overflow: hidden;
-    opacity: 0;
-}
-
-.sideIn {
-    opacity: .7 !important;
+    opacity: 0.7;
 }
 
 .sideIn .man__cover-img {
