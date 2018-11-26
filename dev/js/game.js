@@ -42,7 +42,7 @@ const initOtherPlayer = () => {
 }
 
 const initMainPlayer = () => {
-    playerId = lobbyRef.push().key;
+    playerId = ref.push().key;
     ref.child(playerId).child("orientation").set({
         position: {
             x: 0,

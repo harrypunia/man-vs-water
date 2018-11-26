@@ -58,20 +58,6 @@ const render = () => {
     renderer.render(scene, mapCamera);
 }
 
-//const initThreeJsForLobby = () => {
-//    playerId = lobbyRef.push().key;
-//    lobbyRef.child(playerId).child("info").set({
-//        userInfo: {
-//            name: user.name
-//        },
-//        playerInfo: {
-//            skin: skinIndex,
-//            chosenSide: user.side,
-//            playerType: stats.type
-//        }
-//    });
-//}
-
 const initThreeJs = () => {
     init();
     game.init();
