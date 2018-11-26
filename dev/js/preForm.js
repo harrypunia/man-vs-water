@@ -1,31 +1,26 @@
 const openForm = e => {
     user.side = e.currentTarget.id;
-    neglectedSide = user.side == 'man' ? neglectedSide = 'water' : 'man';
-    chosenSideId = document.getElementById(user.side);
+    neglectedSide = user.side == 'man' ? 'water' : 'man';
+    chosenSideId = document.getElementById(e.currentTarget.id);
     neglectedSideId = document.getElementById(neglectedSide);
     chosenSideId.classList.add('selectSide');
     neglectedSideId.classList.add('deSelectSide');
     side.classList.add('decisionMade');
     user.side == 'man' ? form.style.left = '60vw' : form.style.left = '40vw';
-    form.style.zIndex = 100;
-    playerSelected.classList.remove('hideForm');
-    document.getElementsByClassName('form')[0].classList.remove('hideForm');
+    form.classList.remove('hideForm');
     displayCharacter(user.side);
     //Add Returning abilities
-    chosenSideId.addEventListener("click", returnToChoose, false);
+    chosenSideId.addEventListener("click", returnToChoose);
 }
 
 const returnToChoose = () => {
-    form.style.zIndex = 1;
     side.style.width = '100vw';
     side.classList.remove('decisionMade');
     chosenSideId.classList.remove('selectSide');
     neglectedSideId.classList.remove('deSelectSide');
-    chosenSideId.removeEventListener("click", returnToChoose, false);
-    playerSelected.classList.remove('hideForm');
+    chosenSideId.removeEventListener("click", returnToChoose);
     //Hide Form
-    playerSelected.classList.add('hideForm');
-    document.getElementsByClassName('form')[0].classList.add('hideForm');
+    form.classList.add('hideForm');
     backToCustomise();
     hideCharacter();
     resetSkin();

@@ -13,7 +13,7 @@
     justify-content: center;
     background: url('../../assets/img/PNG/form_back.png') no-repeat;
     background-size: contain;
-    z-index: 1;
+    z-index: 99;
 }
 
 .form__wrapper {
@@ -354,4 +354,5 @@
 
 .hideForm {
     display: none;
+    z-index: 1;
 }
