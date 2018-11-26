@@ -129,7 +129,7 @@ const openBurgerMenu = () => {
 }
 
 const removeListeners = () => {
-    document.removeEventListener("mousemove", parallax, false);
+    //document.removeEventListener("mousemove", parallax, false);
     window.removeEventListener("keydown", validateForm, false);
     formButton.removeEventListener("click", validateForm, false);
 }

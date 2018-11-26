@@ -69,7 +69,6 @@
 
 .man__player {
     left: 10vw;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 
@@ -77,11 +76,9 @@
     position: absolute;
     top: 50vh;
     left: 50vw;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: white;
     font-size: 5em;
-    -webkit-transition: opacity .2s ease-out;
     transition: opacity .2s ease-out;
 }
 
@@ -112,7 +109,6 @@
     left: 50vw;
     top: 15vh;
     width: 100vw;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: white;
     font-size: 8em;
@@ -123,28 +119,20 @@
 
 .deSelectSide .man__cover {
     transform: translate3d(-100%, -50%, 0) !important;
-    transition: transform .2s ease-in;
 }
 
 .deSelectSide .water__cover {
     transform: translate3d(100%, -50%, 0) !important;
-    transition: transform .2s ease-in;
 }
 
 .selectSide .man__cover-img {
     transform: translate3d(-140%, -50%, 0) !important;
-    transition: transform .2s ease-in;
     filter: brightness(1) !important;
 }
 
 .selectSide .water__cover-img {
     transform: translate3d(140%, -50%, 0) !important;
-    transition: transform .2s ease-in;
     filter: brightness(1) !important;
-}
-
-.decisionMade .side__text {
-    transition: transform .2s ease-in;
 }
 
 .decisionMade .man__text {
@@ -157,10 +145,8 @@
 
 .decisionMade .choose {
     transform: translate3d(-50%, -30vh, 0);
-    transition: transform .2s ease-in;
 }
 
 .decisionMade .vs {
     opacity: 0;
-    transition: opacity .2s ease-in;
 }
