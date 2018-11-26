@@ -4,9 +4,6 @@ async function gameOver(dec) {
 }
 
 const gameOverCinematic = dec => {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve()
-        }, 4000);
-    })
+    if (dec == 'win') {} else {}
+    return new Promise(resolve => resolve());
 }
