@@ -60,7 +60,7 @@ var Player = function (id, name, skin, side) {
         scope.mesh.add(scope.meshBorder);
         scene.add(scope.mesh);
         if (scope.isMainPlayer) {
-            controls = new THREE.PlayerControls(camera, scope.mesh, stats);
+            controls = new THREE.HarryControls(camera, scope.mesh, stats);
         }
     }
     this.setOrientation = (pos, rot) => {

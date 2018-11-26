@@ -1,4 +1,4 @@
-THREE.PlayerControls = function (camera, player, stats, domElement) {
+THREE.HarryControls = function (camera, player, stats, domElement) {
     this.camera = camera;
     this.player = player;
     this.domElement = (domElement !== undefined) ? domElement : document;
@@ -396,7 +396,7 @@ THREE.PlayerControls = function (camera, player, stats, domElement) {
     });
 };
 
-THREE.PlayerControls.prototype = Object.create(THREE.EventDispatcher.prototype);
+THREE.HarryControls.prototype = Object.create(THREE.EventDispatcher.prototype);
 
 /*
     const onMouseDown = event => {

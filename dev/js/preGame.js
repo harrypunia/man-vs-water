@@ -23,6 +23,7 @@ const validateForm = () => {
         !ifMapSelected ? showError('form__wrapper__select-opts') : 0;
     } else {
         user.name = formName.value;
+        user.skin = skinIndex;
         form.style.display = 'none';
         removeListeners();
         enterLobby();

@@ -63,7 +63,7 @@ const initMainPlayer = () => {
             playerType: stats.type
         }
     });
-    player = new Player(playerId, user.name, 1, user.side);
+    player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
     player.init();
 }
