@@ -1,6 +1,6 @@
 .form {
     position: absolute;
-    opacity: 0;
+    opacity: 1;
     left: 50vw;
     top: 50vh;
     transform: translate(-50%, -50%);
@@ -353,6 +353,5 @@
 }
 
 .hideForm {
-    display: none;
-    z-index: 1;
+    z-index: -100;
 }
