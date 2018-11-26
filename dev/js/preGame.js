@@ -30,6 +30,16 @@ const validateForm = () => {
     }
 }
 
+//const enterLobby = () => {
+//    lobby.classList.add('lobbyIn');
+//    side.style.display = 'none';
+//    stopP5();
+//    pauseAudios();
+//    headphone.style.display = 'none';
+//    displayFinalSkin();
+//    initThreeJsForLobby();
+//}
+
 const enterLobby = () => {
     lobby.classList.add('lobbyIn');
     side.style.display = 'none';
@@ -37,7 +47,6 @@ const enterLobby = () => {
     pauseAudios();
     headphone.style.display = 'none';
     displayFinalSkin();
-    initThreeJsForLobby();
 }
 
 const enterGame = () => {
