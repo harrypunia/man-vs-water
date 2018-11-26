@@ -24,7 +24,6 @@ const validateForm = () => {
     } else {
         user.name = formName.value;
         form.style.display = 'none';
-        getThreeAssets();
         removeListeners();
         enterLobby();
     }
@@ -41,6 +40,7 @@ const enterLobby = () => {
 
 const enterGame = () => {
     hideNavigation();
+    getThreeAssets();
     document.getElementsByClassName('UI')[0].style.display = 'block';
     leaveLobby();
     initThreeJs();

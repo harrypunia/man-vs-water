@@ -11,7 +11,6 @@ const openForm = e => {
     playerSelected.classList.remove('hideForm');
     document.getElementsByClassName('form')[0].classList.remove('hideForm');
     displayCharacter(user.side);
-
     //Add Returning abilities
     chosenSideId.addEventListener("click", returnToChoose, false);
 }

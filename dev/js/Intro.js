@@ -30,16 +30,16 @@ var container = document.getElementById('container'),
     filter = document.getElementsByClassName('filter')[0],
     prevSkin = document.getElementById('prev'),
     nextSkin = document.getElementById('next'),
+    lobby = document.getElementsByClassName('lobby')[0],
+    manLobby = document.getElementsByClassName('man__final-player')[0],
+    waterLobby = document.getElementsByClassName('water__final-player')[0],
     bulletCountDisplay = null,
     bulletCountAnimation = null,
     emptyGun = null,
     gunSupressor = null,
     sniper = null,
     shotgun = null,
-    reloadPistol = null,
-    manLobby = null,
-    waterLobby = null,
-    lobby = null;
+    reloadPistol = null;
 let gameStroke = null,
     chosenSideId,
     chosenPlayer,
@@ -142,9 +142,6 @@ const getThreeAssets = () => {
     sniper = new Audio("/assets/audio/Gun2.mp3");
     shotgun = new Audio("/assets/audio/Gun3.mp3");
     reloadPistol = new Audio("/assets/audio/reload_pistol.mp3");
-    manLobby = document.getElementsByClassName('man__final-player')[0];
-    waterLobby = document.getElementsByClassName('water__final-player')[0];
-    lobby = document.getElementsByClassName('lobby')[0];
     gameStroke = new THREE.MeshBasicMaterial({
         color: 0x000000,
         wireframe: true,
