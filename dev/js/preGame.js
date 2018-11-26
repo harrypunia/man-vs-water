@@ -31,6 +31,7 @@ const validateForm = () => {
 }
 
 const enterLobby = () => {
+    document.getElementsByClassName('dev_-_enterGame')[0].style.display = 'flex';
     lobby.classList.add('lobbyIn');
     side.style.display = 'none';
     stopP5();
@@ -193,6 +194,7 @@ const showSkin = i => {
 }
 
 const leaveLobby = () => {
+    document.getElementsByClassName('dev_-_enterGame')[0].style.display = 'none';
     lobby.classList.remove('lobbyIn');
 }
 
