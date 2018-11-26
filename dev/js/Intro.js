@@ -40,7 +40,8 @@ var container = document.getElementById('container'),
     manLobby = null,
     waterLobby = null,
     lobby = null;
-let chosenSideId,
+let gameStroke = null,
+    chosenSideId,
     chosenPlayer,
     neglectedSideId,
     neglectedSide,
@@ -50,11 +51,6 @@ let chosenSideId,
     ifMapSelected = false,
     menuStatus = false,
     otherPlayersExist,
-    gameStroke = new THREE.MeshBasicMaterial({
-        color: 0x000000,
-        wireframe: true,
-        wireframeLinewidth: 2,
-    }),
     geo, mat,
     walls, grass, plane,
     texture,
@@ -134,7 +130,6 @@ let chosenSideId,
 (() => {
     setTimeout(() => {
         permission.classList.add('permissionIn');
-        clearHTML(filter);
         garbage(filter);
     }, 5000)
 })()
@@ -150,6 +145,41 @@ const getThreeAssets = () => {
     manLobby = document.getElementsByClassName('man__final-player')[0];
     waterLobby = document.getElementsByClassName('water__final-player')[0];
     lobby = document.getElementsByClassName('lobby')[0];
+    gameStroke = new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        wireframe: true,
+        wireframeLinewidth: 2,
+    });
+    clearRam();
+}
+
+const clearRam = () => {
+    permission = null;
+    form = null;
+    formName = null;
+    playerSelected = document.getElementsByClassName('form__wrapper__select')[0];
+    playerTypes = null;
+    formButton = null;
+    characterButton = null;
+    characters = null;
+    characterMan = null;
+    characterWater = null;
+    skinsMan = null;
+    skinsWater = null;
+    customise = null;
+    settings = null;
+    backToCustomiseButton = null;
+    muteIcon = null;
+    introAudio = null;
+    p5Sounds = null;
+    buttonAudio = null;
+    side = null;
+    headphone = null;
+    navigation = null;
+    man = null;
+    water = null;
+    prevSkin = null;
+    nextSkin = null;
 }
 
 const garbage = e => {
