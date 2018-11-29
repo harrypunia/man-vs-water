@@ -27,6 +27,7 @@ const listenToPlayer = PlayerData => {
 const initOtherPlayer = () => {
     ref.on("child_added", PlayerData => {
         if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
+            console.log(PlayerData.val());
             otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
             otherPlayers[PlayerData.key].init();
             ref.child(PlayerData.key).on("value", listenToPlayer);
