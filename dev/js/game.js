@@ -17,12 +17,12 @@ var Game = function () {
         bulletPhysics(walls.list);
         arenaShrink();
         player.restrict(player.mesh);
-        checkDamage();
     }
 }
 
 const listenToPlayer = PlayerData => {
     PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
+    giveDamage(PlayerData.val().orientation.position);
 }
 
 const initOtherPlayer = () => {
@@ -44,21 +44,12 @@ const initOtherPlayer = () => {
     });
 }
 
-const checkDamage = () => {
-    ref.once("value", others => {
-        if (others.val()) {
-            if (others.key != playerId) {
-                if (giveDamage()) {
-                    console.log('you hurt bro');
-                    console.log(others.key.val())
-                }
-            }
-        }
-    })
-}
+const giveDamage = other => {
+    let main = player.mesh.position,
+        them = other,
+        collide = main.x - other.x < 1 && main.x - other.x > -1 && main.z - other.z < 1 && main.z - other.z > -1;
 
-const giveDamage = () => {
-    return true;
+    collide ? console.log('watchout') : 0;
 }
 
 const initMainPlayer = () => {
