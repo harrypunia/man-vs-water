@@ -26,11 +26,13 @@ const listenToPlayer = PlayerData => {
 
 const initOtherPlayer = () => {
     ref.on("child_added", PlayerData => {
-        if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
+        if (PlayerData.val()) {
             console.log(PlayerData.val());
-            otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().info.userInfo.name, PlayerData.val().info.playerInfo.skin, PlayerData.val().info.playerInfo.chosenSide);
-            otherPlayers[PlayerData.key].init();
-            ref.child(PlayerData.key).on("value", listenToPlayer);
+            if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
+                otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().orientation.userInfo.name, PlayerData.val().orientation.playerInfo.skin, PlayerData.val().orientation.playerInfo.chosenSide);
+                otherPlayers[PlayerData.key].init();
+                ref.child(PlayerData.key).on("value", listenToPlayer);
+            }
         }
     });
     ref.on("child_removed", PlayerData => {
@@ -52,9 +54,7 @@ const initMainPlayer = () => {
         },
         rotation: {
             y: 0
-        }
-    });
-    ref.child(playerId).child("info").set({
+        },
         userInfo: {
             name: user.name
         },
