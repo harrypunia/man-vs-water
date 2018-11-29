@@ -17,6 +17,7 @@ var Game = function () {
         bulletPhysics(walls.list);
         arenaShrink();
         player.restrict(player.mesh);
+        checkDamage();
     }
 }
 
@@ -27,7 +28,6 @@ const listenToPlayer = PlayerData => {
 const initOtherPlayer = () => {
     ref.on("child_added", PlayerData => {
         if (PlayerData.val()) {
-            console.log(PlayerData.val());
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().orientation.userInfo.name, PlayerData.val().orientation.playerInfo.skin, PlayerData.val().orientation.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
@@ -42,6 +42,23 @@ const initOtherPlayer = () => {
             delete otherPlayers[PlayerData.key];
         }
     });
+}
+
+const checkDamage = () => {
+    ref.once("value", others => {
+        if (others.val()) {
+            if (others.key != playerId) {
+                if (giveDamage()) {
+                    console.log('you hurt bro');
+                    console.log(others.key.val())
+                }
+            }
+        }
+    })
+}
+
+const giveDamage = () => {
+    return true;
 }
 
 const initMainPlayer = () => {
