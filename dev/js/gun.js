@@ -91,8 +91,3 @@ const bulletPhysics = (walls) => {
         bullets[i].alive ? (bullets[i].position.add(bullets[i].velocity), inflictDamage(bullets[i])) : false;
     }
 }
-const inflictDamage = (bullet) => {
-    ref.once('value').then(snap => {
-        //Code of bullet here
-    })
-}

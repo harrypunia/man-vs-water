@@ -77,3 +77,12 @@
     background-color: rgba(255, 255, 255, 0.4);
     z-index: 20;
 }
+
+.damage {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    opacity: 0;
+    background: radial-gradient(ellipse at center, rgba(155, 4, 4, 0) 50%, #ad1111 100%);
+}

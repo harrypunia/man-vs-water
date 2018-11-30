@@ -9,6 +9,7 @@ var Game = function () {
         environment.init();
         controls.init();
         removePlayers();
+        recieveDamage();
     }
     this.update = function () {
         playerFall();
@@ -49,9 +50,28 @@ const giveDamage = other => {
         them = other.val().orientation.position,
         collide = main.x - them.x < 1 && main.x - them.x > -1 && main.z - them.z < 1 && main.z - them.z > -1;
 
+    console.log(other.val().orientation.userInfo.name)
     collide ? ref.child(other.key).child("orientation").update({
-        takeDamage: "true"
+        takeDamage: true
     }) : 0;
+}
+
+const recieveDamage = () => {
+    ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
+        if (snap.val() == true) {
+            inflictDamage();
+            console.log('hey')
+            ref.child(playerId).child("orientation").update({
+                takeDamage: false
+            });
+        }
+    })
+}
+
+const inflictDamage = () => {
+    let damageScreen = document.getElementsByClassName('damage')[0];
+    damageScreen.style.opacity = '1';
+    console.log('working');
 }
 
 const initMainPlayer = () => {
@@ -78,10 +98,6 @@ const initMainPlayer = () => {
     player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
     player.init();
-}
-
-const takeDamage = () => {
-
 }
 
 const loadMapsize = () => {
