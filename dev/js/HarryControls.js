@@ -357,7 +357,6 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                 y: this.player.rotation.y,
                 z: this.player.rotation.z
             },
-            takeDamage: false
         })
     };
 

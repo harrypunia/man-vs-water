@@ -22,7 +22,7 @@ var Game = function () {
 
 const listenToPlayer = PlayerData => {
     PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
-    giveDamage(PlayerData.val().orientation.position);
+    giveDamage(PlayerData);
 }
 
 const initOtherPlayer = () => {
@@ -46,10 +46,12 @@ const initOtherPlayer = () => {
 
 const giveDamage = other => {
     let main = player.mesh.position,
-        them = other,
-        collide = main.x - other.x < 1 && main.x - other.x > -1 && main.z - other.z < 1 && main.z - other.z > -1;
+        them = other.val().orientation.position,
+        collide = main.x - them.x < 1 && main.x - them.x > -1 && main.z - them.z < 1 && main.z - them.z > -1;
 
-    collide ? console.log('watchout') : 0;
+    collide ? ref.child(other.key).child("orientation").update({
+        takeDamage: "true"
+    }) : 0;
 }
 
 const initMainPlayer = () => {
@@ -70,11 +72,16 @@ const initMainPlayer = () => {
             skin: skinIndex,
             chosenSide: user.side,
             playerType: stats.type
-        }
+        },
+        takeDamage: false
     });
     player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
     player.init();
+}
+
+const takeDamage = () => {
+
 }
 
 const loadMapsize = () => {
