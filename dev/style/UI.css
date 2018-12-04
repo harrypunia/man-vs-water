@@ -83,6 +83,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 99999;
-    opacity: 0;
-    background: radial-gradient(ellipse at center, rgba(155, 4, 4, 0) 50%, #ad1111 100%);
+    opacity: 1;
+    background: url("../../assets/img/PNG/damage.png")
+        /*    background: radial-gradient(ellipse at center, rgba(155, 4, 4, 0) 50%, #ad1111 100%);*/
 }
