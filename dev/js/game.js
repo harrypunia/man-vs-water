@@ -12,11 +12,9 @@ var Game = function () {
     }
     this.update = function () {
         playerFall();
-        updateLight();
         walls.applyPhysics(.2);
         bulletPhysics(walls.list);
         player.restrict(player.mesh);
-        conclude();
     }
 }
 
@@ -100,14 +98,10 @@ const playerFall = () => {
     }
 }
 
-const arenaShrink = () => {
-    arenaSize > 50 ? (zone.shrink(meshShrinkSpeed), arenaSize -= shrinkSpeed) : false;
-}
+//const arenaShrink = () => {
+//    arenaSize > 50 ? (zone.shrink(meshShrinkSpeed), arenaSize -= shrinkSpeed) : false;
+//}
 
-const updateLight = () => {
-    sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
-}
-
-const conclude = () => {
-    controls.health <= 0 ? gameOver('loose') : 0;
-}
+//const updateLight = () => {
+//    sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
+//}

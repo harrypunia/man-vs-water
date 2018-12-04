@@ -20,6 +20,7 @@ const inflictDamage = () => {
     setTimeout(() => {
         damageScreen.style.opacity = 0;
     }, 100);
+    conclude();
 }
 
 const giveDamage = key => {
@@ -29,3 +30,7 @@ const giveDamage = key => {
 }
 
 const showDamageEnemy = key => {}
+
+const conclude = () => {
+    controls.health <= 0 ? gameOver('loose') : 0;
+}
