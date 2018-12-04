@@ -90,7 +90,6 @@ const initMainPlayer = () => {
 
 const recieveDamage = () => {
     ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
-        console.log(playerId);
         if (snap.val() == true) {
             inflictDamage();
             ref.child(playerId).child("orientation").update({
