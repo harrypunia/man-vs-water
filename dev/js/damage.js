@@ -1,19 +1,23 @@
 const recieveDamage = () => {
     ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
         if (snap.val() == true) {
-            inflictDamage();
+            ref.child(playerId).child("orientation").child("damageFrom").once("value").then(from => {
+                inflictDamage(from.val());
+            })
             ref.child(playerId).child("orientation").update({
-                takeDamage: false
+                takeDamage: false,
+                damageFrom: 0
             });
         }
     });
 }
 
-const inflictDamage = () => {
+const inflictDamage = from => {
+    let targetDamage = from == 'tank' ? tankStats.damage : from == 'assassin' ? assassinStats.damage : speedyStats.damage;
     let damageScreen = document.getElementsByClassName('damage')[0];
     damageScreen.style.opacity = 1;
     //------visual
-    controls.health -= 5;
+    controls.health -= targetDamage / 10;
     let healthBar = document.getElementsByClassName('health')[0];
     healthBar.style.borderLeft = ((controls.health / 100) * 300) + 'px solid #e04a4a';
     //------
@@ -25,7 +29,8 @@ const inflictDamage = () => {
 
 const giveDamage = key => {
     ref.child(key).child("orientation").update({
-        takeDamage: true
+        takeDamage: true,
+        damageFrom: stats.type
     })
 }
 
