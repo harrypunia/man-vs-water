@@ -9,7 +9,6 @@ var Game = function () {
         environment.init();
         controls.init();
         removePlayers();
-        recieveDamage();
     }
     this.update = function () {
         playerFall();
@@ -23,7 +22,6 @@ var Game = function () {
 
 const listenToPlayer = PlayerData => {
     PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
-    //giveDamage(PlayerData, bullets);
 }
 
 const initOtherPlayer = () => {
@@ -49,32 +47,21 @@ const initOtherPlayer = () => {
     });
 }
 
-//const giveDamage = (other, bullets) => {
-//        let them = other.val().orientation.position,
-//            gap = .5 + (stats.bulletSize / 2);
-//        for (let i in bullets) {
-//            if (bullets[i].alive) {
-//                console.log(i);
-//                let bX = bullets[i].position.x,
-//                    bZ = bullets[i].position.z,
-//                    collide = bX - them.x < gap && bX - them.x > -gap && bZ - them.z < gap && bZ - them.z > -gap;
-//                collide ? ref.child(other.key).child("orientation").update({
-//                    takeDamage: true
-//                }) : 0;
-//            }
-//        }
-//}
-
-const recieveDamage = () => {
-    ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
-        if (snap.val() == true) {
-            inflictDamage();
-            ref.child(playerId).child("orientation").update({
-                takeDamage: false
-            });
-        }
+const giveDamage = key => {
+    ref.child(key).child("orientation").update({
+        takeDamage: true
     })
 }
+
+ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
+    if (snap.val() == true) {
+        inflictDamage();
+        ref.child(playerId).child("orientation").update({
+            takeDamage: false
+        });
+    }
+});
+
 
 const inflictDamage = () => {
     let damageScreen = document.getElementsByClassName('damage')[0];

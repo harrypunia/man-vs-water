@@ -101,8 +101,7 @@ const bulletPhysics = (walls) => {
                     them = otherPlayers[thisKey].mesh.position,
                     gap = .5 + (stats.bulletSize / 2),
                     collide = bX - them.x < gap && bX - them.x > -gap && bZ - them.z < gap && bZ - them.z > -gap;
-                console.log("x: " + (bX - them.x) + 'z: ' + (bZ + them.z) + 'gap: ' + gap);
-                collide ? console.log('fuck yall') : 0;
+                collide ? (console.log(thisKey), giveDamage(thisKey), bullets[i].position.set(0, -5, 0), bullets[i].alive = false) : 0;
             }
         }
     }
