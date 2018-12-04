@@ -42,5 +42,10 @@ const giveDamage = key => {
 const showDamageEnemy = key => {}
 
 const conclude = () => {
-    controls.health <= 0 ? gameOver('loose') : 0;
+    if (controls.health <= 0) {
+        gameOver('loose');
+        ref.child(playerId).remove();
+        playerId = null;
+        cancelAnimationFrame(animate);
+    }
 }
