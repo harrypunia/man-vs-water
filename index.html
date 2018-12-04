@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="dist/style/lobby.min.css">
     <link rel="stylesheet" href="dist/style/development.min.css">
     <link rel="stylesheet" href="dist/style/outcome.min.css">
-    <script src="dist/js/Stats.min.js"></script>
+    <!--<script src="dist/js/Stats.min.js"></script>-->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script src="dist/lib/p5.min.js"></script>
     <script src="dist/lib/three.min.js"></script>
@@ -221,20 +221,19 @@
         </div>
     </div>
     <script>
-        //Loading FPS
-        (function() {
-            var script = document.createElement('script');
-            script.onload = function() {
-                var stats = new Stats();
-                document.body.appendChild(stats.dom);
-                requestAnimationFrame(function loop() {
-                    stats.update();
-                    requestAnimationFrame(loop)
-                });
-            };
-            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
-            document.head.appendChild(script);
-        })();
+        //        (function() {
+        //            var script = document.createElement('script');
+        //            script.onload = function() {
+        //                var stats = new Stats();
+        //                document.body.appendChild(stats.dom);
+        //                requestAnimationFrame(function loop() {
+        //                    stats.update();
+        //                    requestAnimationFrame(loop)
+        //                });
+        //            };
+        //            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+        //            document.head.appendChild(script);
+        //        })();
 
         //Firebase Config
         var config = {
