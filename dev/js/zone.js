@@ -13,8 +13,8 @@ var Zone = function () {
         scope.mesh.position.y = (this.height / 2) - 1;
         scene.add(scope.mesh);
     };
-    this.shrink = function (speed) {
-        scope.mesh.scale.x -= speed;
-        scope.mesh.scale.z -= speed;
-    }
+    //    this.shrink = function (speed) {
+    //        scope.mesh.scale.x -= speed;
+    //        scope.mesh.scale.z -= speed;
+    //    }
 }

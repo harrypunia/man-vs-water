@@ -14,16 +14,21 @@ const recieveDamage = () => {
 
 const inflictDamage = from => {
     let targetDamage = from == 'tank' ? tankStats.damage : from == 'assassin' ? assassinStats.damage : speedyStats.damage;
-    let damageScreen = document.getElementsByClassName('damage')[0];
-    damageScreen.style.opacity = 1;
     //------visual
     controls.health -= targetDamage / 10;
     let healthBar = document.getElementsByClassName('health')[0];
     healthBar.style.borderLeft = ((controls.health / 100) * 300) + 'px solid #e04a4a';
     //------
+    //-------damage screen
+    let damageScreen = document.getElementsByClassName('damage')[0];
+    damageScreen.style.opacity = .3;
+    setTimeout(() => {
+        damageScreen.classList.add('damageOut');
+    }, 100)
     setTimeout(() => {
         damageScreen.style.opacity = 0;
-    }, 100);
+        damageScreen.classList.remove('damageOut');
+    }, 1000)
     conclude();
 }
 
@@ -31,7 +36,7 @@ const giveDamage = key => {
     ref.child(key).child("orientation").update({
         takeDamage: true,
         damageFrom: stats.type
-    })
+    });
 }
 
 const showDamageEnemy = key => {}
