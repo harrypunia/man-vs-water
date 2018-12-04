@@ -119,7 +119,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
         this.camera.lookAt(this.player.position);
     };
     this.init = () => {
-        gun = new Gun(stats);
+        gun = new Gun();
         gun.init();
     }
     this.update = () => {

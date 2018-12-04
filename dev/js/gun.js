@@ -18,7 +18,7 @@ class Gun {
     }
     shoot(theta) {
         if (this.bulletCount >= 0) {
-            this.gunSound(stats.fireSpeed);
+            this.gunSound();
             bullets[this.bulletCount].position.set(player.mesh.position.x, stats.bulletHeight, player.mesh.position.z);
             bullets[this.bulletCount].velocity = new THREE.Vector3((-Math.sin(theta)), 0, (-Math.cos(theta)));
             bullets[this.bulletCount].velocity.x *= stats.bulletSpeed;
@@ -33,7 +33,7 @@ class Gun {
     }
     gunSound() {
         let AR = gunSupressor.cloneNode();
-        stats.type == 'Speedy' ? (AR.volume = 0.05, AR.play()) : stats.type == 'Assassin' ? (sniper.playbackRate = 2, sniper.play()) : stats.type == 'Tank' ? (shotgun.playbackRate = (120 / stats.fireSpeed), shotgun.play()) : 0;
+        stats.type == 'speedy' ? (AR.volume = 0.05, AR.play()) : stats.type == 'assassin' ? (sniper.playbackRate = 2, sniper.play()) : stats.type == 'tank' ? (shotgun.playbackRate = (120 / stats.fireSpeed), shotgun.play()) : 0;
     }
     reload() {
         if (stats.totalBullets > 0) {
@@ -77,7 +77,6 @@ const bulletPhysics = (walls) => {
         for (let j in walls) {
             var bX = bullets[i].position.x,
                 bZ = bullets[i].position.z;
-
             if (bullets[i].position.y > 0) {
                 let gapX = walls[j].position.x - bullets[i].position.x,
                     gapZ = walls[j].position.z - bullets[i].position.z
