@@ -15,7 +15,7 @@ const inflictDamage = () => {
     //------visual
     controls.health -= 5;
     let healthBar = document.getElementsByClassName('health')[0];
-    staminaBar.style.borderLeft = ((controls.health / 100) * 300) + 'px solid #e04a4a';
+    healthBar.style.borderLeft = ((controls.health / 100) * 300) + 'px solid #e04a4a';
     //------
     setTimeout(() => {
         damageScreen.style.opacity = 0;

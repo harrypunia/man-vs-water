@@ -12,9 +12,9 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
     this.jump = false;
     this.gravity = .007;
     this.allowMouseControls;
+    this.health = stats.health;
     let fireRate = 10,
         bulletSpeed = stats.bulletSpeed,
-        health = stats.health,
         gun,
         magazineSize = stats.magazineSize,
         reloadSpeed = stats.reloadSpeed,
