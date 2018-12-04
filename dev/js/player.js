@@ -8,7 +8,6 @@ var Player = function (id, name, skin, side) {
     this.player_mat;
     this.skin = skin;
     this.chosenSide = side;
-
     scope = this;
     this.init = () => {
         if (this.chosenSide == 'man') {
