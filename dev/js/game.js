@@ -53,16 +53,6 @@ const giveDamage = key => {
     })
 }
 
-ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
-    if (snap.val() == true) {
-        inflictDamage();
-        ref.child(playerId).child("orientation").update({
-            takeDamage: false
-        });
-    }
-});
-
-
 const inflictDamage = () => {
     let damageScreen = document.getElementsByClassName('damage')[0];
     damageScreen.style.opacity = 1;
@@ -95,6 +85,19 @@ const initMainPlayer = () => {
     player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
     player.init();
+    recieveDamage();
+}
+
+const recieveDamage = () => {
+    ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
+        console.log(playerId);
+        if (snap.val() == true) {
+            inflictDamage();
+            ref.child(playerId).child("orientation").update({
+                takeDamage: false
+            });
+        }
+    });
 }
 
 const loadMapsize = () => {

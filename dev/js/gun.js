@@ -93,7 +93,7 @@ const bulletPhysics = (walls) => {
             bullets[i].position.set(0, -5, 0);
             bullets[i].alive = false;
         }
-        bullets[i].alive ? (bullets[i].position.add(bullets[i].velocity), inflictDamage(bullets[i])) : false;
+        bullets[i].alive ? (bullets[i].position.add(bullets[i].velocity)) : false;
         //Other players
         if (bullets[i].alive) {
             for (let k in keys) {
