@@ -15,8 +15,8 @@ var Game = function () {
         updateLight();
         walls.applyPhysics(.2);
         bulletPhysics(walls.list);
-        arenaShrink();
         player.restrict(player.mesh);
+        conclude();
     }
 }
 
@@ -47,20 +47,6 @@ const initOtherPlayer = () => {
     });
 }
 
-const giveDamage = key => {
-    ref.child(key).child("orientation").update({
-        takeDamage: true
-    })
-}
-
-const inflictDamage = () => {
-    let damageScreen = document.getElementsByClassName('damage')[0];
-    damageScreen.style.opacity = 1;
-    setTimeout(() => {
-        damageScreen.style.opacity = 0;
-    }, 100);
-}
-
 const initMainPlayer = () => {
     playerId = ref.push().key;
     ref.child(playerId).child("orientation").set({
@@ -86,17 +72,6 @@ const initMainPlayer = () => {
     player.isMainPlayer = true;
     player.init();
     recieveDamage();
-}
-
-const recieveDamage = () => {
-    ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
-        if (snap.val() == true) {
-            inflictDamage();
-            ref.child(playerId).child("orientation").update({
-                takeDamage: false
-            });
-        }
-    });
 }
 
 const loadMapsize = () => {
@@ -131,4 +106,8 @@ const arenaShrink = () => {
 
 const updateLight = () => {
     sun.position.set(player.mesh.position.x + arenaSize / 4, 100, player.mesh.position.z + arenaSize / 4);
+}
+
+const conclude = () => {
+    controls.health <= 0 ? gameOver('loose') : 0;
 }
