@@ -73,7 +73,11 @@ class Gun {
 }
 const bulletPhysics = (walls) => {
     for (let i in bullets) {
+        //Walls
         for (let j in walls) {
+            var bX = bullets[i].position.x,
+                bZ = bullets[i].position.z;
+
             if (bullets[i].position.y > 0) {
                 let gapX = walls[j].position.x - bullets[i].position.x,
                     gapZ = walls[j].position.z - bullets[i].position.z
@@ -84,10 +88,22 @@ const bulletPhysics = (walls) => {
                 }
             }
         }
+        //Zone
         if (bullets[i].position.x < -(arenaSize / 2) || bullets[i].position.x > arenaSize / 2 || bullets[i].position.z < -(arenaSize / 2) || bullets[i].position.z > (arenaSize / 2)) {
             bullets[i].position.set(0, -5, 0);
             bullets[i].alive = false;
         }
         bullets[i].alive ? (bullets[i].position.add(bullets[i].velocity), inflictDamage(bullets[i])) : false;
+        //Other players
+        if (bullets[i].alive) {
+            for (let k in keys) {
+                let thisKey = keys[k],
+                    them = otherPlayers[thisKey].mesh.position,
+                    gap = .5 + (stats.bulletSize / 2),
+                    collide = bX - them.x < gap && bX - them.x > -gap && bZ - them.z < gap && bZ - them.z > -gap;
+                console.log("x: " + (bX - them.x) + 'z: ' + (bZ + them.z) + 'gap: ' + gap);
+                collide ? console.log('fuck yall') : 0;
+            }
+        }
     }
 }

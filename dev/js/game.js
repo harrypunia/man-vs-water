@@ -23,7 +23,7 @@ var Game = function () {
 
 const listenToPlayer = PlayerData => {
     PlayerData.val() ? otherPlayers[PlayerData.key].setOrientation(PlayerData.val().orientation.position, PlayerData.val().orientation.rotation.y) : false;
-    giveDamage(PlayerData);
+    //giveDamage(PlayerData, bullets);
 }
 
 const initOtherPlayer = () => {
@@ -33,6 +33,7 @@ const initOtherPlayer = () => {
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().orientation.userInfo.name, PlayerData.val().orientation.playerInfo.skin, PlayerData.val().orientation.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);
+                keys.push(PlayerData.key);
             }
         }
     });
@@ -41,26 +42,33 @@ const initOtherPlayer = () => {
             ref.child(PlayerData.key).off("value", listenToPlayer);
             scene.remove(otherPlayers[PlayerData.key].mesh);
             delete otherPlayers[PlayerData.key];
+            for (let i in keys) {
+                keys[i] == PlayerData.key ? keys.splice(i, 1) : 0;
+            }
         }
     });
 }
 
-const giveDamage = other => {
-    let main = player.mesh.position,
-        them = other.val().orientation.position,
-        collide = main.x - them.x < 1 && main.x - them.x > -1 && main.z - them.z < 1 && main.z - them.z > -1;
-
-    console.log(other.val().orientation.userInfo.name)
-    collide ? ref.child(other.key).child("orientation").update({
-        takeDamage: true
-    }) : 0;
-}
+//const giveDamage = (other, bullets) => {
+//        let them = other.val().orientation.position,
+//            gap = .5 + (stats.bulletSize / 2);
+//        for (let i in bullets) {
+//            if (bullets[i].alive) {
+//                console.log(i);
+//                let bX = bullets[i].position.x,
+//                    bZ = bullets[i].position.z,
+//                    collide = bX - them.x < gap && bX - them.x > -gap && bZ - them.z < gap && bZ - them.z > -gap;
+//                collide ? ref.child(other.key).child("orientation").update({
+//                    takeDamage: true
+//                }) : 0;
+//            }
+//        }
+//}
 
 const recieveDamage = () => {
     ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
         if (snap.val() == true) {
             inflictDamage();
-            console.log('hey')
             ref.child(playerId).child("orientation").update({
                 takeDamage: false
             });
@@ -70,8 +78,10 @@ const recieveDamage = () => {
 
 const inflictDamage = () => {
     let damageScreen = document.getElementsByClassName('damage')[0];
-    damageScreen.style.opacity = '1';
-    console.log('working');
+    damageScreen.style.opacity = 1;
+    setTimeout(() => {
+        damageScreen.style.opacity = 0;
+    }, 100);
 }
 
 const initMainPlayer = () => {
