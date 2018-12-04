@@ -7,9 +7,6 @@ let p,
     windSpeed = 5,
     airFriction = .05,
     rainSpeed = 10,
-    p5Performance = document.getElementsByClassName('performanceCircle')[0],
-    showFrameRate = document.getElementsByClassName('frameRateShow')[0],
-    frameRateCounter = 20,
     g_color1,
     g_color2;
 
@@ -27,11 +24,6 @@ function setup() {
 function draw() {
     stopP5Draw ? noLoop() : 0;
     setGradient(0, 0, window.innerWidth, window.innerHeight, g_color1, g_color2);
-    //Showing Frame Count
-    frameRateCounter++;
-    frameRateCounter >= 20 ? (showFrameRate.innerHTML = Math.floor(frameRate()), frameRateCounter = 1) : 0;
-
-    //Thundering and sounds
     if (Math.floor(Math.random() * thunderFrequency) == 1) {
         background(200, 200, 200);
         for (var i = 0; i < rainIntensity; i++) {
@@ -48,9 +40,6 @@ function draw() {
         particles[i].update(airFriction, rainSpeed);
         particles[i].show(dropThickness);
     }
-
-    //Show frameRate
-    performanceIndicator(frameRate());
 }
 
 function setGradient(x, y, w, h, c1, c2) {
@@ -61,12 +50,6 @@ function setGradient(x, y, w, h, c1, c2) {
         stroke(c);
         line(x, i, x + w, i);
     }
-}
-
-function performanceIndicator(frameRate) {
-    if (frameRate >= 50) p5Performance.style.background = 'green'
-    else if (frameRate >= 30) p5Performance.style.background = 'yellow'
-    else p5Performance.style.background = 'red';
 }
 
 window.addEventListener("resize", function () {
