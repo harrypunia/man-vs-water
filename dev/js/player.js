@@ -12,7 +12,7 @@ var Player = function (id, name, skin, side) {
     this.init = () => {
         if (this.chosenSide == 'man') {
             player_geo = new THREE.BoxBufferGeometry(1, 1, 1);
-            let man_mats = [
+            man_mats = [
             new THREE.MeshBasicMaterial({
                     map: new THREE.TextureLoader().load("assets/SVG/man_skin" + this.skin + "_right.svg"),
                     transparent: true,
@@ -47,11 +47,11 @@ var Player = function (id, name, skin, side) {
             player_mat = new THREE.MeshFaceMaterial(man_mats);
         } else {
             player_mat = new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load("assets/img/SVG/water_skin" + this.skin + ".svg"),
+                map: new THREE.TextureLoader().load("assets/SVG/water_skin" + this.skin + ".svg"),
                 transparent: true,
                 side: THREE.DoubleSide,
             });
-            player_geo = new THREE.SphereGeometry(.5, 10, 10);
+            player_geo = new THREE.SphereGeometry(.5, 15, 15);
         }
         scope.mesh = new THREE.Mesh(player_geo, player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);

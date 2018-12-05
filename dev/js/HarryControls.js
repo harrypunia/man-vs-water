@@ -268,27 +268,51 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
 
                 }
 
-                if (keyState[70] && scope.jumping == false) { //F Jump
+                if (keyState[70] && scope.jumping == false && scope.stamina > 20) { //F Jump
                     scope.jump = true;
                     this.jumping = true;
                 }
 
                 if (keyState[192]) { //Aim
-                    player.material.opacity > .5 ? player.material.opacity -= 0.05 : 0;
+                    if (user.side == 'man') {
+                        for (let i in man_mats) {
+                            man_mats[i].opacity = .5;
+                        }
+                    } else {
+                        player_mat.opacity = .5
+                    }
                     playerIsMoving = true;
                     this.turnSpeed = .02;
                     this.perspective > scopeZoom ? this.perspective -= 0.3 : 0;
                     if (keyState[49]) {
+                        if (user.side == 'man') {
+                            for (let i in man_mats) {
+                                man_mats[i].opacity = .2;
+                            }
+                        } else {
+                            player_mat.opacity = .2
+                        }
                         this.turnSpeed = .01;
-                        player.material.opacity > .2 ? player.material.opacity -= 0.01 : 0;
                         this.perspective > dblScopeZoom ? this.perspective -= 0.1 : 0;
                     } else {
-                        player.material.opacity < .49 ? player.material.opacity += 0.01 : 0;
+                        if (user.side == 'man') {
+                            for (let i in man_mats) {
+                                man_mats[i].opacity = .5;
+                            }
+                        } else {
+                            player_mat.opacity = .5
+                        }
                         this.perspective < scopeZoom - 0.1 ? this.perspective += 0.1 : 0;
                     }
                 } else {
-                    player.material.opacity < 1 ? player.material.opacity += 0.05 : 0;
                     this.perspective < 7 ? (playerIsMoving = true, this.perspective += 0.3) : 0;
+                    if (user.side == 'man') {
+                        for (let i in man_mats) {
+                            man_mats[i].opacity = 1;
+                        }
+                    } else {
+                        player_mat.opacity = 1
+                    }
                 }
 
                 if (keyState[32] && fireRate == 0 && gun.reloadStatus == false) { //Shoot

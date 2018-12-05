@@ -43,6 +43,7 @@ var container = document.getElementById('container'),
     shotgun = null,
     reloadPistol = null,
     gun,
+    man_mats,
     totalPlayers = 0,
     takeDamageAudio = null,
     playersOnline = null;
