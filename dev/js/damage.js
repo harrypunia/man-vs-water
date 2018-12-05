@@ -18,6 +18,9 @@ const recieveDamage = () => {
 }
 
 const inflictDamage = from => {
+    let DM = takeDamageAudio.cloneNode();
+    DM.volume = 0.1;
+    DM.play();
     let targetDamage = from == 'tank' ? tankStats.damage : from == 'assassin' ? assassinStats.damage : speedyStats.damage;
     //------visual
     controls.health -= targetDamage / 10;
@@ -47,14 +50,27 @@ const giveDamage = key => {
 
 const showDamageEnemy = key => {}
 
+const dyingInfo = () => {
+    ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
+        ref.child(snap.val()).child("orientation").update({
+            kill: user.name,
+            killKey: playerId
+        })
+        return new Promise(resolve => {
+            resolve();
+        })
+    })
+}
+
+async function terminate() {
+    await dyingInfo();
+    gameOver('loose');
+    ref.child(playerId).remove();
+    cancelAnimationFrame(animate);
+}
+
 const conclude = () => {
     if (controls.health <= 0) {
-        //        ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
-        //            console.log(snap.val());
-        //        })
-        gameOver('loose');
-        ref.child(playerId).remove();
-        playerId = null;
-        cancelAnimationFrame(animate);
+        terminate();
     }
 }

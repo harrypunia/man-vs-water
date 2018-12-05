@@ -44,6 +44,7 @@ var container = document.getElementById('container'),
     reloadPistol = null,
     gun,
     totalPlayers = 0,
+    takeDamageAudio = null,
     playersOnline = null;
 let gameStroke = null,
     chosenSideId,
@@ -158,10 +159,10 @@ const getThreeAssets = () => {
     feed = document.getElementsByClassName('feed')[0];
     feedData = document.getElementsByClassName('feedData')[0];
     playersOnline = document.getElementsByClassName('playersOnline')[0];
+    takeDamageAudio = new Audio("assets/audio/damage.mp3");
     gameStroke = new THREE.MeshBasicMaterial({
         color: 0x000000,
         wireframe: true,
-        wireframeLinewidth: 2,
     });
     clearRam();
 }

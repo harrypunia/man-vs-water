@@ -9,6 +9,7 @@ var Game = function () {
         environment.init();
         controls.init();
         removePlayer();
+        checkKills();
     }
     this.update = function () {
         regulatePerks();
@@ -40,6 +41,11 @@ const initOtherPlayer = () => {
     });
     ref.on("child_removed", PlayerData => {
         if (PlayerData.val()) {
+            ref.child(playerId).child("orientation").child("killKey").once("value").then(snap => {
+                if (snap.val() != PlayerData.key) {
+                    addFeed('a player has left: ', PlayerData.val().orientation.userInfo.name);
+                }
+            });
             totalPlayers -= 1;
             updateTotalPlayers();
             ref.child(PlayerData.key).off("value", listenToPlayer);
@@ -48,7 +54,6 @@ const initOtherPlayer = () => {
             for (let i in keys) {
                 keys[i] == PlayerData.key ? keys.splice(i, 1) : 0;
             }
-            addFeed('a player has left: ', PlayerData.val().orientation.userInfo.name);
         }
     });
 }
@@ -75,7 +80,8 @@ const initMainPlayer = () => {
         takeDamage: false,
         damageFrom: 0,
         damageType: 0,
-        kill: 0
+        kill: 0,
+        killKey: 0
     });
     player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
@@ -128,4 +134,12 @@ var addFeed = (des, target) => {
 
 const updateTotalPlayers = () => {
     playersOnline.innerHTML = 'Players online: ' + totalPlayers;
+}
+
+const checkKills = () => {
+    ref.child(playerId).child("orientation").child("kill").on("value", snap => {
+        if (snap.val() != 0) {
+            addFeed('you just killed', snap.val());
+        }
+    })
 }
