@@ -146,22 +146,25 @@
 .waterSkin1 {
     width: 200px;
     height: 200px;
-    background: #5285b7;
-    border-radius: 50%:
+    background: url("../../assets/SVG/water_skin0_front.svg") no-repeat;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .waterSkin2 {
     width: 200px;
     height: 200px;
-    background: #52abb7;
-    border-radius: 50%:
+    background: url("../../assets/SVG/water_skin1_front.svg") no-repeat;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .waterSkin3 {
     width: 200px;
     height: 200px;
-    background: #5652b7;
-    border-radius: 50%:
+    background: url("../../assets/SVG/water_skin2_front.svg") no-repeat;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .form__settings {

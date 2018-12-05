@@ -201,8 +201,10 @@ const leaveLobby = () => {
 const displayFinalSkin = () => {
     if (user.side == 'man') {
         manLobby.style.background = 'url("assets/SVG/man_skin' + skinIndex + '_front.svg")';
+        waterLobby.style.display = 'none';
     } else {
-        waterLobby.style.background = 'url("assets/SVG/water_skin' + skinIndex + '.svg")';
+        manLobby.style.display = 'none';
+        waterLobby.style.background = 'url("assets/SVG/water_skin' + skinIndex + '_front.svg")';
     }
 }
 

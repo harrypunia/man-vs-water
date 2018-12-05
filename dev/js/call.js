@@ -94,7 +94,8 @@ let gameStroke = null,
         maxBullets: 120,
         scopeZoom: 3,
         dblScopeZoom: 2,
-        bulletHeight: 1
+        bulletHeight: 1,
+        visibility: 60,
     },
     assassinStats = {
         type: 'assassin',
@@ -108,15 +109,16 @@ let gameStroke = null,
         staminaDrain: .6,
         staminaRecovery: .1,
         fireSpeed: 120,
-        bulletSize: .1,
+        bulletSize: .3,
         bulletSpeed: 2,
         magazineSize: 16,
         reloadSpeed: 1600,
         totalBullets: 72,
         maxBullets: 72,
         scopeZoom: 3,
-        dblScopeZoom: 2,
-        bulletHeight: 1
+        dblScopeZoom: 1.5,
+        bulletHeight: 1,
+        visibility: 150,
     },
     tankStats = {
         type: 'tank',
@@ -138,7 +140,8 @@ let gameStroke = null,
         maxBullets: 45,
         scopeZoom: 3,
         dblScopeZoom: 2,
-        bulletHeight: 1
+        bulletHeight: 1,
+        visibility: 80,
     };
 
 (() => {

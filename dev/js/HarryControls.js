@@ -292,7 +292,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                         } else {
                             player_mat.opacity = .2
                         }
-                        this.turnSpeed = .01;
+                        this.turnSpeed = .005;
                         this.perspective > dblScopeZoom ? this.perspective -= 0.1 : 0;
                     } else {
                         if (user.side == 'man') {

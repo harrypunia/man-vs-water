@@ -45,7 +45,7 @@ const render = () => {
     dimBack ? dimLight() : 0;
     renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
     renderer.setClearColor(0xffffff, 0);
-    scene.fog = new THREE.Fog(0x0b0b14, .01, 60);
+    scene.fog = new THREE.Fog(0x0b0b14, .01, stats.visibility);
     renderer.render(scene, camera);
     renderer.autoClear = false;
 
