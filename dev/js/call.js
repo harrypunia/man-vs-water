@@ -149,11 +149,11 @@ let gameStroke = null,
 const getThreeAssets = () => {
     bulletCountDisplay = document.getElementById('bulletCountDisplay');
     bulletCountAnimation = document.getElementsByClassName('bulletCountAnimation')[0];
-    emptyGun = new Audio("../../assets/audio/emptyGun.m4a");
-    gunSupressor = new Audio("../../assets/audio/gun_supressor.m4a");
-    sniper = new Audio("../../assets/audio/Gun2.mp3");
-    shotgun = new Audio("../../assets/audio/Gun3.mp3");
-    reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
+    emptyGun = new Audio("assets/audio/emptyGun.m4a");
+    gunSupressor = new Audio("assets/audio/gun_supressor.m4a");
+    sniper = new Audio("assets/audio/Gun2.mp3");
+    shotgun = new Audio("assets/audio/Gun3.mp3");
+    reloadPistol = new Audio("assets/audio/reload_pistol.mp3");
     playerSelected = document.getElementsByClassName('form__wrapper__select')[0];
     feed = document.getElementsByClassName('feed')[0];
     feedData = document.getElementsByClassName('feedData')[0];
