@@ -44,9 +44,9 @@ const showDamageEnemy = key => {}
 
 const conclude = () => {
     if (controls.health <= 0) {
-        ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
-            console.log(snap.val());
-        })
+        //        ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
+        //            console.log(snap.val());
+        //        })
         gameOver('loose');
         ref.child(playerId).remove();
         playerId = null;

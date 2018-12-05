@@ -98,9 +98,10 @@ const bulletPhysics = (walls) => {
             for (let k in keys) {
                 let thisKey = keys[k],
                     them = otherPlayers[thisKey].mesh.position,
-                    gap = .5 + (stats.bulletSize / 2),
-                    collide = bX - them.x < gap && bX - them.x > -gap && bZ - them.z < gap && bZ - them.z > -gap;
+                    gap = .5 + stats.bulletSize,
+                    collide = (bX - them.x < gap && bX - them.x > -gap) && (bZ - them.z < gap && bZ - them.z > -gap);
                 collide ? (showDamageEnemy(thisKey), giveDamage(thisKey), bullets[i].position.set(0, -5, 0), bullets[i].alive = false) : 0;
+                console.log(bX - them.x, bZ - them.z, gap, collide);
             }
         }
     }
