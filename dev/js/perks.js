@@ -84,6 +84,7 @@ const pickPerks = (i, type) => {
                 controls.stamina = 100;
             }
             scene.remove(staminaPerks[i])
+            updateStamina();
             staminaPerks.splice(i, 1);
             staminaAudio.play();
         }

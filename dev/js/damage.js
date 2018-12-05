@@ -10,7 +10,7 @@ const updateHealth = () => {
 var updateStamina = () => {
     let staminaBar = document.getElementsByClassName('stamina')[0];
     staminaBar.style.borderLeft = ((controls.stamina / 100) * 300) + 'px solid #4e7fdd';
-    if (controls.stamina < 100) {
+    if (controls.stamina < 99) {
         staminaBar.style.transform = 'scale(.9)';
     } else {
         staminaBar.style.transform = 'scale(1)';

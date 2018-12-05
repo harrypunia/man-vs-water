@@ -98,7 +98,7 @@ let gameStroke = null,
         scopeZoom: 3,
         dblScopeZoom: 2,
         bulletHeight: 1,
-        visibility: 60,
+        visibility: 70,
     },
     assassinStats = {
         type: 'assassin',
@@ -144,7 +144,7 @@ let gameStroke = null,
         scopeZoom: 3,
         dblScopeZoom: 2,
         bulletHeight: 1,
-        visibility: 80,
+        visibility: 90,
     };
 
 (() => {

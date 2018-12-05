@@ -1,7 +1,7 @@
 var canvas, scene, camera, mapCamera, renderer, dimBack, controls, mapSize, game = new Game(),
     mapPos = {
         x: 0,
-        y: 30,
+        y: 50,
         z: 0
     },
     mapView = {
