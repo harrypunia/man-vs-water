@@ -141,3 +141,17 @@
         transform: translate3d(0, -50px, 0);
     }
 }
+
+.playersOnline {
+    position: absolute;
+    left: 20px;
+    width: 200px;
+    height: 40px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    font-family: sans-serif;
+}
