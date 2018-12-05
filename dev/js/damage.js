@@ -35,7 +35,8 @@ const inflictDamage = from => {
 const giveDamage = key => {
     ref.child(key).child("orientation").update({
         takeDamage: true,
-        damageType: stats.type
+        damageType: stats.type,
+        damageFrom: playerId
     });
 }
 
@@ -43,6 +44,9 @@ const showDamageEnemy = key => {}
 
 const conclude = () => {
     if (controls.health <= 0) {
+        ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
+            console.log(snap.val());
+        })
         gameOver('loose');
         ref.child(playerId).remove();
         playerId = null;
