@@ -74,6 +74,7 @@ const pickPerks = (i, type) => {
             updateHealth();
             scene.remove(healthPerks[i])
             healthPerks.splice(i, 1);
+            healAudio.play();
         }
     } else if (type == 'stamina') {
         if (controls.stamina < 100) {
@@ -84,6 +85,7 @@ const pickPerks = (i, type) => {
             }
             scene.remove(staminaPerks[i])
             staminaPerks.splice(i, 1);
+            staminaAudio.play();
         }
     } else if (type == 'ammo') {
         if (stats.totalBullets < stats.maxBullets) {
@@ -95,6 +97,7 @@ const pickPerks = (i, type) => {
             bulletCountDisplay.innerHTML = gun.bulletCount + 1 + ' /' + stats.totalBullets;
             scene.remove(ammoPerks[i])
             ammoPerks.splice(i, 1);
+            ammoAudio.play();
         }
     }
 }

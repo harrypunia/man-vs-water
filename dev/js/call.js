@@ -46,6 +46,9 @@ var container = document.getElementById('container'),
     man_mats,
     totalPlayers = 0,
     takeDamageAudio = null,
+    healAudio = null,
+    ammoAudio = null,
+    staminaAudio = null,
     playersOnline = null;
 let gameStroke = null,
     chosenSideId,
@@ -164,6 +167,9 @@ const getThreeAssets = () => {
     feedData = document.getElementsByClassName('feedData')[0];
     playersOnline = document.getElementsByClassName('playersOnline')[0];
     takeDamageAudio = new Audio("assets/audio/damage.mp3");
+    healAudio = new Audio("assets/audio/heal.mp3");
+    ammoAudio = new Audio("assets/audio/ammo.mp3");
+    staminaAudio = new Audio("assets/audio/stamina.mp3");
     gameStroke = new THREE.MeshBasicMaterial({
         color: 0x000000,
         wireframe: true,
