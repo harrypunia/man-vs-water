@@ -153,8 +153,8 @@ const backToCustomise = () => {
 
 const showStats = activeStat => {
     let statBars = document.getElementsByClassName('stat');
-    statBars[0].style.transform = 'translate3d(' + (activeStat.health - 100) + '%, 0, 0)';
-    statBars[1].style.transform = 'translate3d(' + (activeStat.damage - 100) + '%, 0, 0)';
+    statBars[0].style.transform = 'translate3d(' + ((activeStat.health / 1.5) - 100) + '%, 0, 0)';
+    statBars[1].style.transform = 'translate3d(' + ((activeStat.damage / 3) - 100) + '%, 0, 0)';
     statBars[2].style.transform = 'translate3d(' + (((activeStat.magazineSize / 30) * 100) - 100) + '%, 0, 0)';
     statBars[3].style.transform = 'translate3d(' + ((activeStat.reloadSpeed / 100) - 100) + '%, 0, 0)';
     statBars[4].style.transform = 'translate3d(' + (-((activeStat.fireSpeed / 150) * 100)) + '%, 0, 0)';
