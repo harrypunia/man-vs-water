@@ -42,7 +42,9 @@ var container = document.getElementById('container'),
     sniper = null,
     shotgun = null,
     reloadPistol = null,
-    gun;
+    gun,
+    totalPlayers = 0,
+    playersOnline = null;
 let gameStroke = null,
     chosenSideId,
     chosenPlayer,
@@ -155,6 +157,7 @@ const getThreeAssets = () => {
     playerSelected = document.getElementsByClassName('form__wrapper__select')[0];
     feed = document.getElementsByClassName('feed')[0];
     feedData = document.getElementsByClassName('feedData')[0];
+    playersOnline = document.getElementsByClassName('playersOnline')[0];
     gameStroke = new THREE.MeshBasicMaterial({
         color: 0x000000,
         wireframe: true,

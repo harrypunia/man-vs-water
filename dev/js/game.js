@@ -27,6 +27,8 @@ const listenToPlayer = PlayerData => {
 const initOtherPlayer = () => {
     ref.on("child_added", PlayerData => {
         if (PlayerData.val()) {
+            totalPlayers += 1;
+            updateTotalPlayers();
             if (playerId != PlayerData.key && !otherPlayers[PlayerData.key]) {
                 otherPlayers[PlayerData.key] = new Player(PlayerData.key, PlayerData.val().orientation.userInfo.name, PlayerData.val().orientation.playerInfo.skin, PlayerData.val().orientation.playerInfo.chosenSide);
                 otherPlayers[PlayerData.key].init();
@@ -37,6 +39,8 @@ const initOtherPlayer = () => {
     });
     ref.on("child_removed", PlayerData => {
         if (PlayerData.val()) {
+            totalPlayers -= 1;
+            updateTotalPlayers();
             ref.child(PlayerData.key).off("value", listenToPlayer);
             scene.remove(otherPlayers[PlayerData.key].mesh);
             delete otherPlayers[PlayerData.key];
@@ -105,16 +109,21 @@ const playerFall = () => {
 
 const addFeed = (des, target) => {
     feed.style.display = 'flex';
+    feed.style.opacity = 1;
     feedData.innerHTML = des + ' <span class="feedImp">' + target + '</span>';
     feedData.style.animation = 'feedIn .4s ease-out';
     feedData.style.animationFillMode = 'forwards';
     setTimeout(() => {
-        feed.style.opacity = 0;
-        feedData.style.animation = 'feedOut .8s ease-out';
+        feedData.style.animation = 'feedOut .4s ease-out';
         feedData.style.animationFillMode = 'forwards';
+        feed.style.opacity = 0;
     }, 1000);
     setTimeout(() => {
         feed.style.display = 'none';
         feedData.innerHTML = '';
     }, 1800);
+}
+
+const updateTotalPlayers = () => {
+    playersOnline.innerHeight = 'Players Online: ' + totalPlayers;
 }
