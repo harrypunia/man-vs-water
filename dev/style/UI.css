@@ -84,7 +84,7 @@
     height: 100vh;
     z-index: 99999;
     opacity: 0;
-    background: url("../../assets/img/PNG/damage.png") no-repeat;
+    background: url("../../assets/PNG/damage.png") no-repeat;
     background-size: cover;
     background-position: center center;
 }

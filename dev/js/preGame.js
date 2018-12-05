@@ -200,9 +200,9 @@ const leaveLobby = () => {
 
 const displayFinalSkin = () => {
     if (user.side == 'man') {
-        manLobby.style.background = 'url("assets/img/SVG/man_skin' + skinIndex + '_front.svg")';
+        manLobby.style.background = 'url("assets/SVG/man_skin' + skinIndex + '_front.svg")';
     } else {
-        waterLobby.style.background = 'url("assets/img/SVG/water_skin' + skinIndex + '.svg")';
+        waterLobby.style.background = 'url("assets/SVG/water_skin' + skinIndex + '.svg")';
     }
 }
 

@@ -1,6 +1,6 @@
 {
     "brackets-minifier.on-save-project": false,
-    "brackets-minifier.js-project-minify": true,
+    "brackets-minifier.js-project-minify": false,
     "brackets-minifier.css-project-minify": true,
     "brackets-minifier.js-custom-path": "dist/js",
     "brackets-minifier.css-custom-path": "dist/style",

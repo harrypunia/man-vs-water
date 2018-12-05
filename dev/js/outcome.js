@@ -23,7 +23,7 @@ setInterval(() => {
     skullCount++;
     if (skullCount < 100) {
         let skull = document.createElement('IMG');
-        skull.src = "assets/img/SVG/dead.svg";
+        skull.src = "assets/SVG/dead.svg";
         skull.alt = 'skull';
         skull.className = 'fatality__skull';
         document.getElementsByClassName('fatality')[0].appendChild(skull);

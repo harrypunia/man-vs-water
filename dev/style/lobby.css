@@ -51,7 +51,7 @@
 }
 
 .lobby__pattern-man {
-    background: url('../../assets/img/SVG/man_Lobby.svg');
+    background: url('../../assets/SVG/man_Lobby.svg');
     background-size: 5% 5%;
     background-position: center center;
 }
@@ -65,7 +65,7 @@
 }
 
 .lobby__pattern-water {
-    background: url('../../assets/img/SVG/water_Lobby.svg');
+    background: url('../../assets/SVG/water_Lobby.svg');
     background-size: 5% 5%;
     background-position: center center;
     animation-direction: reverse;

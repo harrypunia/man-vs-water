@@ -11,7 +11,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    background: url('../../assets/img/PNG/form_back.png') no-repeat;
+    background: url('../../assets/PNG/form_back.png') no-repeat;
     background-size: contain;
     z-index: 99;
 }
@@ -28,7 +28,7 @@
 /*slider*/
 
 .changeSkin {
-    background: url('../../assets/img/SVG/play-button.svg');
+    background: url('../../assets/SVG/play-button.svg');
     position: absolute;
     transform: translate(-50%, -50%);
     width: 50px;
@@ -79,7 +79,7 @@
     width: 30px;
     height: 30px;
     transform: translate(-50%, -50%);
-    background: url('../../assets/img/SVG/play-button.svg');
+    background: url('../../assets/SVG/play-button.svg');
     transform: rotate(-180deg);
     display: none;
     transition: transform .1s ease-in-out, opacity .1s ease-in-out;
@@ -132,15 +132,15 @@
 }
 
 .manSkin1 {
-    background: url('../../assets/img/SVG/man_skin0_front.svg') no-repeat;
+    background: url('../../assets/SVG/man_skin0_front.svg') no-repeat;
 }
 
 .manSkin2 {
-    background: url('../../assets/img/SVG/man_skin1_front.svg') no-repeat;
+    background: url('../../assets/SVG/man_skin1_front.svg') no-repeat;
 }
 
 .manSkin3 {
-    background: url('../../assets/img/SVG/man_skin0_left.svg') no-repeat;
+    background: url('../../assets/SVG/man_skin0_left.svg') no-repeat;
 }
 
 .waterSkin1 {
@@ -303,7 +303,7 @@
     height: 70px;
     transition: transform .2s ease-out;
     overflow: visible;
-    background: url('../../assets/img/SVG/button.svg') no-repeat;
+    background: url('../../assets/SVG/button.svg') no-repeat;
     background-size: cover;
     background-position: center 20%;
     color: white;
