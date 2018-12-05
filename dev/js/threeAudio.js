@@ -3,6 +3,7 @@ const setAudioPara = () => {
     overlapSounds(takeDamageAudio);
     reloadPistol.volume = .2;
     healAudio.volume = .1;
+    healAudio.playbackRate = 2;
     ammoAudio.volume = .2;
     staminaAudio.volume = .1;
     staminaAudio.playbackRate = 4;

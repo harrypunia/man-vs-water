@@ -1,6 +1,21 @@
 const updateHealth = () => {
     let healthBar = document.getElementsByClassName('health')[0];
     healthBar.style.borderLeft = ((controls.health / stats.health) * 300) + 'px solid #e04a4a';
+    healthBar.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        healthBar.style.transform = 'scale(1)';
+    }, 500)
+}
+
+var updateStamina = () => {
+    let staminaBar = document.getElementsByClassName('stamina')[0];
+    staminaBar.style.borderLeft = ((controls.stamina / 100) * 300) + 'px solid #4e7fdd';
+    if (controls.stamina < 100) {
+        staminaBar.style.transform = 'scale(.9)';
+    } else {
+        staminaBar.style.transform = 'scale(1)';
+    }
+
 }
 
 const recieveDamage = () => {

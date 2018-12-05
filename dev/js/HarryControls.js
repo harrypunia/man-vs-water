@@ -205,7 +205,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                 if (keyState[16] && keyState[38] || keyState[87] && keyState[16]) {
                     if (scope.stamina > 0 && this.allowSprinting) {
                         scope.stamina -= this.staminaDrain;
-                        displayStamina();
+                        updateStamina();
                         startRunning();
                         this.sprinting = true;
                     } else {
@@ -215,7 +215,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                     }
                 } else {
                     if (scope.stamina < 100) {
-                        displayStamina();
+                        updateStamina();
                         this.allowSprinting = true;
                         scope.stamina += scope.staminaRecovery;
                     }
@@ -390,11 +390,6 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
     const startRunning = () => {
         this.moveSpeed < this.maxSpeed ? this.moveSpeed += this.acceleration : 0;
         this.turnSpeed > this.sprintTurnSpeed ? this.turnSpeed -= 0.01 : 0;
-    }
-
-    const displayStamina = () => {
-        let staminaBar = document.getElementsByClassName('stamina')[0];
-        staminaBar.style.borderLeft = ((this.stamina / 100) * 300) + 'px solid #4e7fdd';
     }
 
     const getAutoRotationAngle = () => {
