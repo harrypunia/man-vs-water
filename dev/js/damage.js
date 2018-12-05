@@ -1,3 +1,7 @@
+const updateHealth = () => {
+    healthBar.style.borderLeft = ((controls.health / stats.health) * 300) + 'px solid #e04a4a';
+}
+
 const recieveDamage = () => {
     ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
         if (snap.val() == true) {
@@ -16,19 +20,20 @@ const inflictDamage = from => {
     let targetDamage = from == 'tank' ? tankStats.damage : from == 'assassin' ? assassinStats.damage : speedyStats.damage;
     //------visual
     controls.health -= targetDamage / 10;
+    updateHealth();
     let healthBar = document.getElementsByClassName('health')[0];
-    healthBar.style.borderLeft = ((controls.health / stats.health) * 300) + 'px solid #e04a4a';
-    //------
     //-------damage screen
     let damageScreen = document.getElementsByClassName('damage')[0];
+    damageScreen.style.transition = '0s';
     damageScreen.style.opacity = .3;
     setTimeout(() => {
-        damageScreen.classList.add('damageOut');
-    }, 100)
-    setTimeout(() => {
-        damageScreen.style.opacity = 0;
-        damageScreen.classList.remove('damageOut');
-    }, 1000)
+        damageScreen.style.transition = 'opacity .8s';
+        if (controls.health / stats.health <= .4) {
+            damageScreen.style.opacity = 0.2;
+        } else {
+            damageScreen.style.opacity = 0;
+        }
+    }, 500)
     conclude();
 }
 

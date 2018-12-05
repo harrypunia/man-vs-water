@@ -89,11 +89,6 @@
     background-position: center center;
 }
 
-.damageOut {
-    transition: opacity 1s ease;
-    opacity: 0 !important;
-}
-
 .feed {
     position: absolute;
     left: 50vw;

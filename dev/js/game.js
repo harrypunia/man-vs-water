@@ -9,6 +9,7 @@ var Game = function () {
         environment.init();
         controls.init();
         removePlayer();
+        regulatePerks();
     }
     this.update = function () {
         playerFall();

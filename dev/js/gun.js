@@ -101,7 +101,6 @@ const bulletPhysics = (walls) => {
                     gap = .5 + stats.bulletSize,
                     collide = (bX - them.x < gap && bX - them.x > -gap) && (bZ - them.z < gap && bZ - them.z > -gap);
                 collide ? (showDamageEnemy(thisKey), giveDamage(thisKey), bullets[i].position.set(0, -5, 0), bullets[i].alive = false) : 0;
-                console.log(bX - them.x, bZ - them.z, gap, collide);
             }
         }
     }
