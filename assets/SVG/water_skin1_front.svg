@@ -26,9 +26,10 @@
 	<line class="st2" x1="571" y1="0" x2="571" y2="612"/>
 </g>
 <g>
-	<ellipse class="st3" cx="459" cy="306" rx="81" ry="114.4"/>
-	<ellipse class="st4" cx="459" cy="306" rx="43.6" ry="61.6"/>
-	<ellipse class="st5" cx="467.9" cy="290.7" rx="4.8" ry="6.8"/>
-	<ellipse class="st5" cx="472.8" cy="295.6" rx="4.8" ry="6.8"/>
+	
+		<ellipse transform="matrix(4.687760e-03 -1 1 4.687760e-03 -1.4311 610.5622)" class="st3" cx="306" cy="306" rx="114.4" ry="114.4"/>
+	<ellipse transform="matrix(1 -9.465660e-03 9.465660e-03 1 -2.8828 2.9102)" class="st4" cx="306" cy="306" rx="61.6" ry="61.6"/>
+	<circle class="st5" cx="318.6" cy="290.7" r="6.8"/>
+	<circle class="st5" cx="325.5" cy="295.6" r="6.8"/>
 </g>
 </svg>
