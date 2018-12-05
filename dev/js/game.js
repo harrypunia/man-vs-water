@@ -125,5 +125,5 @@ const addFeed = (des, target) => {
 }
 
 const updateTotalPlayers = () => {
-    playersOnline.innerHeight = 'Players Online: ' + totalPlayers;
+    playersOnline.innerHTML = 'Players online: ' + totalPlayers;
 }
