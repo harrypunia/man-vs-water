@@ -94,15 +94,18 @@
     left: 50vw;
     top: 20vh;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: auto;
+    padding: 0 20px;
+    min-width: 400px;
     height: 70px;
     z-index: 9999999;
-    display: flex;
+    display: none;
     justify-content: center;
     background: rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     align-items: center;
     overflow: hidden;
+    transition: opacity .8s ease-out;
 }
 
 .feedData {
@@ -111,9 +114,7 @@
     font-size: 2em;
     text-shadow: 0 0 10px white;
     opacity: 0;
-    transform: translate3d(0, -100px, 0);
-    animation: feedIn .4s ease-in-out 1;
-    animation-fill-mode: forwards;
+    transform: translate3d(0, -50px, 0);
 }
 
 .feedImp {
@@ -126,5 +127,12 @@
     to {
         opacity: 1;
         transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes feedOut {
+    to {
+        opacity: 0;
+        transform: translate3d(0, -50px, 0);
     }
 }

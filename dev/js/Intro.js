@@ -33,6 +33,8 @@ var container = document.getElementById('container'),
     lobby = document.getElementsByClassName('lobby')[0],
     manLobby = document.getElementsByClassName('man__final-player')[0],
     waterLobby = document.getElementsByClassName('water__final-player')[0],
+    feed = null,
+    feedData = null,
     bulletCountDisplay = null,
     bulletCountAnimation = null,
     emptyGun = null,
@@ -150,6 +152,9 @@ const getThreeAssets = () => {
     sniper = new Audio("../../assets/audio/Gun2.mp3");
     shotgun = new Audio("../../assets/audio/Gun3.mp3");
     reloadPistol = new Audio("../../assets/audio/reload_pistol.mp3");
+    playerSelected = document.getElementsByClassName('form__wrapper__select')[0];
+    feed = document.getElementsByClassName('feed')[0];
+    feedData = document.getElementsByClassName('feedData')[0];
     gameStroke = new THREE.MeshBasicMaterial({
         color: 0x000000,
         wireframe: true,
@@ -162,7 +167,6 @@ const clearRam = () => {
     permission = null;
     form = null;
     formName = null;
-    playerSelected = document.getElementsByClassName('form__wrapper__select')[0];
     playerTypes = null;
     formButton = null;
     characterButton = null;

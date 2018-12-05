@@ -102,3 +102,19 @@ const playerFall = () => {
         }
     }
 }
+
+const addFeed = (des, target) => {
+    feed.style.display = 'flex';
+    feedData.innerHTML = des + ' <span class="feedImp">' + target + '</span>';
+    feedData.style.animation = 'feedIn .4s ease-out';
+    feedData.style.animationFillMode = 'forwards';
+    setTimeout(() => {
+        feed.style.opacity = 0;
+        feedData.style.animation = 'feedOut .8s ease-out';
+        feedData.style.animationFillMode = 'forwards';
+    }, 1000);
+    setTimeout(() => {
+        feed.style.display = 'none';
+        feedData.innerHTML = '';
+    }, 1800);
+}
