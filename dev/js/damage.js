@@ -1,12 +1,12 @@
 const recieveDamage = () => {
     ref.child(playerId).child("orientation").child("takeDamage").on("value", snap => {
         if (snap.val() == true) {
-            ref.child(playerId).child("orientation").child("damageFrom").once("value").then(from => {
+            ref.child(playerId).child("orientation").child("damageType").once("value").then(from => {
                 inflictDamage(from.val());
             })
             ref.child(playerId).child("orientation").update({
                 takeDamage: false,
-                damageFrom: 0
+                damageType: 0
             });
         }
     });
@@ -35,7 +35,7 @@ const inflictDamage = from => {
 const giveDamage = key => {
     ref.child(key).child("orientation").update({
         takeDamage: true,
-        damageFrom: stats.type
+        damageType: stats.type
     });
 }
 

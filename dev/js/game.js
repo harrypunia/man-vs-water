@@ -65,7 +65,9 @@ const initMainPlayer = () => {
             playerType: stats.type
         },
         takeDamage: false,
-        damageFrom: 0
+        damageFrom: 0,
+        damageType: 0,
+        kills: 0
     });
     player = new Player(playerId, user.name, user.skin, user.side);
     player.isMainPlayer = true;
