@@ -25,14 +25,3 @@ const returnToChoose = () => {
     characterMan.style.display = 'none';
     characterWater.style.display = 'none';
 }
-//
-//const parallax = event => {
-//    let x = event.clientX,
-//        y = event.clientY,
-//        depth = 1000;
-//    man.style.left = 10 + (x / depth) + 'vw';
-//    man.style.top = 50 + (y / depth) + 'vh';
-//    water.style.right = 12 - (x / depth) + 'vw';
-//    water.style.top = 50 + (y / depth) + 'vh';
-//}
-//document.addEventListener("mousemove", parallax, false);

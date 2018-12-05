@@ -39,7 +39,6 @@ const initOtherPlayer = () => {
             scene.remove(otherPlayers[PlayerData.key].mesh);
             delete otherPlayers[PlayerData.key];
             for (let i in keys) {
-                keysGarbage.push(PlayerData.key);
                 keys[i] == PlayerData.key ? keys.splice(i, 1) : 0;
             }
         }
