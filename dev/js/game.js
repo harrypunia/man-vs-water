@@ -12,6 +12,7 @@ var Game = function () {
         regulatePerks();
     }
     this.update = function () {
+        oscillatePerks();
         playerFall();
         walls.applyPhysics(.2);
         bulletPhysics(walls.list);
