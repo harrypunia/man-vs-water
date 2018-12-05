@@ -13,13 +13,10 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
     this.gravity = .007;
     this.allowMouseControls;
     this.health = stats.health;
+    this.stamina = 100;
     let fireRate = 10,
         bulletSpeed = stats.bulletSpeed,
-        gun,
-        magazineSize = stats.magazineSize,
         reloadSpeed = stats.reloadSpeed,
-        totalBullets = stats.totalBullets,
-        stamina = 100,
         storeMoveSpeed = stats.moveSpeed,
         storeTurnSpeed = stats.turnSpeed,
         scopeZoom = stats.scopeZoom,
@@ -125,7 +122,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
     this.update = () => {
         this.checkKeyStates();
         if (scope.jump == true) {
-            stamina -= this.staminaDrain;
+            scope.stamina -= this.staminaDrain;
             stats.bulletHeight = player.position.y + 0.5;
             jumpPower -= scope.gravity;
             player.position.y += jumpPower;
@@ -206,21 +203,21 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
         if (this.hasLanded) {
             if (this.allow) {
                 if (keyState[16] && keyState[38] || keyState[87] && keyState[16]) {
-                    if (stamina > 0 && this.allowSprinting) {
-                        stamina -= this.staminaDrain;
+                    if (scope.stamina > 0 && this.allowSprinting) {
+                        scope.stamina -= this.staminaDrain;
                         displayStamina();
                         startRunning();
                         this.sprinting = true;
                     } else {
-                        stamina = 0;
+                        scope.stamina = 0;
                         stopRunning();
                         this.sprinting = false;
                     }
                 } else {
-                    if (stamina < 100) {
+                    if (scope.stamina < 100) {
                         displayStamina();
                         this.allowSprinting = true;
-                        stamina += scope.staminaRecovery;
+                        scope.stamina += scope.staminaRecovery;
                     }
                     stopRunning();
                 }
@@ -373,7 +370,7 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
 
     const displayStamina = () => {
         let staminaBar = document.getElementsByClassName('stamina')[0];
-        staminaBar.style.borderLeft = ((stamina / 100) * 300) + 'px solid #4e7fdd';
+        staminaBar.style.borderLeft = ((this.stamina / 100) * 300) + 'px solid #4e7fdd';
     }
 
     const getAutoRotationAngle = () => {

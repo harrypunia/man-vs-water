@@ -41,32 +41,60 @@ const oscillatePerks = () => {
             perkZ = healthPerks[i].position.z,
             collide = (pX - perkX < gap && pX - perkX > -gap) && (pZ - perkZ < gap && pZ - perkZ > -gap);
         healthPerks[i].position.y = (Math.sin(oscillate) / 4) + .4;
-        collide ? pickPerk(i, healthPerks, 'health') : 0;
+        collide ? pickPerks(i, 'health') : 0;
     }
     for (let i in staminaPerks) {
         let perkX = staminaPerks[i].position.x,
             perkZ = staminaPerks[i].position.z,
             collide = (pX - perkX < gap && pX - perkX > -gap) && (pZ - perkZ < gap && pZ - perkZ > -gap);
         staminaPerks[i].position.y = (Math.sin(oscillate) / 4) + .4;
-        collide ? pickPerk(i, staminaPerks, 'stamina') : 0;
+        collide ? pickPerks(i, 'stamina') : 0;
     }
     for (let i in ammoPerks) {
         let perkX = ammoPerks[i].position.x,
             perkZ = ammoPerks[i].position.z,
             collide = (pX - perkX < gap && pX - perkX > -gap) && (pZ - perkZ < gap && pZ - perkZ > -gap);
         ammoPerks[i].position.y = (Math.sin(oscillate) / 4) + .4;
-        collide ? pickPerk(i, ammoPerks, 'ammo') : 0;
+        collide ? pickPerks(i, 'ammo') : 0;
     }
     oscillate += .08;
 }
 
-const pickPerks = (i, arr, type) => {
+const pickPerks = (i, type) => {
     if (type == 'health') {
-        //
+        if (controls.health < stats.health) {
+            if (controls.health < stats.health - 10) {
+                controls.health += 10;
+                if (controls.health / stats.health > .4) {
+                    document.getElementsByClassName('damage')[0].style.opacity = 0;
+                }
+            } else {
+                controls.health = stats.health;
+            }
+            updateHealth();
+            scene.remove(healthPerks[i])
+            healthPerks.splice(i, 1);
+        }
     } else if (type == 'stamina') {
-        //
-    } else {
-        //
+        if (controls.stamina < 100) {
+            if (controls.stamina < 90) {
+                controls.stamina += 10;
+            } else {
+                controls.stamina = 100;
+            }
+            scene.remove(staminaPerks[i])
+            staminaPerks.splice(i, 1);
+        }
+    } else if (type == 'ammo') {
+        if (stats.totalBullets < stats.maxBullets) {
+            if (stats.totalBullets < stats.maxBullets - 5) {
+                stats.totalBullets += 5;
+            } else {
+                stats.totalBullets = stats.maxBullets;
+            }
+            bulletCountDisplay.innerHTML = gun.bulletCount + 1 + ' /' + stats.totalBullets;
+            scene.remove(ammoPerks[i])
+            ammoPerks.splice(i, 1);
+        }
     }
-    arr.splice(i, 1);
 }

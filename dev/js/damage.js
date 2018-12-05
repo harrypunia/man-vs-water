@@ -1,4 +1,5 @@
 const updateHealth = () => {
+    let healthBar = document.getElementsByClassName('health')[0];
     healthBar.style.borderLeft = ((controls.health / stats.health) * 300) + 'px solid #e04a4a';
 }
 
@@ -21,7 +22,6 @@ const inflictDamage = from => {
     //------visual
     controls.health -= targetDamage / 10;
     updateHealth();
-    let healthBar = document.getElementsByClassName('health')[0];
     //-------damage screen
     let damageScreen = document.getElementsByClassName('damage')[0];
     damageScreen.style.transition = '0s';
