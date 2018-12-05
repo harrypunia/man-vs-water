@@ -34,6 +34,7 @@ const initOtherPlayer = () => {
                 otherPlayers[PlayerData.key].init();
                 ref.child(PlayerData.key).on("value", listenToPlayer);
                 keys.push(PlayerData.key);
+                addFeed('new player has joined: ', PlayerData.val().orientation.userInfo.name);
             }
         }
     });
@@ -47,6 +48,7 @@ const initOtherPlayer = () => {
             for (let i in keys) {
                 keys[i] == PlayerData.key ? keys.splice(i, 1) : 0;
             }
+            addFeed('a player has left: ', PlayerData.val().orientation.userInfo.name);
         }
     });
 }
@@ -107,7 +109,7 @@ const playerFall = () => {
     }
 }
 
-const addFeed = (des, target) => {
+var addFeed = (des, target) => {
     feed.style.display = 'flex';
     feed.style.opacity = 1;
     feedData.innerHTML = des + ' <span class="feedImp">' + target + '</span>';
@@ -117,11 +119,11 @@ const addFeed = (des, target) => {
         feedData.style.animation = 'feedOut .4s ease-out';
         feedData.style.animationFillMode = 'forwards';
         feed.style.opacity = 0;
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
         feed.style.display = 'none';
         feedData.innerHTML = '';
-    }, 1800);
+    }, 2300);
 }
 
 const updateTotalPlayers = () => {
