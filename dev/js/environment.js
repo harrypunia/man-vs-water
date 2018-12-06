@@ -10,6 +10,7 @@ var Environment = function () {
         getMap();
     }
 }
+
 const checkOtherPlayers = () => {
     return new Promise(resolve => {
         ref.on('value', snap => {
