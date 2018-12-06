@@ -25,3 +25,11 @@ const returnToChoose = () => {
     characterMan.style.display = 'none';
     characterWater.style.display = 'none';
 }
+
+const showMenuInfo = e => {
+    let targetId = e.currentTarget.id;
+    controls.style.display = 'none';
+    rules.style.display = 'none';
+
+    targetId == 'controls' ? controls.style.display = 'block' : rules.style.display = 'block';
+}

@@ -9,6 +9,8 @@ var container = document.getElementById('container'),
     characters = document.getElementsByClassName('characters'),
     characterMan = document.getElementsByClassName('character__man')[0],
     characterWater = document.getElementsByClassName('character__water')[0],
+    controls = document.getElementsByClassName('controls__panel')[0],
+    rules = document.getElementsByClassName('rules__panel')[0],
     skinsMan = document.getElementsByClassName('manSkins'),
     skinsWater = document.getElementsByClassName('waterSkins'),
     customise = document.getElementsByClassName('form__customise')[0],
@@ -83,7 +85,7 @@ let gameStroke = null,
         damage: 40,
         moveSpeed: .17,
         maxSpeed: .4,
-        turnSpeed: .1,
+        turnSpeed: .05,
         sprintTurnSpeed: .1,
         acceleration: .007,
         staminaDrain: .3,
@@ -106,7 +108,7 @@ let gameStroke = null,
         damage: 280,
         moveSpeed: .14,
         maxSpeed: .25,
-        turnSpeed: .07,
+        turnSpeed: .06,
         sprintTurnSpeed: .05,
         acceleration: .2,
         staminaDrain: .6,
@@ -129,7 +131,7 @@ let gameStroke = null,
         damage: 120,
         moveSpeed: .12,
         maxSpeed: .25,
-        turnSpeed: .05,
+        turnSpeed: .04,
         sprintTurnSpeed: .04,
         acceleration: .004,
         staminaDrain: .1,
@@ -203,6 +205,8 @@ const clearRam = () => {
     water = null;
     prevSkin = null;
     nextSkin = null;
+    controls = null;
+    rules = null;
 }
 
 const garbage = e => {

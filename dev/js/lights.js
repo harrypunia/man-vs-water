@@ -5,6 +5,9 @@ const addLights = () => {
     sun.penumbra = 1;
     sun.position.set(player.mesh.position.x, 200, player.mesh.position.z);
     sun.lookAt(player.mesh.position);
+    sun.castShadow = true;
+    sun.shadowDarkness = 0.5;
+    sun.shadowCameraVisible = true;
     scene.add(ambLight);
     scene.add(sun);
 }
