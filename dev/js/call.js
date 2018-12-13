@@ -35,6 +35,7 @@ var container = document.getElementById('container'),
     lobby = document.getElementsByClassName('lobby')[0],
     manLobby = document.getElementsByClassName('man__final-player')[0],
     waterLobby = document.getElementsByClassName('water__final-player')[0],
+    hit = null,
     feed = null,
     feedData = null,
     bulletCountDisplay = null,
@@ -168,6 +169,7 @@ const getThreeAssets = () => {
     feed = document.getElementsByClassName('feed')[0];
     feedData = document.getElementsByClassName('feedData')[0];
     playersOnline = document.getElementsByClassName('playersOnline')[0];
+    hit = document.getElementsByClassName('hit')[0];
     takeDamageAudio = new Audio("assets/audio/damage.mp3");
     healAudio = new Audio("assets/audio/heal.mp3");
     ammoAudio = new Audio("assets/audio/ammo.mp3");

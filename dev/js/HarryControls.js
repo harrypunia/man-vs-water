@@ -276,10 +276,10 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                 if (keyState[192]) { //Aim
                     if (user.side == 'man') {
                         for (let i in man_mats) {
-                            man_mats[i].opacity = .5;
+                            player.man_mats[i].opacity = .5;
                         }
                     } else {
-                        player_mat.opacity = .5
+                        player.player_mat.opacity = .5
                     }
                     playerIsMoving = true;
                     this.turnSpeed = .02;

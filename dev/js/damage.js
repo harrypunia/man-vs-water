@@ -61,6 +61,7 @@ const giveDamage = key => {
         damageType: stats.type,
         damageFrom: playerId
     });
+    displayHit();
 }
 
 const showDamageEnemy = key => {}
@@ -88,4 +89,13 @@ const conclude = () => {
     if (controls.health <= 0) {
         terminate();
     }
+}
+
+const displayHit = () => {
+    hit.style.transition = 'opacity .2s'
+    hit.style.opacity = 1;
+    setTimeout(() => {
+        hit.style.transition = '0'
+        hit.style.opacity = 0;
+    }, 1000)
 }

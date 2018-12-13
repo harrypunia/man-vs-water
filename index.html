@@ -175,19 +175,31 @@
                             <div class="controls__key">` + 1</div>
                             <div class="controls__des">Aim 2x</div>
                         </div>
-                           <div class="ind_controls">
+                        <div class="ind_controls">
                             <div class="controls__key">Shift</div>
                             <div class="controls__des">Sprint</div>
+                        </div>
+                        <div class="ind_controls">
+                            <div class="controls__key">Q</div>
+                            <div class="controls__des">Strafe left</div>
+                        </div>
+                        <div class="ind_controls">
+                            <div class="controls__key">E</div>
+                            <div class="controls__des">Strafe right</div>
+                        </div>
+                        <div class="ind_controls">
+                            <div class="controls__key">M</div>
+                            <div class="controls__des">Open Minimap</div>
                         </div>
                     </div>
                 </div>
                 <div class="rules__panel menu__panels" style="display: none;"></div>
             </div>
+            <div class="icon">
+                <img src="assets/icons/drop-silhouette.svg" alt="drop">
+            </div>
+            <div class="lightMenuFooter">Harry</div>
         </div>
-        <div class="icon">
-            <img src="assets/icons/drop-silhouette.svg" alt="drop">
-        </div>
-        <div class="lightMenuFooter">Harry</div>
     </div>
     <div class="navigation">
         <div class="burger" onclick="openBurgerMenu()">
@@ -219,6 +231,7 @@
             </div>
             <div class="UILeft"></div>
             <div class="damage"></div>
+            <div class="hit"></div>
             <div class="feed">
                 <p class="feedData">You killed <span class="feedImp">Harry Punia</span></p>
             </div>
@@ -270,7 +283,6 @@
         var data = database.ref("data"),
             ref = data.child("Players"),
             gameRef = data.child("Game");
-
     </script>
     <script src="dev/js/call.js"></script>
     <script src="dev/js/permission.js"></script>
