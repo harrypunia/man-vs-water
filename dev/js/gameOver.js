@@ -1,5 +1,7 @@
 async function gameOver(dec) {
     let cinematic = await gameOverCinematic(dec);
+    let damageScreen = document.getElementsByClassName('damage')[0];
+    damageScreen.style.display = 'none';
     displayOutcome()
 }
 
@@ -13,7 +15,6 @@ const gameOverCinematic = dec => {
 
 const test = () => {
     let filter = document.getElementsByClassName('filter')[0];
-    console.log(filter);
     filter.style.display = 'block';
     filter.style.opacity = '1';
 }

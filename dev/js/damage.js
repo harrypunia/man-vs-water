@@ -64,8 +64,6 @@ const giveDamage = key => {
     displayHit();
 }
 
-const showDamageEnemy = key => {}
-
 const dyingInfo = () => {
     ref.child(playerId).child("orientation").child("damageFrom").once("value").then(snap => {
         ref.child(snap.val()).child("orientation").update({
