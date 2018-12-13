@@ -31,5 +31,5 @@ const showMenuInfo = e => {
     controls.style.display = 'none';
     rules.style.display = 'none';
 
-    targetId == 'controls' ? controls.style.display = 'block' : rules.style.display = 'block';
+    targetId == 'controls' ? controls.style.display = 'flex' : rules.style.display = 'block';
 }

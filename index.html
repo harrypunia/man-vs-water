@@ -156,22 +156,38 @@
                 <div class="menu__panels">
                     <div class="controls__panel">
                         <div class="ind_controls">
+                            <div class="controls__key">Arrows/WASD</div>
+                            <div class="controls__des">Move</div>
+                        </div>
+                        <div class="ind_controls">
                             <div class="controls__key">F</div>
                             <div class="controls__des">Jump</div>
                         </div>
                         <div class="ind_controls">
                             <div class="controls__key">Space</div>
-                            <div class="controls__des">Shoot Forwards</div>
+                            <div class="controls__des">Shoot</div>
+                        </div>
+                        <div class="ind_controls">
+                            <div class="controls__key">`</div>
+                            <div class="controls__des">Aim</div>
+                        </div>
+                        <div class="ind_controls">
+                            <div class="controls__key">` + 1</div>
+                            <div class="controls__des">Aim 2x</div>
+                        </div>
+                           <div class="ind_controls">
+                            <div class="controls__key">Shift</div>
+                            <div class="controls__des">Sprint</div>
                         </div>
                     </div>
-                    <div class="rules__panel menu__panels" style="display: none;"></div>
                 </div>
+                <div class="rules__panel menu__panels" style="display: none;"></div>
             </div>
-            <div class="icon">
-                <img src="assets/icons/drop-silhouette.svg" alt="drop">
-            </div>
-            <div class="lightMenuFooter">Harry</div>
         </div>
+        <div class="icon">
+            <img src="assets/icons/drop-silhouette.svg" alt="drop">
+        </div>
+        <div class="lightMenuFooter">Harry</div>
     </div>
     <div class="navigation">
         <div class="burger" onclick="openBurgerMenu()">
@@ -254,6 +270,7 @@
         var data = database.ref("data"),
             ref = data.child("Players"),
             gameRef = data.child("Game");
+
     </script>
     <script src="dev/js/call.js"></script>
     <script src="dev/js/permission.js"></script>
