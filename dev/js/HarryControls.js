@@ -59,7 +59,7 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
     var theta;
     var thetaDelta = 0;
     var scale = 1;
-    var lastPosition = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
+    var lastPosition = new THREE.Vector3(p.position.x, p.position.y, p.position.z);
     var playerIsMoving = false;
     var keyState = {};
     var STATE = {
@@ -123,14 +123,14 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
         this.checkKeyStates();
         if (scope.jump == true) {
             scope.stamina -= this.staminaDrain;
-            stats.bulletHeight = player.position.y + 0.5;
+            stats.bulletHeight = p.position.y + 0.5;
             jumpPower -= scope.gravity;
-            player.position.y += jumpPower;
+            p.position.y += jumpPower;
             camera.position.y += jumpPower;
-            if (player.position.y <= 0.49) {
+            if (p.position.y <= 0.49) {
                 camera.position.y = 1;
                 stats.bulletHeight = 1;
-                player.position.y = 0.5;
+                p.position.y = 0.5;
                 scope.jumping = false;
                 scope.jump = false;
                 jumpPower = .15;
@@ -276,7 +276,7 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
                 if (keyState[192]) { //Aim
                     if (user.side == 'man') {
                         for (let i = 0; i < 5; i++) {
-                            player.mesh.man_mats[i].opacity = .5;
+                            player.man_mats[i].opacity = .5;
                         }
                     } else {
                         player.player_mat.opacity = .5
@@ -287,20 +287,20 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
                     if (keyState[49]) {
                         if (user.side == 'man') {
                             for (let i = 0; i < 5; i++) {
-                                player.mesh.man_mats[i].opacity = .2;
+                                player.man_mats[i].opacity = .2;
                             }
                         } else {
-                            player.mesh.player_mat.opacity = .2
+                            player.player_mat.opacity = .2
                         }
                         this.turnSpeed = .005;
                         this.perspective > dblScopeZoom ? this.perspective -= 0.1 : 0;
                     } else {
                         if (user.side == 'man') {
                             for (let i = 0; i < 5; i++) {
-                                player.mesh.man_mats[i].opacity = .5;
+                                player.man_mats[i].opacity = .5;
                             }
                         } else {
-                            player.mesh.player_mat.opacity = .5
+                            player.player_mat.opacity = .5
                         }
                         this.perspective < scopeZoom - 0.1 ? this.perspective += 0.1 : 0;
                     }
@@ -308,7 +308,6 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
                     this.perspective < 7 ? (playerIsMoving = true, this.perspective += 0.3) : 0;
                     if (user.side == 'man') {
                         for (let i = 0; i < 5; i++) {
-                            console.log(player);
                             player.man_mats[i].opacity = 1;
                         }
                     } else {
@@ -336,9 +335,9 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
                 mapView.height = window.innerHeight - 100;
                 mapView.x = window.innerWidth / 2 - ((window.innerWidth - 200) / 2);
                 mapView.y = window.innerHeight / 2 - ((window.innerHeight - 100) / 2);
-                mapPos.x = player.position.x;
+                mapPos.x = p.position.x;
                 mapPos.y = 50;
-                mapPos.z = player.position.z;
+                mapPos.z = p.position.z;
                 dimBack = true;
                 this.allow = false;
             } else {
@@ -346,14 +345,14 @@ THREE.HarryControls = function (camera, p, stats, domElement) {
                 mapView.height = 200;
                 mapView.x = window.innerWidth - 220;
                 mapView.y = 20;
-                mapPos.x = player.position.x;
+                mapPos.x = p.position.x;
                 mapPos.y = 50;
-                mapPos.z = player.position.z;
+                mapPos.z = p.position.z;
                 dimBack = false;
                 this.allow = true;
             }
         } else { //If Not Landed
-            mapCamera.lookAt(player.position);
+            mapCamera.lookAt(p.position);
         }
         if (this.allow) {
             if (keyState[37] || keyState[65]) {
