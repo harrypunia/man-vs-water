@@ -8,11 +8,12 @@ var Player = function (id, name, skin, side) {
     this.player_mat;
     this.skin = skin;
     this.chosenSide = side;
+    this.man_mats;
     scope = this;
     this.init = () => {
         if (this.chosenSide == 'man') {
             player_geo = new THREE.BoxBufferGeometry(1, 1, 1);
-            man_mats = [
+            scope.man_mats = [
             new THREE.MeshBasicMaterial({
                     map: new THREE.TextureLoader().load("assets/SVG/man_skin" + this.skin + "_right.svg"),
                     transparent: true,
@@ -44,16 +45,16 @@ var Player = function (id, name, skin, side) {
                     side: THREE.DoubleSide
                 })
             ];
-            player_mat = new THREE.MeshFaceMaterial(man_mats);
+            scope.player_mat = new THREE.MeshFaceMaterial(scope.man_mats);
         } else {
-            player_mat = new THREE.MeshBasicMaterial({
+            scope.player_mat = new THREE.MeshBasicMaterial({
                 map: new THREE.TextureLoader().load("assets/SVG/water_skin" + this.skin + ".svg"),
                 transparent: true,
                 side: THREE.DoubleSide,
             });
             player_geo = new THREE.SphereGeometry(.5, 15, 15);
         }
-        scope.mesh = new THREE.Mesh(player_geo, player_mat);
+        scope.mesh = new THREE.Mesh(player_geo, scope.player_mat);
         scope.meshBorder = new THREE.Mesh(player_geo, gameStroke);
         user.side == 'man' ? scope.mesh.position.set(10 - (arenaSize / 2), arenaSize / 2, (Math.random() * arenaSize) - (arenaSize / 2)) : scope.mesh.position.set((arenaSize / 2) - 10, arenaSize / 2, (Math.random() * arenaSize) - (arenaSize / 2));
         scope.mesh.add(scope.meshBorder);

@@ -1,10 +1,10 @@
-THREE.HarryControls = function (camera, player, stats, domElement) {
+THREE.HarryControls = function (camera, p, stats, domElement) {
     this.camera = camera;
-    this.player = player;
+    this.player = p;
     this.domElement = (domElement !== undefined) ? domElement : document;
     this.allow = true;
     this.playerType = stats.type;
-    this.center = new THREE.Vector3(player.position.x, player.position.y, player.position.z);
+    this.center = new THREE.Vector3(p.position.x, p.position.y, p.position.z);
     this.hasLanded = false;
     this.sprinting = false;
     this.allowSprinting = true;
@@ -275,8 +275,8 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
 
                 if (keyState[192]) { //Aim
                     if (user.side == 'man') {
-                        for (let i in man_mats) {
-                            player.man_mats[i].opacity = .5;
+                        for (let i = 0; i < 5; i++) {
+                            player.mesh.man_mats[i].opacity = .5;
                         }
                     } else {
                         player.player_mat.opacity = .5
@@ -286,32 +286,33 @@ THREE.HarryControls = function (camera, player, stats, domElement) {
                     this.perspective > scopeZoom ? this.perspective -= 0.3 : 0;
                     if (keyState[49]) {
                         if (user.side == 'man') {
-                            for (let i in man_mats) {
-                                man_mats[i].opacity = .2;
+                            for (let i = 0; i < 5; i++) {
+                                player.mesh.man_mats[i].opacity = .2;
                             }
                         } else {
-                            player_mat.opacity = .2
+                            player.mesh.player_mat.opacity = .2
                         }
                         this.turnSpeed = .005;
                         this.perspective > dblScopeZoom ? this.perspective -= 0.1 : 0;
                     } else {
                         if (user.side == 'man') {
-                            for (let i in man_mats) {
-                                man_mats[i].opacity = .5;
+                            for (let i = 0; i < 5; i++) {
+                                player.mesh.man_mats[i].opacity = .5;
                             }
                         } else {
-                            player_mat.opacity = .5
+                            player.mesh.player_mat.opacity = .5
                         }
                         this.perspective < scopeZoom - 0.1 ? this.perspective += 0.1 : 0;
                     }
                 } else {
                     this.perspective < 7 ? (playerIsMoving = true, this.perspective += 0.3) : 0;
                     if (user.side == 'man') {
-                        for (let i in man_mats) {
-                            man_mats[i].opacity = 1;
+                        for (let i = 0; i < 5; i++) {
+                            console.log(player);
+                            player.man_mats[i].opacity = 1;
                         }
                     } else {
-                        player_mat.opacity = 1
+                        player.player_mat.opacity = 1;
                     }
                 }
 

@@ -48,7 +48,6 @@ const render = () => {
     scene.fog = new THREE.Fog(0x0b0b14, .01, stats.visibility);
     renderer.render(scene, camera);
     renderer.autoClear = false;
-
     fullLight()
     renderer.clearDepth();
     renderer.setViewport(mapView.x, mapView.y, mapView.width, mapView.height);
