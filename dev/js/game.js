@@ -53,6 +53,7 @@ const initOtherPlayer = () => {
             delete otherPlayers[PlayerData.key];
             for (let i in keys) {
                 keys[i] == PlayerData.key ? keys.splice(i, 1) : 0;
+                removedPlayers.push(PlayerData.key);
             }
         }
     });
@@ -143,3 +144,14 @@ const checkKills = () => {
         }
     })
 }
+
+const faultyPlayers = () => {
+    'use strict';
+    for(let k in removedPlayers) {
+        ref.once().then(snap => {
+            console.log(snap.val());
+        })
+    }
+}
+
+setInterval(faultyPlayers, 1000);
