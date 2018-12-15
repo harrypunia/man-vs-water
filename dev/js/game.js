@@ -10,6 +10,7 @@ var Game = function () {
         controls.init();
         removePlayer();
         checkKills();
+        removeFaultyPlayers();
     }
     this.update = function () {
         regulatePerks();
@@ -154,4 +155,4 @@ const faultyPlayers = () => {
     }
 }
 
-setInterval(faultyPlayers, 1000);
+const removeFaultyPlayers = setInterval(faultyPlayers, 1000);
